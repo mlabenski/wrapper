@@ -1,6 +1,6 @@
 export const state = () => ({
   hppLink: '',
-  linkValid: true,
+  linkValid: false,
   saveID: null,
   formCompleted: false,
   formData: {hppLink: '', title:'', theme:'', products: []},
@@ -18,6 +18,10 @@ export const mutations = {
         vuexContext.commit('setValid')
       }
     })
+  },
+  setHPPValuee (state, vuexContext, hpp) {
+    state.hppLink = `https://${hpp}.securepayments.cardpointe.com/pay?`
+    vuexContext.commit('setValid')
   },
   setValid (state)  {
     state.linkValid = true
@@ -56,7 +60,7 @@ export const mutations = {
 
 export const actions = {
   setProducts (vuexContext, hpp) {
-    vuexContext.commit('setHPPValue', vuexContext, hpp)
+    vuexContext.commit('setHPPValuee', vuexContext, hpp)
   },
   setTitle (vuexContext, title) {
     vuexContext.commit('setTitle',  title)

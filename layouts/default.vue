@@ -46,7 +46,7 @@
         </v-row>
         <v-row  align="center" justify="center">
             <v-btn medium style="padding-bottom: 15px; padding-top: 15px" color="green" @click="addField()">Add Product</v-btn>
-          <v-btn  disabled="disableBtn" medium style="padding-bottom: 15px; padding-top: 15px ; margin-left: 20px" color="purple" @click="exportStore()">Export Store</v-btn>
+          <v-btn  :disabled="disableBtn" medium style="padding-bottom: 15px; padding-top: 15px ; margin-left: 20px" color="purple" @click="exportStore()">Export Store</v-btn>
 
         </v-row>
       </v-container>

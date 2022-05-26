@@ -16,7 +16,6 @@
           </client-only>
         </v-col>
       </v-row>
-    </v-parallax>
     <v-card
       color="grey lighten-4"
       flat
