@@ -1,7 +1,6 @@
 <template>
   <section id="hero">
-    <v-parallax dark src="@/assets/img/bgHero.jpg" height="400">
-      <v-row align="center" justify="center">
+      <v-row align="center" justify="center"  style="height: 750px">
         <v-col cols="10">
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">

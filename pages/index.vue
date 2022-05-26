@@ -1,7 +1,6 @@
 <template>
   <section id="hero">
-    <v-parallax dark src="@/assets/img/bgHero.jpg" height="750">
-      <v-row align="center" justify="center">
+      <v-row align="center" justify="center" style="height: 750px">
         <v-col cols="10">
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
@@ -73,7 +72,6 @@
       <div class="svg-border-waves text-white">
         <v-img src="@/assets/img/borderWaves.svg" />
       </div>
-    </v-parallax>
     <v-container fluid id="features" class="mt-2">
       <v-row align="center" justify="center">
         <v-col cols="10">

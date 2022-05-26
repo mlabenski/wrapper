@@ -1,7 +1,7 @@
 <template>
   <section id="hero">
-    <v-parallax dark src="@/assets/img/bgHero.jpg" height="600">
-      <v-row align="center" justify="center">
+    <products-save-message :save-i-d="saveID"></products-save-message>
+      <v-row align="center" justify="center"  style="height: 600px">
         <v-col cols="12" v-if="rows">
           <client-only>
             <div>
@@ -17,14 +17,45 @@
         </v-col>
       </v-row>
     </v-parallax>
+    <v-card
+      color="grey lighten-4"
+      flat
+      height="35px"
+      width="245px"
+      tile
+      class="filter-icons"
+    >
+      <v-toolbar>
+        <v-form v-model="valid">
+          <v-row>
+            <v-text-field :rules="rules" v-model="importCodeInput" style="max-width: 50%;"></v-text-field>
+            <v-btn :disabled="!valid"  medium @click="validate()" color="orange" style="margin-left:20px;">
+              Import
+            </v-btn>
+          </v-row>
+        </v-form>
+      </v-toolbar>
+    </v-card>
   </section>
 </template>
 
 <script>
+import ProductsSaveMessage from '~/components//ProductsSaveMessage.vue'
 export default {
   name: 'step-one',
+  components: { ProductsSaveMessage },
   data(){
     return {
+      valid: true,
+      importCodeInput : null,
+      rules: [
+        value => !!value || 'Required.',
+        value => {
+        const pattern = /^[0-9]+$/
+          return pattern.test(value) || 'Must be numbers'
+        }
+      ],
+      isDisabled: false,
       columns: [
         {
           label: 'Name',
@@ -65,19 +96,44 @@ export default {
   watch: {
   },
   methods: {
-  rowStyleClassFn(row) {
-    return 'white'
-  },
+    rowStyleClassFn(row) {
+      return 'white'
+    },
+    exportStore() {
+      this.isDisabled = true
+      this.$store.dispatch('exportData')
+    },
+    validate () {
+      this.$store.dispatch('importData', this.importCodeInput)
+    }
   },
   computed: {
     rows() {
       return this.$store.getters.getUserEnteredProducts
-    }
+    },
+    saveID() {
+      return this.$store.getters.getSaveID
+    },
   }
 };
 </script>
 
 <style lang="scss">
+
+.filter-icons {
+  position: fixed;
+  left: 80%;
+  top: 15%;
+  height: 55px;
+}
+@media screen and (max-width: 1020px) {
+  .filter-icons {
+    position: fixed;
+    left: 60%;
+    top: 20%;
+    height: 55px;
+  }
+}
 .circle {
   stroke: white;
   stroke-dasharray: 650;

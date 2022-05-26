@@ -1,6 +1,7 @@
 export const state = () => ({
   hppLink: '',
   linkValid: true,
+  saveID: null,
   formCompleted: false,
   formData: {hppLink: '', title:'', theme:'', products: []},
   dataFields: {required: ['title', 'price', 'description', 'picture'], optional: ['']},
@@ -39,6 +40,17 @@ export const mutations = {
   },
   setFormCompleted(state) {
     state.formCompleted = true
+  },
+  setSaveID(state, id) {
+    console.log(id)
+    state.saveID = id
+  },
+  setImportedData(state, importedData) {
+    state.userEnteredData = []
+    for (const key in importedData) {
+      state.userEnteredData.push({'id':importedData[key].itemID,'name': importedData[key].name, 'price':importedData[key].price,'description':importedData[key].description, 'picture':importedData[key].picture, 'size':importedData[key].size, 'color': importedData[key].color, 'category': importedData[key].category, 'gender': importedData[key].gender})
+    }
+    state.userEnteredData = importedData
   }
 }
 
@@ -65,7 +77,15 @@ export const actions = {
     const data = (JSON.stringify(vuexContext.state.userEnteredData))
     await this.$axios.$post(`http://192.168.1.215:5000/wrapper/save`, data)
       .then(function (res) {
+        vuexContext.commit('setSaveID', res.saveID)
         console.log(res);
+      })
+  },
+  async importData(vuexContext, id) {
+    await this.$axios.$get(`http://192.168.1.215:5000/wrapper/retrieve/id/${id}`)
+      .then(function (res) {
+        console.log(res)
+        vuexContext.commit('setImportedData', res)
       })
   }
 }
@@ -96,5 +116,8 @@ export const getters = {
   },
   getUserEnteredProducts: (state) => {
     return state.userEnteredData
+  },
+  getSaveID: (state) => {
+    return state.saveID
   }
 }
