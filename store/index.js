@@ -75,14 +75,14 @@ export const actions = {
   },
   async exportData(vuexContext) {
     const data = (JSON.stringify(vuexContext.state.userEnteredData))
-    await this.$axios.$post(`http://192.168.1.215:5000/wrapper/save`, data)
+    await this.$axios.$post(`https://usewrapper.herokuapp.com//wrapper/save`, data)
       .then(function (res) {
         vuexContext.commit('setSaveID', res.saveID)
         console.log(res);
       })
   },
   async importData(vuexContext, id) {
-    await this.$axios.$get(`http://192.168.1.215:5000/wrapper/retrieve/id/${id}`)
+    await this.$axios.$get(`https://usewrapper.herokuapp.com/wrapper/retrieve/id/${id}`)
       .then(function (res) {
         console.log(res)
         vuexContext.commit('setImportedData', res)

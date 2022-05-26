@@ -88,7 +88,6 @@
           </v-row>
         </v-col>
       </v-row>
-    </v-parallax>
   </section>
 </template>
 
