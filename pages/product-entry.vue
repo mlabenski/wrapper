@@ -128,8 +128,8 @@ export default {
 @media screen and (max-width: 1020px) {
   .filter-icons {
     position: fixed;
-    left: 60%;
-    top: 20%;
+    left: 35%;
+    top: 6%;
     height: 55px;
   }
 }

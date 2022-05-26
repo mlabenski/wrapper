@@ -1,6 +1,6 @@
 <template>
   <section id="hero">
-      <v-row align="center" justify="center"  style="height: 750px">
+      <v-row align="center" justify="center"  class="row-height">
         <v-col cols="10">
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
@@ -235,6 +235,14 @@ export default {
 </script>
 
 <style lang="scss">
+.row-height {
+  height: 750px;
+}
+@media screen and (max-width: 1020px) {
+  .row-height {
+    height: 450px;
+  }
+}
 .circle {
   stroke: white;
   stroke-dasharray: 650;
