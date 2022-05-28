@@ -28,7 +28,7 @@
                 large
                 dark
                 @click="triggerNetlifyIdentityAction('login')"
-                v-if="!isLoggedIn"
+                v-if="!isLoggedIn || !currentUser"
                 class="mt-5"
               >
                 Log In
