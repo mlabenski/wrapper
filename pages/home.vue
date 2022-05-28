@@ -136,7 +136,7 @@ if (process.browser) {
 }
 
 export default {
-  name: 'IndexPage',
+  name: 'HomePage',
   auth: false,
   data() {
     return {
