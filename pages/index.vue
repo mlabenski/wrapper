@@ -1,6 +1,6 @@
 <template>
   <section id="hero">
-      <v-row align="center" justify="center" style="height: 750px">
+      <v-row align="center" justify="center" style="height: 650px">
         <v-col cols="10">
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
@@ -122,6 +122,7 @@
 <script>
 export default {
   name: 'IndexPage',
+  auth: false,
   data() {
     return {
       dialog: false,
@@ -129,7 +130,7 @@ export default {
         {
           img: require("@/assets/img/icon2.png"),
           title: "Step 1",
-          text: "Import the products you wish to sale online.",
+          text: "Import the products you wish to sell online.",
         },
         {
           img: require("@/assets/img/icon1.png"),
@@ -143,6 +144,11 @@ export default {
         },
       ],
     };
+  },
+  head() {
+    return {
+      script : [{src: 'https://identity.netlify.com/v1/netlify-identity-widget.js'}]
+    }
   },
   watch: {
     dialog(value) {

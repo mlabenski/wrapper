@@ -94,6 +94,7 @@
 <script>
 export default {
   name: 'step-one',
+  auth: true,
   data() {
     return {
       dialog: false,

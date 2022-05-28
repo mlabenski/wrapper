@@ -15,6 +15,7 @@
 
     <v-footer :absolute="!fixed" app v-if="step!==4">
       <span>&copy; {{ new Date().getFullYear() }}</span>
+      <div data-netlify-identity-button>Login with Netlify Identity</div>
     </v-footer>
     <v-footer :absolute="!fixed" app v-if="step===4" style="height: 125px;">
       <v-container>

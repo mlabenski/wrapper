@@ -14,7 +14,13 @@ export default {
       {hid: 'description', name: 'description', content: ''},
       {name: 'format-detection', content: 'telephone=no'}
     ],
-    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}]
+    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+    script: [
+      {
+        src: "https://identity.netlify.com/v1/netlify-identity-widget.js",
+        type: "text/javascript"
+      }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -39,8 +45,10 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/proxy',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+  middleware: ['auth'],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -72,5 +80,8 @@ export default {
   proxy: {
   //proxies /foo to http://example.com/foo
   '/api': {'target':'https://cardpointedemoaj.securepayments.cardpointe.com/pay?', pathRewrite: { "^/api/": ""}}
-}
+  },
+  auth: {
+
+  }
 }
