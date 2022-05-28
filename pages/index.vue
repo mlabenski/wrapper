@@ -16,7 +16,7 @@
                 large
                 dark
                 @click="nav()"
-                v-if="isLoggedIn"
+                v-if="isLoggedIn || currentUser"
                 class="mt-5"
               >
                 Generate One
@@ -146,13 +146,15 @@ if (process.browser) {
     APIUrl: 'https://usewrapper.com/.netlify/identity'
   })
 }
+const currentUser = netlifyIdentity.currentUser();
 
 export default {
   name: 'IndexPage',
   auth: false,
   data() {
     return {
-      currentUser: null,
+      // eslint-disable-next-line object-shorthand
+      currentUser: currentUser,
       dialog: false,
       features: [
         {
