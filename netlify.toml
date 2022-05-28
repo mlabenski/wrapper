@@ -49,9 +49,3 @@ from = "/home/"
 to = "/"
 force = true
 status = 302
-
-[[redirects]]
-from = "/"
-to = "/"
-force = true
-status = 302
