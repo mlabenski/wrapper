@@ -16,9 +16,22 @@
                 large
                 dark
                 @click="nav()"
+                v-if="isLoggedIn"
                 class="mt-5"
               >
                 Generate One
+                <v-icon class="ml-2">mdi-arrow-down</v-icon>
+              </v-btn>
+                            <v-btn
+                rounded
+                outlined
+                large
+                dark
+                @click="triggerNetlifyIdentityAction('login')"
+                v-if="!isLoggedIn"
+                class="mt-5"
+              >
+                Log In
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
               <div class="video d-flex align-center py-4">
@@ -115,30 +128,21 @@
     </v-container>
     <div class="svg-border-waves">
       <img src="~@/assets/img/wave2.svg" />
-          <div v-if="isLoggedIn">
-      <p>Hello {{ username }}</p>
-      <p>
-        <button @click="triggerNetlifyIdentityAction('logout')">Log Out</button>
-      </p>
-    </div>
-    <div v-else>
-      <p>You are not logged in.</p>
-      <p>
-        <button @click="triggerNetlifyIdentityAction('login')">Log In</button>
-        <button @click="triggerNetlifyIdentityAction('signup')">Sign Up</button>
-      </p>
-    </div>
+      <div v-if="isLoggedIn" v:on:click="triggerNetlifyIdentityAction('logout')" class="button--grey">Logout</div>
+      <div v-else v:on:click="triggerNetlifyIdentityAction('login')" class="button--grey">Login</div>
+      <nuxt-link to="/product-entry" class="button--green">
+        Protected Page
+      </nuxt-link>
+      <div v-if="!isLoggedIn" class="button--green" @click="circumvent">Circumvent</div>
     </div>
   </section>
 </template>
 
 <script>
 import netlifyIdentity from 'netlify-identity-widget';
-import { mapGetters, mapActions } from "vuex";
-netlifyIdentity.netlifyIdentity({
-  APIUrl: "https://usewrapper.com/.netlify/identity",
-  logo: true
-});
+import { mapState, mapActions } from "vuex";
+
+netlifyIdentity.init();
 
 export default {
   name: 'IndexPage',
@@ -166,61 +170,32 @@ export default {
       ],
     };
   },
-  computed: {
-    ...mapGetters("user", {
-      isLoggedIn: "getUserStatus",
-      user: "getUser"
-    }),
-    username() {
-      return this.user ? this.user.username: ", there!";
-    }
-  },
-  watch: {
-    dialog(value) {
-      if (!value) {
-        this.pause();
-      }
-    },
-  },
+  computed: mapState({
+    isLoggedIn: state => state.currentUser
+  }),
   methods: {
-    ...mapActions("user", {
-      updateUser: "updateUser"
+    ...mapActions({
+      setUser: 'handleUpdateUser'
     }),
+    circumvent() {
+      window.localStorage.setItem('user', true);
+      location.reload(true);
+    },
     triggerNetlifyIdentityAction(action) {
-      if (action === "login" || action === "signup") {
+      if(action === "login" || action === "signup") {
         netlifyIdentity.open(action);
         netlifyIdentity.on(action, user => {
-          this.currentUser = {
-            username: user.user_metadata.full_name,
-            email: user.email,
-            access_token: user.token.access_token,
-            expires_at: user.token.expires_at,
-            refresh_token: user.token.refresh_token,
-            token_type: user.token.token_type
-          };
-          this.updateUser({
-            currentUser: this.currentUser
-          });
-          netlifyIdentity.close()
+          this.setUser(user);
+          netlifyIdentity.close();
         });
-        } else if (action === "logout") {
-          this.currentUser = null;
-          this.updateUser({
-            currentUser: this.currentUser
-          });
-          netlifyIdentity.logout();
-          this.$router.push({ name: "IndexPage"})
-        }
+      } else if (action === "logout") {
+        this.setUser(null);
+        netlifyIdentity.logout();
+        this.$router.push('/');
       }
     },
     nav() {
-      if(this.isLoggedIn) {
-        this.$router.push('step-one')
-      }
-      else {
-        this.triggerNetlifyIdentityAction('login')
-      }
-      
+      this.$router.push('/step-one')
     },
     ready(event) {
       this.player = event.target;
@@ -242,7 +217,7 @@ export default {
       this.player.pauseVideo();
     },
   }
-
+};
 </script>
 
 <style lang="scss">

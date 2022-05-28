@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from '@/pages/index';
-import StepOne from '@/page/step-one'
-
 Vue.use(Router);
 
 // import { mapGetters } from 'vuex';
@@ -21,16 +18,13 @@ const router = new Router({
         {
             path: '/',
             name: 'IndexPage',
-            component: Home
+            component: () => import('pages/index.vue')
         },
         {
             path: '/step-one',
             name: 'step-one',
-            component: StepOne
-        },
-        {
-            path: '*',
-            component: () => import('@/components/NotFound.vue')
+            component: () => import('pages/step-one.vue'),
+            meta: { requiresAuth: true }
         }
     ]
 });
