@@ -24,7 +24,7 @@ from = "/"
 to ="/home/"
 force = true
 status = 200
-conditions = {Role = ["guest"]}
+conditions = {Role = ["nosub"]}
 
 [[redirects]]
 from = "/step-one/"

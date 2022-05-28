@@ -77,5 +77,4 @@ export default {
   auth: {
 
   },
-  target: 'static'
 }
