@@ -141,7 +141,11 @@
 import netlifyIdentity from 'netlify-identity-widget';
 import { mapState, mapActions } from "vuex";
 
-netlifyIdentity.init();
+if (process.browser) {
+  netlifyIdentity.init({
+    APIUrl: 'https://userwrapper.com/.netlify/identity'
+  })
+}
 
 export default {
   name: 'IndexPage',
