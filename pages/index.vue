@@ -140,13 +140,13 @@
 <script>
 import netlifyIdentity from 'netlify-identity-widget';
 import { mapState, mapActions } from "vuex";
-
+let currentUser 
 if (process.browser) {
   netlifyIdentity.init({
     APIUrl: 'https://usewrapper.com/.netlify/identity'
   })
+  currentUser = netlifyIdentity.currentUser();
 }
-const currentUser = netlifyIdentity.currentUser();
 
 export default {
   name: 'IndexPage',
