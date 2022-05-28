@@ -1,0 +1,11 @@
+[[redirects]]
+from = "/product-entry"
+force = true
+status = 200
+conditions = {Role = ["rdm", "admin"]}
+
+[[redirects]]
+from = "/product-entry"
+to = "/"
+force = true
+status = 302
