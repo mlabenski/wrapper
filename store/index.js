@@ -1,7 +1,7 @@
 import  netlifyIdentity  from "netlify-identity-widget"
 if (process.browser) {
   netlifyIdentity.init({
-    APIUrl: 'https://userwrapper.com/.netlify/identity'
+    APIUrl: 'https://usewrapper.com/.netlify/identity'
   })
 }
 const currentUser = netlifyIdentity.currentUser();

@@ -143,7 +143,7 @@ import { mapState, mapActions } from "vuex";
 
 if (process.browser) {
   netlifyIdentity.init({
-    APIUrl: 'https://userwrapper.com/.netlify/identity'
+    APIUrl: 'https://usewrapper.com/.netlify/identity'
   })
 }
 

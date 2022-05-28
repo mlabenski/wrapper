@@ -96,7 +96,7 @@ import netlifyIdentity  from "netlify-identity-widget";
 import { mapActions } from "vuex";
 if (process.browser) {
   netlifyIdentity.init({
-    APIUrl: 'https://userwrapper.com/.netlify/identity'
+    APIUrl: 'https://usewrapper.com/.netlify/identity'
   })
 }
 
