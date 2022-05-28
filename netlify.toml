@@ -1,12 +1,12 @@
 [[redirects]]
-from = "/product-entry"
-to ="/product-entry"
+from = "/step-one/"
+to ="/step-one/"
 force = true
 status = 200
 conditions = {Role = ["rdm", "admin"]}
 
 [[redirects]]
-from = "/product-entry"
+from = "/step-one/"
 to = "/"
 force = true
 status = 302
