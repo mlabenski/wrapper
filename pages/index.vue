@@ -133,7 +133,6 @@
       <nuxt-link to="/product-entry" class="button--green">
         Protected Page
       </nuxt-link>
-      <div v-if="!isLoggedIn" class="button--green" @click="circumvent">Circumvent</div>
     </div>
   </section>
 </template>
@@ -177,10 +176,6 @@ export default {
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),
-    circumvent() {
-      window.localStorage.setItem('user', true);
-      location.reload(true);
-    },
     triggerNetlifyIdentityAction(action) {
       if(action === "login" || action === "signup") {
         netlifyIdentity.open(action);

@@ -1,5 +1,9 @@
 import  netlifyIdentity  from "netlify-identity-widget"
-netlifyIdentity.init();
+if (process.browser) {
+  netlifyIdentity.init({
+    APIUrl: 'https://userwrapper.com/.netlify/identity'
+  })
+}
 const currentUser = netlifyIdentity.currentUser();
 export const state = () => ({
   // eslint-disable-next-line object-shorthand
@@ -33,7 +37,6 @@ export const mutations = {
   },
   setValid (state)  {
     state.linkValid = true
-    console.log(state.linkValid)
   },
   setTitle (state, title) {
     state.formData.title = title

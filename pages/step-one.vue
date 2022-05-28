@@ -92,9 +92,16 @@
 </template>
 
 <script>
+import netlifyIdentity  from "netlify-identity-widget";
+import { mapActions } from "vuex";
+if (process.browser) {
+  netlifyIdentity.init({
+    APIUrl: 'https://userwrapper.com/.netlify/identity'
+  })
+}
+
 export default {
   name: 'step-one',
-  auth: true,
   data() {
     return {
       dialog: false,
@@ -131,6 +138,11 @@ export default {
       optional_fields : [{'field':'size', "use": true}, {'field':'color', "use": true}, {'field':'category', "use": true}, {'field':'gender', "use": true}, {'field':'extra info', "use": true}],
     };
   },
+  computed: {
+    step() {
+      return this.$store.getters.getCurrentStep
+    }
+  },
   watch: {
     dialog(value) {
       if (!value) {
@@ -157,6 +169,27 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      setUser: 'setUser'
+    }),
+    triggerNetlifyIdentityAction(action) {
+      if(action === "login" || action === "signup") {
+        netlifyIdentity.open(action);
+        netlifyIdentity.on(action, user => {
+          this.setUser(user);
+          netlifyIdentity.close();
+        });
+      } else if (action === "logout") {
+        this.setUser(null);
+        netlifyIdentity.logout();
+        this.$router.push('/');
+      }
+    },
+    middleware ({ store, redirect }) {
+      if (!store.state.currentUser) {
+        return redirect('/');
+      }
+    },
     selectedInput(val) {
       if(val === 'manual') {
         this.show_fields = true
@@ -225,11 +258,6 @@ export default {
     completedForm() {
       this.$store.dispatch('setFormCompleted')
       this.$router.push('/product-entry')
-    }
-  },
-  computed: {
-    step() {
-      return this.$store.getters.getCurrentStep
     }
   }
 };
