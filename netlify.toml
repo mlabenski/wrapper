@@ -1,5 +1,6 @@
 [[redirects]]
 from = "/product-entry"
+to ="/product-entry"
 force = true
 status = 200
 conditions = {Role = ["rdm", "admin"]}
