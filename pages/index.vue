@@ -16,7 +16,7 @@
                 large
                 dark
                 @click="nav()"
-                v-if="isLoggedIn || currentUser"
+                v-if="isLoggedIn"
                 class="mt-5"
               >
                 Generate One
@@ -28,7 +28,7 @@
                 large
                 dark
                 @click="triggerNetlifyIdentityAction('login')"
-                v-if="!isLoggedIn || !currentUser"
+                v-else
                 class="mt-5"
               >
                 Log In
