@@ -1,51 +1,51 @@
 [[redirects]]
 from = "/step-one/"
-to ="/step-one/"
+to = "/step-one/"
 force = true
 status = 200
-conditions = {Role = ["sub"]}
+conditions = {Role = "sub]}
 
 [[redirects]]
 from = "/product-entry"
-to ="/product-entry/"
+to = "/product-entry/"
 force = true
 status = 200
-conditions = {Role = ["sub"]}
+conditions = {Role = "sub"}
 
 [[redirects]]
 from = "/"
-to ="/dashboard/"
+to = "/dashboard/"
 force = true
 status = 200
-conditions = {Role = ["sub"]}
+conditions = {Role = "sub"}
 
 [[redirects]]
 from = "/"
-to ="/home/"
+to ="/home"
 force = true
 status = 200
-conditions = {Role = ["nosub"]}
+conditions = {Role = "nosub"}
 
 [[redirects]]
 from = "/step-one/"
 to = "/"
 force = true
-status = 302
+status = 200
 
 [[redirects]]
 from = "/product-entry/"
 to = "/"
 force = true
-status = 302
+status = 200
 
 [[redirects]]
 from = "/dashboard/"
 to = "/"
 force = true
-status = 302
+status = 200
 
 [[redirects]]
 from = "/home/"
 to = "/"
 force = true
-status = 302
+status = 200
