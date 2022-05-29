@@ -186,6 +186,9 @@ export default {
         netlifyIdentity.on(action, user => {
           this.setUser(user);
           netlifyIdentity.close();
+          if(action === "login") {
+            this.$router.push('/dashboard')
+          }
         });
       } else if (action === "logout") {
         this.setUser(null);
