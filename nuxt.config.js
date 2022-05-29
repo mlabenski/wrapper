@@ -41,18 +41,6 @@ export default {
     redirects: [
       {
         from : "/step-one",
-        to : "/step-one",
-        status : 200,
-        conditions : {Role : "sub"}
-      },
-      {
-        from : "/product-entry",
-        to : "/product-entry",
-        status : 200,
-        conditions : {Role : "sub"}
-      },
-      {
-        from : "/step-one",
         to : "/",
         status : 403,
       },
