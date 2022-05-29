@@ -47,12 +47,14 @@ export default {
       },
       {
         from : "/step-one/",
-        to : "/",
+        to : "/index.html",
+        force : 'true',
         status : 403,
       },
       {
         from : "/product-entry/",
-        to : "/",
+        to : "/index.html",
+        force : 'true',
         status : 403,
       }
     ]
