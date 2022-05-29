@@ -6,7 +6,7 @@ status = 200
 conditions = {Role = "sub"}
 
 [[redirects]]
-from = "/product-entry"
+from = "/product-entry/"
 to = "/product-entry/"
 force = true
 status = 200
