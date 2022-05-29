@@ -29,6 +29,6 @@ conditions = {Role = "nosub"}
 
 [[redirects]]
 from = "/*"
-to = "/index.html"
+to = "/"
 force = true
 status = 200
