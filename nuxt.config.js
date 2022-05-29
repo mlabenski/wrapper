@@ -39,13 +39,13 @@ export default {
   netlify: {
     redirects: [
       {
-        from : "/*",
+        from : "/",
         to : "/dashboard",
         status : 200,
         conditions : {Role : "sub"}
       },
       {
-        from : "/*",
+        from : "/",
         to : "/home",
         status : 200,
         conditions : {Role : "free"}
