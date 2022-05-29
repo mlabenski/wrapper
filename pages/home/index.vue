@@ -1,5 +1,5 @@
 <template>
-  <section id="hero">
+  <section v-if="!user" id="hero">
       <v-row align="center" justify="center" style="height: 650px">
         <v-col cols="10">
           <v-row align="center" justify="center">
@@ -118,6 +118,80 @@
     </v-container>
     <div class="svg-border-waves">
     </div>
+  </section>
+  <section v-else>
+      <v-row align="center" justify="center" style="height: 650px">
+        <v-col cols="10">
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="6" xl="8">
+              <h1 class="display-2 font-weight-bold mb-4">Oops, you dont have access :(</h1>
+              <h1 class="font-weight-light">
+                Quick solution for maintaining a<br />
+                shopping cart without web hosting <br />
+                expenses, maintenance, or vulnerabilties!
+              </h1>
+              <v-btn
+                rounded
+                outlined
+                large
+                dark
+                @click="nav()"
+                class="mt-5"
+              >
+                Generate One
+                <v-icon class="ml-2">mdi-arrow-down</v-icon>
+              </v-btn>
+              <div class="video d-flex align-center py-4">
+                <a @click.stop="dialog = true" class="playBut">
+                  <svg
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                    x="0px"
+                    y="0px"
+                    width="60px"
+                    height="60px"
+                    viewBox="0 0 213.7 213.7"
+                    enable-background="new 0 0 213.7 213.7"
+                    xml:space="preserve"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/ ">
+                    <polygon
+                      class="triangle"
+                      id="XMLID_18_"
+                      fill="none"
+                      stroke-width="7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-miterlimit="10"
+                      points="73.5,62.5 148.5,105.8 73.5,149.1 "
+                    />
+
+                    <circle
+                      class="circle"
+                      id="XMLID_17_"
+                      fill="none"
+                      stroke-width="7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-miterlimit="10"
+                      cx="106.8"
+                      cy="106.8"
+                      r="103.3"
+                    />
+                  </svg>
+                </a>
+                <p class="subheading ml-2 mb-0">Welcome back loyal merchant</p>
+              </div>
+            </v-col>
+            <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down"> </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+      <div class="svg-border-waves text-white">
+        <v-img src="@/assets/img/borderWaves.svg" />
+      </div>
   </section>
 </template>
 
