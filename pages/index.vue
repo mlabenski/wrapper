@@ -11,31 +11,31 @@
                 expenses, maintenance, or vulnerabilties!
               </h1>
               <v-btn
+                v-if="isLoggedIn"
                 rounded
                 outlined
                 large
                 dark
-                @click="nav()"
-                v-if="isLoggedIn"
                 class="mt-5"
+                @click="nav()"
               >
                 Generate One
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
                             <v-btn
+                v-else
                 rounded
                 outlined
                 large
                 dark
-                @click="triggerNetlifyIdentityAction('login')"
-                v-else
                 class="mt-5"
+                @click="triggerNetlifyIdentityAction('login')"
               >
                 Log In
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
               <div class="video d-flex align-center py-4">
-                <a @click.stop="dialog = true" class="playBut">
+                <a class="playBut" @click.stop="dialog = true">
                   <svg
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"
@@ -51,8 +51,8 @@
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     xsi:schemaLocation="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/ ">
                     <polygon
-                      class="triangle"
                       id="XMLID_18_"
+                      class="triangle"
                       fill="none"
                       stroke-width="7"
                       stroke-linecap="round"
@@ -62,8 +62,8 @@
                     />
 
                     <circle
-                      class="circle"
                       id="XMLID_17_"
+                      class="circle"
                       fill="none"
                       stroke-width="7"
                       stroke-linecap="round"
@@ -85,7 +85,7 @@
       <div class="svg-border-waves text-white">
         <v-img src="@/assets/img/borderWaves.svg" />
       </div>
-    <v-container fluid id="features" class="mt-2">
+    <v-container id="features" fluid class="mt-2">
       <v-row align="center" justify="center">
         <v-col cols="10">
           <v-row align="center" justify="space-around">
@@ -96,13 +96,13 @@
               </h1>
             </v-col> -->
             <v-col
+              v-for="(feature, i) in features"
+              :key="i"
               cols="12"
               sm="4"
               class="text-center"
-              v-for="(feature, i) in features"
-              :key="i"
             >
-              <v-hover v-slot:default="{ hover }">
+              <v-hover v-slot="{ hover }">
                 <v-card
                   class="card"
                   shaped
@@ -145,7 +145,6 @@ if (process.browser) {
   netlifyIdentity.init({
     APIUrl: 'https://usewrapper.com/.netlify/identity'
   })
-  currentUser = netlifyIdentity.currentUser();
 }
 
 export default {
