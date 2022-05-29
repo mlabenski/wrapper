@@ -33,8 +33,32 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@aceforth/nuxt-netlify'
   ],
+  netlify: {
+    redirects: [
+      {
+        from : "/*",
+        to : "/dashboard",
+        force : true,
+        status : 200,
+        conditions : {Role : "sub"}
+      },
+      {
+        from : "/*",
+        to : "/home",
+        force : true,
+        status : 200,
+        conditions : {Role : "free"}
+      },
+      {
+        from : "/*",
+        to : "/",
+        status : 200
+      }
+    ]
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
