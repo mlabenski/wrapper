@@ -48,14 +48,12 @@ export default {
       {
         from : "/step-one/",
         to : "/index.html",
-        force : 'true',
-        status : 403,
+        status : 200,
       },
       {
         from : "/product-entry/",
         to : "/index.html",
-        force : 'true',
-        status : 403,
+        status : 200,
       }
     ]
   },
