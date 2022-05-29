@@ -16,6 +16,7 @@ export default {
     ],
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
   },
+  target: 'static',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
@@ -39,22 +40,7 @@ export default {
   ],
   netlify: {
     redirects: [
-      {
-        from : "/dashboard/",
-        to : "/home/",
-        status : 200,
-        conditions : {Role : "sub"}
-      },
-      {
-        from : "/step-one/",
-        to : "/index.html",
-        status : 200,
-      },
-      {
-        from : "/product-entry/",
-        to : "/index.html",
-        status : 200,
-      }
+
     ]
   },
 
