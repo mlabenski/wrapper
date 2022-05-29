@@ -10,17 +10,31 @@
                 shopping cart without web hosting <br />
                 expenses, maintenance, or vulnerabilties!
               </h1>
+              <client-only> 
+                <v-btn
+                v-if="user"
+                rounded
+                outlined
+                large
+                dark
+                class="mt-5"
+                @click="nav"
+              >
+                Generate One
+                <v-icon class="ml-2">mdi-arrow-down</v-icon>
+              </v-btn>
               <v-btn
                 rounded
                 outlined
                 large
                 dark
                 class="mt-5"
-                @click="nav()"
+                @click.prevent="openSignup"
               >
-                Generate One
+                Log In/Create Acc
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
+              </client-only>
               <div class="video d-flex align-center py-4">
                 <a class="playBut" @click.stop="dialog = true">
                   <svg

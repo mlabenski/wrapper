@@ -92,16 +92,11 @@
 </template>
 
 <script>
-import netlifyIdentity  from "netlify-identity-widget";
-import { mapActions } from "vuex";
-if (process.browser) {
-  netlifyIdentity.init({
-    APIUrl: 'https://usewrapper.com/.netlify/identity'
-  })
-}
+import { mapActions, mapGetters } from "vuex";
+
 
 export default {
-  name: 'step-one',
+  name: 'StepOne',
   data() {
     return {
       dialog: false,
@@ -141,7 +136,11 @@ export default {
   computed: {
     step() {
       return this.$store.getters.getCurrentStep
-    }
+    },
+      ...mapGetters({
+      user: 'auth/user'
+    }),
+    
   },
   watch: {
     dialog(value) {
@@ -168,28 +167,18 @@ export default {
       }
     }
   },
+  created() {
+    if (process.browser) {
+      if(!this.user) {
+        this.$router.push('/')
+        this.$toast.show(`Error: You'll need to be logged in`)
+      }
+    }
+  },
   methods: {
     ...mapActions({
       setUser: 'setUser'
     }),
-    triggerNetlifyIdentityAction(action) {
-      if(action === "login" || action === "signup") {
-        netlifyIdentity.open(action);
-        netlifyIdentity.on(action, user => {
-          this.setUser(user);
-          netlifyIdentity.close();
-        });
-      } else if (action === "logout") {
-        this.setUser(null);
-        netlifyIdentity.logout();
-        this.$router.push('/');
-      }
-    },
-    middleware ({ store, redirect }) {
-      if (!store.state.currentUser) {
-        return redirect('/');
-      }
-    },
     selectedInput(val) {
       if(val === 'manual') {
         this.show_fields = true
