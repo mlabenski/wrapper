@@ -24,7 +24,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {src: '~/plugins/vue-good-table', mode: 'client'},
-    { src: '~/plugins/netlify-identity-widget.js', mode: 'client' }
+    { src: '~/plugins/netlify-identity-widget.js', mode: 'client' },
+
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -47,9 +48,16 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/proxy',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/toast'
   ],
   middleware: [''],
+  toast: {
+    position: 'bottom-center',
+    duration: 5000,
+    theme: 'bubble',
+    register: []
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
