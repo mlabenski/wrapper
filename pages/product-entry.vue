@@ -39,9 +39,11 @@
 </template>
 
 <script>
-import ProductsSaveMessage from '~/components//ProductsSaveMessage.vue'
+import { mapGetters } from "vuex";
+import ProductsSaveMessage from '~/components/ProductsSaveMessage.vue'
+
 export default {
-  name: 'step-one',
+  name: 'ProductEntry',
   components: { ProductsSaveMessage },
   data(){
     return {
@@ -92,7 +94,13 @@ export default {
       ],
     };
   },
-  watch: {
+    created() {
+    if (process.browser) {
+      if(!this.user) {
+        this.$router.push('/')
+        this.$toast.show(`You'll need to e logged in`)
+      }
+    }
   },
   methods: {
     rowStyleClassFn(row) {
@@ -113,6 +121,9 @@ export default {
     saveID() {
       return this.$store.getters.getSaveID
     },
+    ...mapGetters({
+      user: 'auth/user'
+    })
   }
 };
 </script>
