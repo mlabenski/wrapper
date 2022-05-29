@@ -151,6 +151,7 @@ export default {
   auth: false,
   data() {
     return {
+      currentUser: null,
       // eslint-disable-next-line object-shorthand
       dialog: false,
       features: [
