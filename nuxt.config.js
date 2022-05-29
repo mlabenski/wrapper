@@ -22,7 +22,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    {src: '~/plugins/vue-good-table', mode: 'client'}
+    {src: '~/plugins/vue-good-table', mode: 'client'},
+    { src: '~/plugins/netlify-identity-widget.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -39,21 +40,26 @@ export default {
   netlify: {
     redirects: [
       {
-        from : "/",
-        to : "/dashboard",
+        from : "/step-one",
+        to : "/step-one",
         status : 200,
         conditions : {Role : "sub"}
       },
       {
-        from : "/",
-        to : "/home",
+        from : "/product-entry",
+        to : "/product-entry",
         status : 200,
-        conditions : {Role : "free"}
+        conditions : {Role : "sub"}
       },
       {
-        from : "/*",
+        from : "/step-one",
         to : "/",
-        status : 200
+        status : 403,
+      },
+      {
+        from : "/product-entry",
+        to : "/",
+        status : 403,
       }
     ]
   },
@@ -61,10 +67,9 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/proxy',
-    '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/axios'
   ],
-  middleware: ['auth'],
+  middleware: [''],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -95,8 +100,5 @@ export default {
   },
   proxy: {
       '/api': {'target':'https://cardpointedemoaj.securepayments.cardpointe.com/pay?', pathRewrite: { "^/api/": ""}}
-  },
-  auth: {
-
-  },
+  }
 }

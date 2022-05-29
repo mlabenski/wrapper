@@ -5,6 +5,9 @@
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
               <h1 class="display-2 font-weight-bold mb-4">wr \ APP / er</h1>
+              <pre>
+                {{ user }}
+              </pre>
               <h1 class="font-weight-light">
                 Quick solution for maintaining a<br />
                 shopping cart without web hosting <br />
@@ -114,32 +117,18 @@
       </v-row>
     </v-container>
     <div class="svg-border-waves">
-      <img src="~@/assets/img/wave2.svg" />
-      <div v-if="isLoggedIn" v:on:click="triggerNetlifyIdentityAction('logout')" class="button--grey">Logout</div>
-      <div v-else v:on:click="triggerNetlifyIdentityAction('login')" class="button--grey">Login</div>
-      <nuxt-link to="/product-entry" class="button--green">
-        Protected Page
-      </nuxt-link>
     </div>
   </section>
 </template>
 
 <script>
-import netlifyIdentity from 'netlify-identity-widget';
-import { mapState, mapActions } from "vuex";
-if (process.browser) {
-  netlifyIdentity.init({
-    APIUrl: 'https://usewrapper.com/.netlify/identity'
-  })
-}
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: 'DashboardPage',
   auth: false,
   data() {
     return {
-      // eslint-disable-next-line object-shorthand
-      currentUser: null,
       dialog: false,
       features: [
         {
@@ -160,26 +149,24 @@ export default {
       ],
     };
   },
-  computed: mapState({
-    isLoggedIn: state => state.currentUser
-  }),
+  computed: {
+    ...mapGetters({
+      user: 'auth/user'
+    })
+  },
+  created() {
+    if (process.browser) {
+      if(!this.user) {
+        this.$router.push('/')
+        this.$toast.show(`You'll need to e logged in`)
+      }
+    }
+  },
   methods: {
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),
-    triggerNetlifyIdentityAction(action) {
-      if(action === "login" || action === "signup") {
-        netlifyIdentity.open(action);
-        netlifyIdentity.on(action, user => {
-          this.setUser(user);
-          netlifyIdentity.close();
-        });
-      } else if (action === "logout") {
-        this.setUser(null);
-        netlifyIdentity.logout();
-        this.$router.push('/');
-      }
-    },
+    
     nav() {
       this.$router.push('/step-one')
     },
@@ -201,7 +188,7 @@ export default {
     },
     pause() {
       this.player.pauseVideo();
-    },
+    }
   }
 };
 </script>

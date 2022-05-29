@@ -1,13 +1,5 @@
-import  netlifyIdentity  from "netlify-identity-widget"
-if (process.browser) {
-  netlifyIdentity.init({
-    APIUrl: 'https://usewrapper.com/.netlify/identity'
-  })
-}
-const currentUser = netlifyIdentity.currentUser();
 export const state = () => ({
   // eslint-disable-next-line object-shorthand
-  currentUser: currentUser,
   hppLink: '',
   linkValid: false,
   saveID: null,
@@ -19,9 +11,6 @@ export const state = () => ({
   ],
 })
 export const mutations = {
-  SET_USER(state, currentUser) {
-    state.currentUser = currentUser;
-  },
   async setHPPValue (state, vuexContext, hpp) {
     state.hppLink = `https://${hpp}.securepayments.cardpointe.com/pay?`
     await this.$axios.$get('/api/').then((data) => {
@@ -50,14 +39,12 @@ export const mutations = {
     }
   },
   setUserEnteredData(state, data) {
-    console.log(data)
     state.userEnteredData.push(data)
   },
   setFormCompleted(state) {
     state.formCompleted = true
   },
   setSaveID(state, id) {
-    console.log(id)
     state.saveID = id
   },
   setImportedData(state, importedData) {
@@ -70,16 +57,6 @@ export const mutations = {
 }
 
 export const actions = {
-  handleUpdateUser: ({ commit }, payload) => {
-    commit('SET_USER', payload)
-  },
-  openLogin () {
-    netlifyIdentity.open('login')
-  },
-  logout ({commit}) {
-    netlifyIdentity.logout()
-    commit('SET_USER', null)
-  },
   setProducts (vuexContext, hpp) {
     vuexContext.commit('setHPPValuee', vuexContext, hpp)
   },
@@ -103,13 +80,11 @@ export const actions = {
     await this.$axios.$post(`https://usewrapper.herokuapp.com//wrapper/save`, data)
       .then(function (res) {
         vuexContext.commit('setSaveID', res.saveID)
-        console.log(res);
       })
   },
   async importData(vuexContext, id) {
     await this.$axios.$get(`https://usewrapper.herokuapp.com/wrapper/retrieve/id/${id}`)
       .then(function (res) {
-        console.log(res)
         vuexContext.commit('setImportedData', res)
       })
   }

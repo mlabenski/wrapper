@@ -1,5 +1,3 @@
-/* eslint-disable vue/order-in-components */
-/* eslint-disable vue/order-in-components */
 <template>
   <section id="hero">
       <v-row align="center" justify="center" style="height: 650px">
@@ -13,7 +11,6 @@
                 expenses, maintenance, or vulnerabilties!
               </h1>
               <v-btn
-                v-if="isLoggedIn"
                 rounded
                 outlined
                 large
@@ -22,18 +19,6 @@
                 @click="nav()"
               >
                 Generate One
-                <v-icon class="ml-2">mdi-arrow-down</v-icon>
-              </v-btn>
-               <v-btn
-                v-else
-                rounded
-                outlined
-                large
-                dark
-                class="mt-5"
-                @click="triggerNetlifyIdentityAction('login')"
-              >
-                Log In
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
               <div class="video d-flex align-center py-4">
@@ -130,8 +115,6 @@
     </v-container>
     <div class="svg-border-waves">
       <img src="~@/assets/img/wave2.svg" />
-      <div v-if="isLoggedIn" v:on:click="triggerNetlifyIdentityAction('logout')" class="button--grey">Logout</div>
-      <div v-else v:on:click="triggerNetlifyIdentityAction('login')" class="button--grey">Login</div>
       <nuxt-link to="/product-entry" class="button--green">
         Protected Page
       </nuxt-link>
@@ -140,17 +123,10 @@
 </template>
 
 <script>
-import netlifyIdentity from 'netlify-identity-widget';
-import { mapState, mapActions } from "vuex";
-if (process.browser) {
-  netlifyIdentity.init({
-    APIUrl: 'https://usewrapper.com/.netlify/identity'
-  })
-}
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: 'IndexPage',
-  auth: false,
   data() {
     return {
       currentUser: null,
@@ -175,36 +151,17 @@ export default {
       ],
     };
   },
-  computed: mapState({
-    isLoggedIn: state => state.currentUser
-  }),
-  watch: {
-    isLoggedIn(newState, oldState) {
-      if(newState === true) {
-        this.$router.push('/dashboard')
-      }
-  }
+  computed: {
+    ...mapGetters({
+      user: 'auth/user'
+    })
   },
   methods: {
     ...mapActions({
-      setUser: 'handleUpdateUser'
+      openLogin: 'auth/openLogin',
+      openSignup: 'auth/openSignup',
+      logout: 'auth/logout'
     }),
-    triggerNetlifyIdentityAction(action) {
-      if(action === "login" || action === "signup") {
-        netlifyIdentity.open(action);
-        netlifyIdentity.on(action, user => {
-          this.setUser(user);
-          netlifyIdentity.close();
-          if(action === "login") {
-            this.$router.push('/dashboard')
-          }
-        });
-      } else if (action === "logout") {
-        this.setUser(null);
-        netlifyIdentity.logout();
-        this.$router.push('/');
-      }
-    },
     nav() {
       this.$router.push('/step-one')
     },

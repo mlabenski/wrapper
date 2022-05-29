@@ -3,19 +3,53 @@
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <client-only>
+              <div class="flex justify-center mt-10">
+                <template v-if="user">
+                  <a
+                    href="#"
+                    class="button button--primary lg:w-1/2"
+                    @click.prevent="onLogout"
+                  >
+                    Logout
+                  </a>
+                </template>
+                <template v-else>
+                  <a
+                    href="#"
+                    class="button button--primary mr-2 lg:w-1/2 lg:ml-10"
+                    @click.prevent="openLogin"
+                  >
+                    Login
+                  </a>
+                  <a
+                    href="#"
+                    class="button button--primary lg:w-1/2 lg:mr-10"
+                    @click.prevent="openSignup"
+                  >
+                    Sign up
+                  </a>
+                </template>
+              </div>
+      </client-only>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
       <v-container>
+              <nuxt-link to="/" class="link mr-2">
+                HOME
+              </nuxt-link>
+              <nuxt-link to="/dashboard" class="link">
+                Secure page
+              </nuxt-link>
         <Nuxt />
       </v-container>
     </v-main>
 
     <v-footer :absolute="!fixed" app v-if="step!==4">
       <span>&copy; {{ new Date().getFullYear() }}</span>
-      <div data-netlify-identity-button>Login with Netlify Identity</div>
     </v-footer>
     <v-footer :absolute="!fixed" app v-if="step===4" style="height: 125px;">
       <v-container>
@@ -56,6 +90,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'DefaultLayout',
   data() {
@@ -93,11 +128,25 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      user: 'auth/user'
+    }),
     step() {
       return this.$store.getters.getCurrentStep
     }
   },
   methods: {
+    onLogout() {
+      this.logout()
+      if (this.$route.path !== '/') {
+        this.$router.push('/')
+      }
+    },
+    ...mapActions({
+      openLogin: 'auth/openLogin',
+      openSignup: 'auth/openSignup',
+      logout: 'auth/logout'
+    }),
     addField() {
       const newEntry = {
         name: this.newInput.name,
