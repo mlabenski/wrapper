@@ -9,6 +9,13 @@
                   <a
                     href="#"
                     class="button button--primary lg:w-1/2"
+                    @click.prevent="onDashboard"
+                  >
+                    View Dashboard
+                  </a>
+                  <a
+                    href="#"
+                    class="button button--primary lg:w-1/2"
                     @click.prevent="onLogout"
                   >
                     Logout
@@ -39,10 +46,10 @@
     <v-main>
       <v-container>
               <nuxt-link to="/" class="link mr-2">
-                HOME
+                
               </nuxt-link>
               <nuxt-link to="/dashboard" class="link">
-                Secure page
+                
               </nuxt-link>
         <Nuxt />
       </v-container>
@@ -147,6 +154,9 @@ export default {
       openSignup: 'auth/openSignup',
       logout: 'auth/logout'
     }),
+    onDashboard() {
+      this.$router.push('/dashboard')
+    },
     addField() {
       const newEntry = {
         name: this.newInput.name,

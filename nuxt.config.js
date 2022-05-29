@@ -40,6 +40,12 @@ export default {
   netlify: {
     redirects: [
       {
+        from : "/dashboard",
+        to : "/home",
+        status : 200,
+        conditions : {Role : "sub"}
+      },
+      {
         from : "/step-one",
         to : "/",
         status : 403,
