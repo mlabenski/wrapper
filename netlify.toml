@@ -3,7 +3,7 @@ from = "/step-one/"
 to = "/step-one/"
 force = true
 status = 200
-conditions = {Role = "sub]}
+conditions = {Role = "sub"}
 
 [[redirects]]
 from = "/product-entry"
