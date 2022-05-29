@@ -1,3 +1,5 @@
+/* eslint-disable vue/order-in-components */
+/* eslint-disable vue/order-in-components */
 <template>
   <section id="hero">
       <v-row align="center" justify="center" style="height: 650px">
@@ -176,6 +178,13 @@ export default {
   computed: mapState({
     isLoggedIn: state => state.currentUser
   }),
+  watch: {
+    isLoggedIn(newState, oldState) {
+      if(newState === true) {
+        this.$router.push('/dashboard')
+      }
+  }
+  },
   methods: {
     ...mapActions({
       setUser: 'handleUpdateUser'
@@ -218,8 +227,8 @@ export default {
     pause() {
       this.player.pauseVideo();
     },
-  }
-};
+  },
+}
 </script>
 
 <style lang="scss">
