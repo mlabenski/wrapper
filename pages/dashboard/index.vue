@@ -95,18 +95,6 @@ export default {
   name: 'DashboardPage',
   components: { StoreList },
   auth: false,
-  asyncData ({context, store}) {
-    const userStores = []
-    return context.app.$axios.get('https://usewrapper.herokuapp.com/wrapper/user/'+store.state.auth.user.uuid+'/stores/all')
-    .then((data) => {
-      for (const i in data) {
-        userStores.push({...data[i], id: i})
-      }
-      return {
-        userStoreData: userStores
-      }
-    }).catch(e => context.error(e))
-  },
   data() {
     return {
       dialog: false,
@@ -143,6 +131,9 @@ export default {
       }
     }
   },
+  async mounted() {
+      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
+   },
   methods: {
     ...mapActions({
       setUser: 'handleUpdateUser'
