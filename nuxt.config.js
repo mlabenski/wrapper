@@ -25,7 +25,6 @@ export default {
   plugins: [
     {src: '~/plugins/vue-good-table', mode: 'client'},
     { src: '~/plugins/netlify-identity-widget.js', mode: 'client' },
-    {src: '~/plugins/vue-stripe.js', mode: 'client'}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -37,7 +36,6 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    '@aceforth/nuxt-netlify'
   ],
   netlify: {
     redirects: [

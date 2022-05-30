@@ -133,7 +133,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { StripeCheckout } from '@vue-stripe/vue-stripe';
+import { StripeCheckout } from '@vue-stripe/vue-stripe-dupe'
 
 export default {
   name: 'HomePage',
