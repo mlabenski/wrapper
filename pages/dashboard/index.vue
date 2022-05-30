@@ -4,7 +4,9 @@
         <v-col cols="10">
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
+              <client-only>
               <h1 class="display-2 font-weight-bold mb-4">Welcome back, {{user.username}}</h1>
+              </client-only>
               <br />
               <pre>
                 {{ user }}
@@ -23,6 +25,17 @@
                 class="mt-5"
               >
                 Generate One
+                <v-icon class="ml-2">mdi-arrow-down</v-icon>
+              </v-btn>
+              <v-btn
+                rounded
+                outlined
+                large
+                dark
+                @click="handlePayment"
+                class="mt-5"
+              >
+                Subscription Deals
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
               <div class="video d-flex align-center py-4">
@@ -138,6 +151,9 @@ export default {
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),
+    handlePayment() {
+
+    },
     editStore(storeID) {
       // we should navigate to the edit store feature
       // this is when the product-entry page would appear with those values already loaded
