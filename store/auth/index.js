@@ -22,7 +22,7 @@ export const actions = {
         commit('SET_USER', {
           username: user.user_metadata.full_name,
           email: user.email,
-          role: user.roles
+          role: user.app_metadata.roles
         })
       }
     })
@@ -32,7 +32,7 @@ export const actions = {
         commit('SET_USER', {
           username: user.user_metadata.full_name,
           email: user.email,
-          role: user.roles
+          role: user.app_metadata.roles
         })
       }
     })
@@ -56,7 +56,7 @@ export const actions = {
       commit('SET_USER', {
         username: user.user_metadata.full_name,
         email: user.email,
-        role: user.roles
+        role: user.app_metadata.roles
       })
       this.$netlifyIdentity.close()
     })
