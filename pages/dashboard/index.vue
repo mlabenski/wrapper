@@ -38,7 +38,9 @@
                 Subscription Deals
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
-              <Subscribe v-if="show"></Subscribe>
+              <client-only>
+                <Subscribe v-if="show"></Subscribe>
+              </client-only>
               <div class="video d-flex align-center py-4">
                 <p class="subheading ml-2 mb-0">Welcome back loyal merchant</p>
               </div>

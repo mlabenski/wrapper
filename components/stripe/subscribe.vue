@@ -1,4 +1,3 @@
-// eslint-disable-next-line vue/multi-word-component-names
 <template>
   <div>
     <stripe-checkout
@@ -26,7 +25,7 @@ export default {
       loading: false,
       lineItems: [
         {
-          price: 'some-price-id', // The id of the recurring price you created in your Stripe dashboard
+          price: 'price_1L51OHA4pxHCRAWEbe60I34U', // The id of the recurring price you created in your Stripe dashboard
           quantity: 1,
         },
       ],
