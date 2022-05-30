@@ -15,6 +15,7 @@ export default {
       {name: 'format-detection', content: 'telephone=no'}
     ],
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+    script: { src: 'https://js.stripe.com/v3' },
   },
   target: 'static',
 
@@ -25,7 +26,7 @@ export default {
   plugins: [
     {src: '~/plugins/vue-good-table', mode: 'client'},
     { src: '~/plugins/netlify-identity-widget.js', mode: 'client' },
-
+    {src: '~/plugins/vue-stripe.js', mode: 'client'}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -49,7 +50,8 @@ export default {
   modules: [
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    '@nuxtjs/dotenv'
   ],
   middleware: [''],
   toast: {
