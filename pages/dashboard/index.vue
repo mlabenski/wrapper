@@ -26,50 +26,15 @@
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
               <div class="video d-flex align-center py-4">
-                <a @click.stop="dialog = true" class="playBut">
-                  <svg
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                    xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-                    x="0px"
-                    y="0px"
-                    width="60px"
-                    height="60px"
-                    viewBox="0 0 213.7 213.7"
-                    enable-background="new 0 0 213.7 213.7"
-                    xml:space="preserve"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xsi:schemaLocation="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/ ">
-                    <polygon
-                      class="triangle"
-                      id="XMLID_18_"
-                      fill="none"
-                      stroke-width="7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-miterlimit="10"
-                      points="73.5,62.5 148.5,105.8 73.5,149.1 "
-                    />
-
-                    <circle
-                      class="circle"
-                      id="XMLID_17_"
-                      fill="none"
-                      stroke-width="7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-miterlimit="10"
-                      cx="106.8"
-                      cy="106.8"
-                      r="103.3"
-                    />
-                  </svg>
-                </a>
                 <p class="subheading ml-2 mb-0">Welcome back loyal merchant</p>
               </div>
             </v-col>
-            <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down"> </v-col>
+            <v-col v-if="userStoreData" cols="12" md="6" xl="4" class="hidden-sm-and-down" style="background-color: red;"> 
+            <store-list
+            :store-data="userStoreData"
+            @edit-store="editStore"></store-list>
+              
+            </v-col>
           </v-row>
         </v-col>
       </v-row>
@@ -124,13 +89,28 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import StoreList from '~/components/dashboard/StoreList.vue';
 
 export default {
   name: 'DashboardPage',
+  components: { StoreList },
   auth: false,
+  asyncData (context) {
+    const userStores = []
+    return context.app.$axios.get('https://usewrapper.herokuapp.com/wrapper/user/'+context.app.$store.auth.user.uuid+'/stores/all')
+    .then((data) => {
+      for (const i in data) {
+        userStores.push({...data[i], id: i})
+      }
+      return {
+        userStoreData: userStores
+      }
+    }).catch(e => context.error(e))
+  },
   data() {
     return {
       dialog: false,
+      userStoreData: [],
       features: [
         {
           img: require("@/assets/img/icon2.png"),
@@ -159,7 +139,7 @@ export default {
     if (process.browser) {
       if(!this.user) {
         this.$router.push('/')
-        this.$toast.show(`Oops! You'll need to be logged in.`)
+        this.$toast.show(`Sorry! You'll need to be logged in.`)
       }
     }
   },
@@ -167,6 +147,11 @@ export default {
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),
+    editStore(storeID) {
+      // we should navigate to the edit store feature
+      // this is when the product-entry page would appear with those values already loaded
+      // So we'll need to run a store call 
+    },
     
     nav() {
       this.$router.push('/step-one')
