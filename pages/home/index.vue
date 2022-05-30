@@ -13,6 +13,7 @@
                 shopping cart without web hosting <br />
                 expenses, maintenance, or vulnerabilties!
               </h1>
+              <client-only>
               <stripe-checkout 
               ref="checkoutRef"
               mode="subscription"
@@ -34,6 +35,7 @@
                 Subscribe Now
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
+              </client-only>
               <div class="video d-flex align-center py-4">
                 <a @click.stop="dialog = true" class="playBut">
                   <svg
