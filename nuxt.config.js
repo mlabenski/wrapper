@@ -14,8 +14,7 @@ export default {
       {hid: 'description', name: 'description', content: ''},
       {name: 'format-detection', content: 'telephone=no'}
     ],
-    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
-    script: { src: 'https://js.stripe.com/v3' },
+    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}]
   },
   target: 'static',
 
@@ -51,7 +50,8 @@ export default {
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
     '@nuxtjs/toast',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@vue-stripe/vue-stripe'
   ],
   middleware: [''],
   toast: {

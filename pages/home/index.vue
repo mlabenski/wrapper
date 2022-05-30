@@ -13,15 +13,25 @@
                 shopping cart without web hosting <br />
                 expenses, maintenance, or vulnerabilties!
               </h1>
+              <stripe-checkout 
+              ref="checkoutRef"
+              mode="subscription"
+              :pk="publishablekey"
+              :line-item="lineItems"
+              :success-url="successURL"
+              :cancel-url="cancelURL"
+              @loading="v => loading = v"
+              />
+
               <v-btn
                 rounded
                 outlined
                 large
                 dark
-                @click="nav()"
+                @click="submit"
                 class="mt-5"
               >
-                Generate One
+                Subscribe Now
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
               <div class="video d-flex align-center py-4">
@@ -65,7 +75,7 @@
                     />
                   </svg>
                 </a>
-                <p class="subheading ml-2 mb-0">Welcome back loyal merchant</p>
+                <p class="subheading ml-2 mb-0">Please subscribe to begin.</p>
               </div>
             </v-col>
             <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down"> </v-col>
@@ -123,11 +133,25 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { StripeCheckout } from '@vue-stripe/vue-stripe';
 
 export default {
   name: 'HomePage',
+  components: {
+      StripeCheckout
+  },
   data() {
+    this.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
     return {
+      loading: false,
+      lineItems: [
+          {
+              price: 'price_1L51OHA4pxHCRAWEbe60I34U',
+              quantity: 1,
+          }
+      ],
+      successURL: 'your-success-url',
+      cancelURL: 'your-cancel-url',
       dialog: false,
       features: [
         {
@@ -162,6 +186,9 @@ export default {
     }
   },
   methods: {
+    submit() {
+        this.$refs.checkoutRef.redirectToCheckout();
+    },
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),

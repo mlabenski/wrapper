@@ -27,20 +27,6 @@
                 Generate One
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
-              <v-btn
-                rounded
-                outlined
-                large
-                dark
-                @click="handlePayment"
-                class="mt-5"
-              >
-                Subscription Deals
-                <v-icon class="ml-2">mdi-arrow-down</v-icon>
-              </v-btn>
-              <client-only>
-                <Subscribe v-if="show"></Subscribe>
-              </client-only>
               <div class="video d-flex align-center py-4">
                 <p class="subheading ml-2 mb-0">Welcome back loyal merchant</p>
               </div>
@@ -106,11 +92,10 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import StoreList from '~/components/dashboard/StoreList.vue';
-import Subscribe from '~/components/stripe/subscribe.vue';
 
 export default {
   name: 'DashboardPage',
-  components: { StoreList, Subscribe },
+  components: { StoreList },
   auth: false,
   data() {
     return {
