@@ -97,7 +97,7 @@ export default {
   auth: false,
   asyncData (context) {
     const userStores = []
-    return context.app.$axios.get('https://usewrapper.herokuapp.com/wrapper/user/'+context.app.$store.state.auth.user.uuid+'/stores/all')
+    return context.app.$axios.get('https://usewrapper.herokuapp.com/wrapper/user/'+context.store.state.auth.user.uuid+'/stores/all')
     .then((data) => {
       for (const i in data) {
         userStores.push({...data[i], id: i})
