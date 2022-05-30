@@ -5,6 +5,7 @@
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
               <h1 class="display-2 font-weight-bold mb-4">wr \ APP / er</h1>
+              <br />
               <pre>
                 {{ user }}
               </pre>
@@ -158,7 +159,7 @@ export default {
     if (process.browser) {
       if(!this.user) {
         this.$router.push('/')
-        this.$toast.show(`You'll need to e logged in`)
+        this.$toast.show(`Oops! You'll need to be logged in.`)
       }
     }
   },
