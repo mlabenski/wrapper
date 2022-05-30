@@ -4,15 +4,15 @@
         <v-col cols="10">
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
-              <h1 class="display-2 font-weight-bold mb-4">wr \ APP / er</h1>
+              <h1 class="display-2 font-weight-bold mb-4">Welcome back, {{user.username}}</h1>
               <br />
               <pre>
                 {{ user }}
               </pre>
               <h1 class="font-weight-light">
-                Quick solution for maintaining a<br />
-                shopping cart without web hosting <br />
-                expenses, maintenance, or vulnerabilties!
+                View your saved stores on the<br />
+                right side, or start creating<br />
+                a new one.
               </h1>
               <v-btn
                 rounded
@@ -29,7 +29,7 @@
                 <p class="subheading ml-2 mb-0">Welcome back loyal merchant</p>
               </div>
             </v-col>
-            <v-col v-if="userStoreData" cols="12" md="6" xl="4" class="hidden-sm-and-down" style="background-color: red;"> 
+            <v-col v-if="userStoreData" cols="12" md="6" xl="4" class="hidden-sm-and-down" style="background-color: #283E79;"> 
             <store-list
             :store-data="userStoreData"
             @edit-store="editStore"></store-list>
