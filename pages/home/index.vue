@@ -13,29 +13,17 @@
                 shopping cart without web hosting <br />
                 expenses, maintenance, or vulnerabilties!
               </h1>
-              <client-only>
-              <stripe-checkout 
-              ref="checkoutRef"
-              mode="subscription"
-              :pk="publishablekey"
-              :line-item="lineItems"
-              :success-url="successURL"
-              :cancel-url="cancelURL"
-              @loading="v => loading = v"
-              />
-
               <v-btn
                 rounded
                 outlined
                 large
                 dark
-                @click="submit"
+                @click="nav()"
                 class="mt-5"
               >
                 Subscribe Now
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
-              </client-only>
               <div class="video d-flex align-center py-4">
                 <a @click.stop="dialog = true" class="playBut">
                   <svg
@@ -135,25 +123,12 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { StripeCheckout } from '@vue-stripe/vue-stripe-dupe'
 
 export default {
   name: 'HomePage',
-  components: {
-      StripeCheckout
-  },
+
   data() {
-    this.publishableKey = process.env.STRIPE_PUBLISHABLE_KEY;
     return {
-      loading: false,
-      lineItems: [
-          {
-              price: 'price_1L51OHA4pxHCRAWEbe60I34U',
-              quantity: 1,
-          }
-      ],
-      successURL: 'your-success-url',
-      cancelURL: 'your-cancel-url',
       dialog: false,
       features: [
         {
@@ -188,9 +163,6 @@ export default {
     }
   },
   methods: {
-    submit() {
-        this.$refs.checkoutRef.redirectToCheckout();
-    },
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),

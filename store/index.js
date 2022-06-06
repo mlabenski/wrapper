@@ -1,9 +1,11 @@
+import { v1 as uuidv1 } from 'uuid';
 export const state = () => ({
   // eslint-disable-next-line object-shorthand
   hppLink: '',
   linkValid: false,
   saveID: null,
   formCompleted: false,
+  cartUIStatus: 'idle',
   formData: {hppLink: '', title:'', theme:'', products: []},
   dataFields: {required: ['title', 'price', 'description', 'picture'], optional: ['']},
   userEnteredData: [
@@ -53,6 +55,9 @@ export const mutations = {
       state.userEnteredData.push({'id':importedData[key].itemID,'name': importedData[key].name, 'price':importedData[key].price,'description':importedData[key].description, 'picture':importedData[key].picture, 'size':importedData[key].size, 'color': importedData[key].color, 'category': importedData[key].category, 'gender': importedData[key].gender})
     }
     state.userEnteredData = importedData
+  },
+  updateCartUI(state, ui) {
+    state.cartUIStatus = ui
   }
 }
 
@@ -77,7 +82,7 @@ export const actions = {
   },
   async exportData(vuexContext) {
     const data = (JSON.stringify(vuexContext.state.userEnteredData))
-    await this.$axios.$post(`https://usewrapper.herokuapp.com//wrapper/save`, data)
+    await this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/save`, data)
       .then(function (res) {
         vuexContext.commit('setSaveID', res.saveID)
       })
@@ -87,6 +92,35 @@ export const actions = {
       .then(function (res) {
         vuexContext.commit('setImportedData', res)
       })
+  },
+  async postStripeFunction({ getters, commit }, payload) {
+    commit("updateCartUI", 'loading')
+    try {
+      await this.$axios
+      .post("https://usewrapper.netlify.com/.netlify/functions/create-checkout",
+      {
+        stripeEmail: payload.stripeEmail,
+        stripeAmt: Math.floor(10 * 100), // expects the price in cents
+        stripeToken: "tok_visa", // testing token, it'll be payload.data.token later
+        stripeIdempotency: uuidv1() // need this library imported for a unique ID
+      },
+      {
+        headers: {
+          "Content-Type" : "application/json"
+        }
+      }
+      )
+      .then(res => {
+        if (res.status === 200) {
+          commit("updateCartUI", "success")
+          setTimeout(() => commit("clearCart"), 3000)
+        }
+      })
+    }
+    catch (error) {
+      console.log(error)
+      commit("updateCartUI", "failure")
+    }
   }
 }
 
@@ -119,5 +153,8 @@ export const getters = {
   },
   getSaveID: (state) => {
     return state.saveID
+  },
+  getCartUI: (state) => {
+    return state.cartUIStatus
   }
 }

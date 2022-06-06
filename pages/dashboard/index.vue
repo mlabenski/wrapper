@@ -35,6 +35,7 @@
             <store-list
             :store-data="userStoreData"
             @edit-store="editStore"></store-list>
+            <Checkout></Checkout>
               
             </v-col>
           </v-row>
@@ -92,10 +93,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import StoreList from '~/components/dashboard/StoreList.vue';
+import Checkout from "~/components/stripe/Checkout.vue";
 
 export default {
   name: 'DashboardPage',
-  components: { StoreList },
+  components: { StoreList, Checkout },
   auth: false,
   data() {
     return {
