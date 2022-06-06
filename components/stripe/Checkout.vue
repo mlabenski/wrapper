@@ -1,7 +1,7 @@
 <template>
   <div id='app'>
-    <h1>Please give us your payment details:</h1>
-    <card class='stripe-card'
+    <client-only>
+<card class='stripe-card'
       :class='{ complete }'
       stripe='pk_test_51L4FSXA4pxHCRAWExxSd0bOKLxtqTVRjpadp1Nfw0FjDvb7XFXtQ5OXHYwtU9mBohw9IpNqrpu6N4pqQTnicBGUR00uop1F8zW'
       :options='stripeOptions'
@@ -9,6 +9,8 @@
     />
     <small class="card-error">{{error}}</small>
     <button class='pay-with-stripe' @click='newpay' :disabled='!complete'>Pay with credit card</button>
+    </client-only>
+    <h1>Please give us your payment details:</h1>
   </div>
 </template>
 
