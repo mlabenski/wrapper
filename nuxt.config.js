@@ -49,8 +49,7 @@ export default {
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
     '@nuxtjs/toast',
-    '@nuxtjs/dotenv',
-    '@vue-stripe/vue-stripe'
+    '@nuxtjs/dotenv'
   ],
   middleware: [''],
   toast: {
