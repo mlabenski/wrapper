@@ -107,9 +107,9 @@ export default {
   name: 'DashboardPage',
   components: { StoreList },
   data() {
-    this.pk = process.env.STRIPE_PK;
     return {
       show: false,
+      pk : process.env.STRIPE_PK,
       dialog: false,
       userStoreData: [],
       features: [
