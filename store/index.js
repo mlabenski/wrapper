@@ -20,8 +20,8 @@ export const mutations = {
       }
     })
   },
-  setHPPValuee (vuexContext, hpp) {
-    vuexContext.state.formData.hppLink = `https://${hpp}.securepayments.cardpointe.com/pay?`
+  setHPPValuee (state, vuexContext, hpp) {
+    state.formData.hppLink = `https://${hpp}.securepayments.cardpointe.com/pay?`
     vuexContext.commit('setValid')
   },
   setValid (state)  {
