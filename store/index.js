@@ -4,11 +4,11 @@ export const state = () => ({
   linkValid: false,
   saveID: null,
   formCompleted: false,
-  formData: {hppLink: '', title:'', theme:'', products: []},
+  formData: {userID: null, storeID: null, hppName: '', title:'', theme:'', dataFields: {}},
   dataFields: {required: ['title', 'price', 'description', 'picture'], optional: ['']},
   userEnteredData: [
     { id:1, name:"Pizza", price: 20, description: 'the finest crust around',picture: 'https://jpg.com/jpg.jpg', size: '[XS,M,L,XL]', color: '[BBQ, Tomato]', category: 'pizza', gender: '[M,F]'},
-  ],
+  ]
 })
 export const mutations = {
   async setHPPValue (state, vuexContext, hpp) {
@@ -20,8 +20,8 @@ export const mutations = {
       }
     })
   },
-  setHPPValuee (state, vuexContext, hpp) {
-    state.hppLink = `https://${hpp}.securepayments.cardpointe.com/pay?`
+  setHPPValuee (vuexContext, hpp) {
+    vuexContext.state.hppLink = `https://${hpp}.securepayments.cardpointe.com/pay?`
     vuexContext.commit('setValid')
   },
   setValid (state)  {
@@ -53,12 +53,25 @@ export const mutations = {
       state.userEnteredData.push({'id':importedData[key].itemID,'name': importedData[key].name, 'price':importedData[key].price,'description':importedData[key].description, 'picture':importedData[key].picture, 'size':importedData[key].size, 'color': importedData[key].color, 'category': importedData[key].category, 'gender': importedData[key].gender})
     }
     state.userEnteredData = importedData
+  },
+  saveStore(state, userID) {
+    // first we need to figure out the appropriate store id
+    // this is the part we determine if they have less than 5 stores too
+    if( !state.formData.hppLink || !state.formData.title || !state.formData.theme ) {
+      return 'there is missing information'
+    } else {
+      this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/user/addStore?userID=${userID}&hppName=${state.formData.title}&template=${state.formData.theme}&logo=${state.formData.title}`)
+      .then((data) => {
+        console.log('store created with the ID '+ data)
+      })
+    }
   }
+
 }
 
 export const actions = {
   setProducts (vuexContext, hpp) {
-    vuexContext.commit('setHPPValuee', vuexContext, hpp)
+    vuexContext.commit('setHPPValuee', hpp)
   },
   setTitle (vuexContext, title) {
     vuexContext.commit('setTitle',  title)
@@ -75,9 +88,12 @@ export const actions = {
   setFormCompleted(vuexContext) {
     vuexContext.commit('setFormCompleted')
   },
+  saveStore(vuexContext, userID) {
+    vuexContext.commit('saveStore', userID)
+  },
   async exportData(vuexContext) {
     const data = (JSON.stringify(vuexContext.state.userEnteredData))
-    await this.$axios.$post(`https://usewrapper.herokuapp.com//wrapper/save`, data)
+    await this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/save`, data)
       .then(function (res) {
         vuexContext.commit('setSaveID', res.saveID)
       })

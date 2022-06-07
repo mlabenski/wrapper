@@ -238,15 +238,18 @@ export default {
         this.$store.dispatch('setDataFields', this.optional_fields)
       }
       if(this.step === 4) {
-        this.$router.push('/product-entry')
+        console.log('or did u run?')
+        this.$store.dispatch('setFormCompleted', this.user.uuid).then((t) => {
+          this.$router.push('/product-entry')
+        })
       }
     },
     setTitle() {
       this.$store.dispatch('setTitle', this.store_title)
     },
     completedForm() {
-      this.$store.dispatch('setFormCompleted')
-      this.$router.push('/product-entry')
+      console.log('did u run?')
+      this.$store.dispatch('setFormCompleted', this.user.uuid)
     }
   }
 };
