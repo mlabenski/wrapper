@@ -249,7 +249,7 @@ export default {
     },
     completedForm() {
       console.log('did u run?')
-      this.$store.dispatch('setFormCompleted', this.user.uuid)
+      this.$store.dispatch('saveStore', this.user.uuid)
     }
   }
 };

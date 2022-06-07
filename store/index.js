@@ -56,7 +56,7 @@ export const mutations = {
   saveStore(state, userID) {
     // first we need to figure out the appropriate store id
     // this is the part we determine if they have less than 5 stores too
-    if( !state.formData.hppLink || !state.formData.title || !state.formData.theme ) {
+    if( !state.formData.hppName || !state.formData.title || !state.formData.theme ) {
       return 'there is missing information'
     } else {
       this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/user/addStore?userID=${userID}&hppName=${state.formData.title}&template=${state.formData.theme}&logo=${state.formData.title}`)
