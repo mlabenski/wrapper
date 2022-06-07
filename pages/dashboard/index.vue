@@ -7,7 +7,6 @@
               <client-only>
               <h1 class="display-2 font-weight-bold mb-4">Welcome back, {{user.username}}</h1>
               </client-only>
-              <client-only><Checkout /></client-only>
               <br />
               <pre>
                 {{ user }}
@@ -17,6 +16,16 @@
                 right side, or start creating<br />
                 a new one.
               </h1>
+                  <stripe-checkout
+      ref="checkoutRef"
+      :pk="pk"
+      mode="payment"
+      :lineItems="items"
+    />
+    <v-btn  rounded
+                outlined
+                large
+                dark @click="checkout">Checkout</v-btn>
               <v-btn
                 rounded
                 outlined
@@ -93,13 +102,12 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import StoreList from '~/components/dashboard/StoreList.vue';
-import Checkout from "~/components/stripe/Checkout.vue";
 
 export default {
   name: 'DashboardPage',
-  components: { StoreList, Checkout },
-  auth: false,
+  components: { StoreList },
   data() {
+    this.pk = process.env.STRIPE_PK;
     return {
       show: false,
       dialog: false,
@@ -121,8 +129,16 @@ export default {
           text: "Provide your shop URL to customers and wait for transactions!.",
         },
       ],
-       successURL: process.client && `${window.location.origin}${window.location.pathname}?state=success`,
+      successURL: process.client && `${window.location.origin}${window.location.pathname}?state=success`,
       cancelURL: process.client && `${window.location.origin}${window.location.pathname}?state=error`,
+            items: [
+        {
+          price: 'price_1L51OHA4pxHCRAWEbe60I34U',
+          quantity: 1,
+        },
+      ],
+      successUrl: 'http://usewrapper.com/success',
+      cancelUrl: 'http://usewrapper.com/cancel',
     };
   },
   computed: {
@@ -139,9 +155,12 @@ export default {
     }
   },
   async mounted() {
-      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
+      // this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
    },
   methods: {
+    checkout () {
+      this.$refs.checkoutRef.redirectToCheckout();
+    },
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),
