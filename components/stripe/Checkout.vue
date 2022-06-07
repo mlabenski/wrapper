@@ -1,50 +1,66 @@
 <template>
-  <div id='app'>
-    <client-only>
-<card class='stripe-card'
-      :class='{ complete }'
-      stripe='pk_test_51L4FSXA4pxHCRAWExxSd0bOKLxtqTVRjpadp1Nfw0FjDvb7XFXtQ5OXHYwtU9mBohw9IpNqrpu6N4pqQTnicBGUR00uop1F8zW'
-      :options='stripeOptions'
-      @change='complete = $event.complete'
+  <div>
+    <stripe-checkout
+      ref="checkoutRef"
+      mode="payment"
+      :pk="pk"
+      :items="items"
+      :successUrl="successUrl"
+      :cancelUrl="cancelUrl"
+      @loading="v => loading = v"
     />
-    <small class="card-error">{{error}}</small>
-    <button class='pay-with-stripe' @click='newpay' :disabled='!complete'>Pay with credit card</button>
-    </client-only>
-    <h1>Please give us your payment details:</h1>
+    <button @click="checkout">Checkout</button>
   </div>
 </template>
 
 <script>
-import { Card, createToken } from "vue-stripe-elements-plus";
-import { mapState } from "vuex"
 export default {
     name: 'StripeCheckout',
     components: {
-        Card
     },
     data() {
+      this.pk = process.env.STRIPE_PK;
     return {
       complete: false,
       stripeOptions: {
         // you can configure that cc element. I liked the default, but you can
         // see https://stripe.com/docs/stripe.js#element-options for details
       },
+      lineItems: [
+        {
+          price: 'price_1L51OHA4pxHCRAWEbe60I34U',
+          quantity: 1
+        }
+      ],
+      token: null,
+      successURL: process.client && `${window.location.origin}${window.location.pathname}?state=success`,
+      cancelURL: process.client && `${window.location.origin}${window.location.pathname}?state=error`,
       stripeEmail: "",
+      redirectState: '',
       error: "",
       loading: false
     };
   },
     computed: {
-        ...mapState(['cartUIStatus'])
+    queryState () {
+      return process.client && (new URLSearchParams(window.location.search).get('state') || '');
     },
-
-  methods: {
-    newPay() {
-      createToken().then(data => {
-        const stripeData = {data, stripeEmail: this.stripeEmail };
-        this.$store.dispatch("postStripeFunction", stripeData);
-      })
+  },
+  mounted () {
+    if (this.queryState === 'success') {
+      this.redirectState = 'success';
     }
+    if (this.queryState === 'error') {
+      this.redirectState = 'error';
+    }
+  },
+  methods: {
+    checkout () {
+      this.$refs.checkoutRef.redirectToCheckout();
+    },
+    tokenCreated (token) {
+      this.token = token;
+    },
   }
 }
 </script>

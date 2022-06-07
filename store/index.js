@@ -2,6 +2,7 @@ import { v1 as uuidv1 } from 'uuid';
 export const state = () => ({
   // eslint-disable-next-line object-shorthand
   hppLink: '',
+  clientSecret: '',
   linkValid: false,
   saveID: null,
   formCompleted: false,
@@ -58,7 +59,8 @@ export const mutations = {
   },
   updateCartUI(state, ui) {
     state.cartUIStatus = ui
-  }
+  },
+  setClientSecret: state => state.clientSecret
 }
 
 export const actions = {
@@ -121,7 +123,27 @@ export const actions = {
       console.log(error)
       commit("updateCartUI", "failure")
     }
+  },
+  async createPaymentIntent ({getters, commit }) {
+    try {
+      const result = await this.$axios.$post("https://usewrapper.netlify.app/.netlify/functions/create-payment-intent",
+      {
+        items : { name: 'payment here', 'price' : 10 }
+      },
+      {
+        headers: {
+          "Content-Type" : "application/json"
+        },
+      }
+      );
+    if (result.data.clientSecret) {
+      commit("setClientSecret", result.data.clientSecret)
+    }
   }
+  catch (e) {
+      console.log("error", e)
+  }
+}
 }
 
 export const getters = {

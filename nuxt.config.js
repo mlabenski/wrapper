@@ -26,6 +26,7 @@ export default {
   plugins: [
     {src: '~/plugins/vue-good-table', mode: 'client'},
     { src: '~/plugins/netlify-identity-widget.js', mode: 'client' },
+    { sc: '~/plugins/stripe-nuxt.js', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
