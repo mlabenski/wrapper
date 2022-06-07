@@ -7,6 +7,7 @@
               <client-only>
               <h1 class="display-2 font-weight-bold mb-4">Welcome back, {{user.username}}</h1>
               </client-only>
+              <client-only><Checkout /></client-only>
               <br />
               <pre>
                 {{ user }}
@@ -35,7 +36,7 @@
             <store-list
             :store-data="userStoreData"
             @edit-store="editStore"></store-list>
-              <Checkout></Checkout>
+        
             </v-col>
           </v-row>
         </v-col>
@@ -120,6 +121,8 @@ export default {
           text: "Provide your shop URL to customers and wait for transactions!.",
         },
       ],
+       successURL: process.client && `${window.location.origin}${window.location.pathname}?state=success`,
+      cancelURL: process.client && `${window.location.origin}${window.location.pathname}?state=error`,
     };
   },
   computed: {

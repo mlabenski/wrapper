@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div class="app">
     <stripe-checkout
       ref="checkoutRef"
-      mode="payment"
       :pk="pk"
-      :line-items="line-items"
+      mode="payment"
+      :lineItems="items"
+      :successUrl="successUrl"
+      :cancelUrl="cancelUrl"
     />
     <button @click="checkout">Checkout</button>
   </div>
@@ -23,12 +25,14 @@ export default {
         // you can configure that cc element. I liked the default, but you can
         // see https://stripe.com/docs/stripe.js#element-options for details
       },
-      lineItems: [
+      items: [
         {
           price: 'price_1L51OHA4pxHCRAWEbe60I34U',
           quantity: 1
         }
       ],
+      successUrl: 'http://localhost:3000',
+      cancelUrl: 'http://localhost:3000',
       token: null,
       stripeEmail: "",
       redirectState: '',
