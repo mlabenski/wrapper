@@ -4,7 +4,7 @@ export const state = () => ({
   linkValid: false,
   saveID: null,
   formCompleted: false,
-  formData: {userID: null, storeID: null, hppName: '', title:'', theme:'', dataFields: {}},
+  formData: {userID: null, storeID: null, hppName: '', title:'', theme:null, dataFields: {}},
   dataFields: {required: ['title', 'price', 'description', 'picture'], optional: ['']},
   userEnteredData: [
     { id:1, name:"Pizza", price: 20, description: 'the finest crust around',picture: 'https://jpg.com/jpg.jpg', size: '[XS,M,L,XL]', color: '[BBQ, Tomato]', category: 'pizza', gender: '[M,F]'},
@@ -78,7 +78,7 @@ export const actions = {
   },
   setTheme (vuexContext, template) {
     if(template === 'standard') {
-      vuexContext.commit('setTheme',  1)
+      vuexContext.commit('setTheme', 1)
     }
     if(template === 'food_order') {
       vuexContext.commit('setTheme', 2)
