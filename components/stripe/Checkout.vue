@@ -4,10 +4,7 @@
       ref="checkoutRef"
       mode="payment"
       :pk="pk"
-      :items="items"
-      :successUrl="successUrl"
-      :cancelUrl="cancelUrl"
-      @loading="v => loading = v"
+      :line-items="line-items"
     />
     <button @click="checkout">Checkout</button>
   </div>
@@ -33,27 +30,13 @@ export default {
         }
       ],
       token: null,
-      successURL: process.client && `${window.location.origin}${window.location.pathname}?state=success`,
-      cancelURL: process.client && `${window.location.origin}${window.location.pathname}?state=error`,
       stripeEmail: "",
       redirectState: '',
       error: "",
       loading: false
     };
   },
-    computed: {
-    queryState () {
-      return process.client && (new URLSearchParams(window.location.search).get('state') || '');
-    },
-  },
-  mounted () {
-    if (this.queryState === 'success') {
-      this.redirectState = 'success';
-    }
-    if (this.queryState === 'error') {
-      this.redirectState = 'error';
-    }
-  },
+
   methods: {
     checkout () {
       this.$refs.checkoutRef.redirectToCheckout();

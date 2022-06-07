@@ -35,11 +35,7 @@
             <store-list
             :store-data="userStoreData"
             @edit-store="editStore"></store-list>
-            <v-col cols="12" md="6" xl="4">
-            <client-only>
               <Checkout></Checkout>
-            </client-only>
-            </v-col>
             </v-col>
           </v-row>
         </v-col>
