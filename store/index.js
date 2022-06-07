@@ -21,7 +21,7 @@ export const mutations = {
     })
   },
   setHPPValuee (state, vuexContext, hpp) {
-    state.formData.hppLink = `https://${hpp}.securepayments.cardpointe.com/pay?`
+    state.formData.hppName = `https://${hpp}.securepayments.cardpointe.com/pay?`
     vuexContext.commit('setValid')
   },
   setValid (state)  {
