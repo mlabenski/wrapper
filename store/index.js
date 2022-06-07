@@ -77,7 +77,15 @@ export const actions = {
     vuexContext.commit('setTitle',  title)
   },
   setTheme (vuexContext, template) {
-    vuexContext.commit('setTheme',  template)
+    if(template === 'standard') {
+      vuexContext.commit('setTheme',  1)
+    }
+    if(template === 'food_order') {
+      vuexContext.commit('setTheme', 2)
+    }
+    if(template === 'event_ticket') {
+      vuexContext.commit('setTheme', 3)
+    }
   },
   setDataFields (vuexContext, optionalFields) {
     vuexContext.commit('setDataFields', optionalFields)
