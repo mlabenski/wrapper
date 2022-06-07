@@ -15,22 +15,17 @@ export default {
       {name: 'format-detection', content: 'telephone=no'}
     ],
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
-    script: [{ src: "https://js.stripe.com/v3/" }]
   },
   target: 'static',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
-  env: {
-    STRIPE_PK: process.env.STRIPE_PK,
-  },
-
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {src: '~/plugins/vue-good-table', mode: 'client'},
     { src: '~/plugins/netlify-identity-widget.js', mode: 'client' },
-    { src: '~/plugins/stripe-nuxt.js', ssr: false}
+
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,6 +37,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@aceforth/nuxt-netlify'
   ],
   netlify: {
     redirects: [
@@ -53,8 +49,7 @@ export default {
   modules: [
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
-    '@nuxtjs/toast',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/toast'
   ],
   middleware: [''],
   toast: {

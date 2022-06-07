@@ -21,7 +21,7 @@
                 @click="nav()"
                 class="mt-5"
               >
-                Subscribe Now
+                Generate One
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
               <div class="video d-flex align-center py-4">
@@ -65,7 +65,7 @@
                     />
                   </svg>
                 </a>
-                <p class="subheading ml-2 mb-0">Please subscribe to begin.</p>
+                <p class="subheading ml-2 mb-0">Welcome back loyal merchant</p>
               </div>
             </v-col>
             <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down"> </v-col>
@@ -126,7 +126,6 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: 'HomePage',
-
   data() {
     return {
       dialog: false,

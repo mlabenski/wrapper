@@ -24,7 +24,6 @@
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
               <v-btn
-                v-else
                 rounded
                 outlined
                 large

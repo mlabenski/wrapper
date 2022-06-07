@@ -4,28 +4,16 @@
         <v-col cols="10">
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
-              <client-only>
-              <h1 class="display-2 font-weight-bold mb-4">Welcome back, {{user.username}}</h1>
-              </client-only>
+              <h1 class="display-2 font-weight-bold mb-4">wr \ APP / er</h1>
               <br />
               <pre>
                 {{ user }}
               </pre>
               <h1 class="font-weight-light">
-                View your saved stores on the<br />
-                right side, or start creating<br />
-                a new one.
+                Quick solution for maintaining a<br />
+                shopping cart without web hosting <br />
+                expenses, maintenance, or vulnerabilties!
               </h1>
-                  <stripe-checkout
-      ref="checkoutRef"
-      :pk="pk"
-      mode="payment"
-      :lineItems="items"
-    />
-    <v-btn  rounded
-                outlined
-                large
-                dark @click="checkout">Checkout</v-btn>
               <v-btn
                 rounded
                 outlined
@@ -41,11 +29,11 @@
                 <p class="subheading ml-2 mb-0">Welcome back loyal merchant</p>
               </div>
             </v-col>
-            <v-col v-if="userStoreData" cols="12" md="6" xl="4" class="hidden-sm-and-down" style="background-color: #283E79;"> 
+            <v-col v-if="userStoreData" cols="12" md="6" xl="4" class="hidden-sm-and-down" style="background-color: red;"> 
             <store-list
             :store-data="userStoreData"
             @edit-store="editStore"></store-list>
-        
+              
             </v-col>
           </v-row>
         </v-col>
@@ -106,10 +94,9 @@ import StoreList from '~/components/dashboard/StoreList.vue';
 export default {
   name: 'DashboardPage',
   components: { StoreList },
+  auth: false,
   data() {
     return {
-      show: false,
-      pk : process.env.STRIPE_PK,
       dialog: false,
       userStoreData: [],
       features: [
@@ -129,16 +116,6 @@ export default {
           text: "Provide your shop URL to customers and wait for transactions!.",
         },
       ],
-      successURL: process.client && `${window.location.origin}${window.location.pathname}?state=success`,
-      cancelURL: process.client && `${window.location.origin}${window.location.pathname}?state=error`,
-            items: [
-        {
-          price: 'price_1L51OHA4pxHCRAWEbe60I34U',
-          quantity: 1,
-        },
-      ],
-      successUrl: 'http://usewrapper.com/success',
-      cancelUrl: 'http://usewrapper.com/cancel',
     };
   },
   computed: {
@@ -155,18 +132,12 @@ export default {
     }
   },
   async mounted() {
-      // this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
+      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
    },
   methods: {
-    checkout () {
-      this.$refs.checkoutRef.redirectToCheckout();
-    },
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),
-    handlePayment() {
-     this.show = true
-    },
     editStore(storeID) {
       // we should navigate to the edit store feature
       // this is when the product-entry page would appear with those values already loaded
