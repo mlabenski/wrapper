@@ -145,7 +145,7 @@ export default {
       return this.$store.getters.getShowInput
     },
     storeID() {
-      return this.$store.getters.getStoreID
+      return this.$route.query.storeID
     }
   },
   methods: {
