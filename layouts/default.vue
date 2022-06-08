@@ -55,7 +55,7 @@
       </v-container>
     </v-main>
 
-    <v-footer :absolute="!fixed" app v-if="step!==4">
+    <v-footer :absolute="!fixed" app v-if="this.$router.path == '/product-entry'">
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
     <v-footer :absolute="!fixed" app v-if="step===4" style="height: 125px;">
