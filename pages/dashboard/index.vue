@@ -140,7 +140,7 @@ export default {
       setUser: 'handleUpdateUser'
     }),
     editStore(storeID) {
-      console.log(storeID);
+      alert(storeID);
       // we should navigate to the edit store feature
       // this is when the product-entry page would appear with those values already loaded
       // So we'll need to run a store call 
