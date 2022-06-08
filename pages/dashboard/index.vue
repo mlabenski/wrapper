@@ -32,7 +32,8 @@
             <v-col v-if="userStoreData" cols="12" md="6" xl="4" class="hidden-sm-and-down" style="background-color: red;"> 
             <store-list
             :store-data="userStoreData"
-            @edit-store="editStore"></store-list>
+            @edit-store="editStore"
+            @go-live="goLive"></store-list>
               
             </v-col>
           </v-row>
@@ -139,6 +140,7 @@ export default {
       setUser: 'handleUpdateUser'
     }),
     editStore(storeID) {
+      console.log(storeID);
       // we should navigate to the edit store feature
       // this is when the product-entry page would appear with those values already loaded
       // So we'll need to run a store call 
