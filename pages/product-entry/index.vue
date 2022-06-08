@@ -5,7 +5,7 @@
         <v-col cols="12" v-if="rows">
           <client-only>
             <div>
-              <h1> {{storeID}} </h1>
+              <h1>{{storeID}} </h1>
               <vue-good-table
                 :columns="columns"
                 :rows="rows"

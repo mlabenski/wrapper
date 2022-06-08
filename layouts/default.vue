@@ -143,6 +143,9 @@ export default {
     },
     showInput() {
       return this.$store.getters.getShowInput
+    },
+    storeID() {
+      return this.$store.getters.getStoreID
     }
   },
   methods: {
@@ -171,7 +174,7 @@ export default {
         category: this.newInput.category,
         gender: this.newInput.gender
       }
-      this.$store.dispatch('setProductData', newEntry)
+      this.$store.dispatch('setProductData', {'product':newEntry, 'storeID': this.storeID})
       // this.$store.dispatch('setUserEnteredData', newEntry)
       this.newInput.name = '';
       this.newInput.price = null;

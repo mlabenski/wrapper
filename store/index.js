@@ -55,9 +55,9 @@ export const mutations = {
     }
     state.userEnteredData = importedData
   },
-  setProductData(state, data) {
-    state.userEnteredData.push({'storeID': state.storeID, 'name': data.name, 'price': data.price, 'description': data.description, 'picture': data.picture, 'size': data.size, 'color': data.color, 'category': data.category, 'gender': data.gender})
-    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeid=${state.storeID}&name=${data.name}&price=${data.price}&description=${data.description}&picture=${data.picture}&size=${data.size}&color=${data.color}&category=${data.category}&gender=${data.gender}`)
+  setProductData(state, {product, storeID}) {
+    state.userEnteredData.push({storeID, 'name': product.name, 'price': product.price, 'description': product.description, 'picture': product.picture, 'size': product.size, 'color': product.color, 'category': product.category, 'gender': product.gender})
+    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeid=${storeID}&name=${product.name}&price=${product.price}&description=${product.description}&picture=${product.picture}&size=${product.size}&color=${product.color}&category=${product.category}&gender=${product.gender}`)
   },
   saveStore(state, userID) {
     // first we need to figure out the appropriate store id
@@ -103,8 +103,8 @@ export const actions = {
   setDataFields (vuexContext, optionalFields) {
     vuexContext.commit('setDataFields', optionalFields)
   },
-  setProductData (vuexContext, data) {
-    vuexContext.commit('setProductData', data)
+  setProductData (vuexContext, {data, storeID}) {
+    vuexContext.commit('setProductData', {data, storeID})
   },
   setUserEnteredData (vuexContext, data) {
     vuexContext.commit('setUserEnteredData', data)
