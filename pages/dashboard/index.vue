@@ -133,14 +133,16 @@ export default {
     }
   },
   async mounted() {
-      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
+      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all').then((t) => {
+        this.$store.dispatch('setStoreID', this.userStoreData.storeid)
+      })
    },
   methods: {
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),
     editStore(storeID) {
-      alert(storeID);
+      this.$router.push({path: '/product-entry', query : { storeID }});
       // we should navigate to the edit store feature
       // this is when the product-entry page would appear with those values already loaded
       // So we'll need to run a store call 

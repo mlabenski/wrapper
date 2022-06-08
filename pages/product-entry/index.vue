@@ -5,6 +5,7 @@
         <v-col cols="12" v-if="rows">
           <client-only>
             <div>
+              <h1> {{storeID}} </h1>
               <vue-good-table
                 :columns="columns"
                 :rows="rows"
@@ -123,7 +124,10 @@ export default {
     },
     ...mapGetters({
       user: 'auth/user'
-    })
+    }),
+    storeID() {
+      return this.$route.query.storeID
+    }
   }
 };
 </script>

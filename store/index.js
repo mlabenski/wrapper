@@ -4,6 +4,7 @@ export const state = () => ({
   linkValid: false,
   saveID: null,
   formCompleted: false,
+  storeID: null,
   formData: {userID: null, storeID: null, hppName: '', title:'', theme:null, dataFields: {}},
   dataFields: {required: ['title', 'price', 'description', 'picture'], optional: ['']},
   userEnteredData: [
@@ -49,7 +50,7 @@ export const mutations = {
   setImportedData(state, importedData) {
     state.userEnteredData = []
     for (const key in importedData) {
-      state.userEnteredData.push({'id':importedData[key].itemID,'name': importedData[key].name, 'price':importedData[key].price,'description':importedData[key].description, 'picture':importedData[key].picture, 'size':importedData[key].size, 'color': importedData[key].color, 'category': importedData[key].category, 'gender': importedData[key].gender})
+      state.userEnteredData.push({'id':importedData[key].itemID,'storeID': state.storeID,'name': importedData[key].name, 'price':importedData[key].price,'description':importedData[key].description, 'picture':importedData[key].picture, 'size':importedData[key].size, 'color': importedData[key].color, 'category': importedData[key].category, 'gender': importedData[key].gender})
     }
     state.userEnteredData = importedData
   },
@@ -61,9 +62,14 @@ export const mutations = {
     } else {
       this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/user/addStore?userID=${userID}&hppName=${state.formData.title}&template=${state.formData.theme}&logo=${state.formData.title}`)
       .then((data) => {
-        console.log('store created with the ID '+ data)
+        console.log(data)
+        console.log(data.storeid)
+        state.formData.storeID = data.storeid
       })
     }
+  },
+  setStoreID(state, storeID) {
+    state.storeID = storeID
   }
 
 }
@@ -98,6 +104,9 @@ export const actions = {
   },
   saveStore(vuexContext, userID) {
     vuexContext.commit('saveStore', userID)
+  },
+  setStoreID(vuexContext, storeID) {
+    vuexContext.commit('setStoreID', storeID)
   },
   async exportData(vuexContext) {
     const data = (JSON.stringify(vuexContext.state.userEnteredData))
