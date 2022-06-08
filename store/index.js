@@ -166,6 +166,9 @@ export const getters = {
   getSaveID: (state) => {
     return state.saveID
   },
+  getStoreID: (state) => {
+    return state.storeID
+  },
   getShowInput: (state) => {
     return state.showInput
   }
