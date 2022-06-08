@@ -55,6 +55,10 @@ export const mutations = {
     }
     state.userEnteredData = importedData
   },
+  setProductData(state, data) {
+    state.userEnteredData.push({'storeID': state.storeID, 'name': data.name, 'price': data.price, 'description': data.description, 'picture': data.picture, 'size': data.size, 'color': data.color, 'category': data.category, 'gender': data.gender})
+    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeid=${state.storeID}&name=${data.name}&price=${data.price}&description=${data.description}&picture=${data.picture}&size=${data.size}&color=${data.color}&category=${data.category}&gender=${data.gender}`)
+  },
   saveStore(state, userID) {
     // first we need to figure out the appropriate store id
     // this is the part we determine if they have less than 5 stores too
@@ -98,6 +102,9 @@ export const actions = {
   },
   setDataFields (vuexContext, optionalFields) {
     vuexContext.commit('setDataFields', optionalFields)
+  },
+  setProductData (vuexContext, data) {
+    vuexContext.commit('setProductData', data)
   },
   setUserEnteredData (vuexContext, data) {
     vuexContext.commit('setUserEnteredData', data)

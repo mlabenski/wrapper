@@ -171,7 +171,8 @@ export default {
         category: this.newInput.category,
         gender: this.newInput.gender
       }
-      this.$store.dispatch('setUserEnteredData', newEntry)
+      this.$store.dispatch('setProductData', newEntry)
+      // this.$store.dispatch('setUserEnteredData', newEntry)
       this.newInput.name = '';
       this.newInput.price = null;
       this.newInput.description = '';
