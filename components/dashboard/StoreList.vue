@@ -13,7 +13,7 @@
                     dark
                     v-bind="attrs"
                     v-on="on"
-                    @click="$emit('edit', row.item.storeID)"
+                    @click="$emit('editStore', row.item.storeID)"
                     >
                     <v-icon dark>mdi-archive-edit</v-icon>
                     </v-btn>
