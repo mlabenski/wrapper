@@ -13,7 +13,7 @@
                     dark
                     v-bind="attrs"
                     v-on="on"
-                    @click="$emit('edit-store', row.item.storeID)"
+                    @click="$emit('edit-store', row.item.storeid)"
                     >
                     <v-icon dark>mdi-archive-edit</v-icon>
                     </v-btn>
@@ -29,7 +29,7 @@
                     dark
                     v-bind="attrs"
                     v-on="on"
-                    @click="$emit('goLive', row.item.storeID)"
+                    @click="$emit('goLive', row.item.storeid)"
                     >
                     <v-icon dark>mdi-truck-delivery</v-icon>
                     </v-btn>
