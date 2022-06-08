@@ -166,6 +166,7 @@ export default {
     addField() {
       const newEntry = {
         name: this.newInput.name,
+        itemID: 0,
         price: this.newInput.price,
         description: this.newInput.description,
         picture: this.newInput.picture,
