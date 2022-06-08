@@ -140,7 +140,8 @@ export default {
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),
-    editStore(storeID) {
+    async editStore(storeID) {
+      await this.$store.dispatch('setShowInput', true)
       this.$router.push({path: '/product-entry', query : { storeID }});
       // we should navigate to the edit store feature
       // this is when the product-entry page would appear with those values already loaded

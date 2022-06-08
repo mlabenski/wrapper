@@ -5,6 +5,7 @@ export const state = () => ({
   saveID: null,
   formCompleted: false,
   storeID: null,
+  showInput: false,
   formData: {userID: null, storeID: null, hppName: '', title:'', theme:null, dataFields: {}},
   dataFields: {required: ['title', 'price', 'description', 'picture'], optional: ['']},
   userEnteredData: [
@@ -70,8 +71,10 @@ export const mutations = {
   },
   setStoreID(state, storeID) {
     state.storeID = storeID
+  },
+  setShowInput(state, showInput) {
+    state.showInput = showInput
   }
-
 }
 
 export const actions = {
@@ -107,6 +110,9 @@ export const actions = {
   },
   setStoreID(vuexContext, storeID) {
     vuexContext.commit('setStoreID', storeID)
+  },
+  setShowInput(vuexContext, showInput) {
+    vuexContext.commit('setShowInput', showInput)
   },
   async exportData(vuexContext) {
     const data = (JSON.stringify(vuexContext.state.userEnteredData))
@@ -152,5 +158,8 @@ export const getters = {
   },
   getSaveID: (state) => {
     return state.saveID
+  },
+  getShowInput: (state) => {
+    return state.showInput
   }
 }

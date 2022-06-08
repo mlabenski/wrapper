@@ -55,10 +55,10 @@
       </v-container>
     </v-main>
 
-    <v-footer :absolute="!fixed" app v-if="this.$router.path == '/product-entry'">
+    <v-footer :absolute="!fixed" app v-if="step!==4">
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
-    <v-footer :absolute="!fixed" app v-if="step===4" style="height: 125px;">
+    <v-footer :absolute="!fixed" app v-if="showInput" style="height: 125px;">
       <v-container>
         <v-row no-gutters class="mb-8">
           <v-col>
@@ -140,6 +140,9 @@ export default {
     }),
     step() {
       return this.$store.getters.getCurrentStep
+    },
+    showInput() {
+      return this.$store.getters.getShowInput
     }
   },
   methods: {
