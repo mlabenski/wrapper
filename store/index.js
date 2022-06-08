@@ -55,9 +55,9 @@ export const mutations = {
     }
     state.userEnteredData = importedData
   },
-  setProductData(state, {product, storeID}) {
-    state.userEnteredData.push({storeID, 'name': product.name, 'price': product.price, 'description': product.description, 'picture': product.picture, 'size': product.size, 'color': product.color, 'category': product.category, 'gender': product.gender})
-    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeid=${storeID}&name=${product.name}&price=${product.price}&description=${product.description}&picture=${product.picture}&size=${product.size}&color=${product.color}&category=${product.category}&gender=${product.gender}`)
+  setProductData(state, payload) {
+    state.userEnteredData.push({'name': payload.product.name, 'price': payload.product.price, 'description': payload.product.description, 'picture': payload.product.picture, 'size': payload.product.size, 'color': payload.product.color, 'category': payload.product.category, 'gender': payload.product.gender})
+    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeid=${payload.storeID}&name=${payload.product.name}&price=${payload.product.price}&description=${payload.product.description}&picture=${payload.product.picture}&size=${payload.product.size}&color=${payload.product.color}&category=${payload.product.category}&gender=${payload.product.gender}`)
   },
   saveStore(state, userID) {
     // first we need to figure out the appropriate store id
@@ -103,8 +103,8 @@ export const actions = {
   setDataFields (vuexContext, optionalFields) {
     vuexContext.commit('setDataFields', optionalFields)
   },
-  setProductData (vuexContext, {data, storeID}) {
-    vuexContext.commit('setProductData', {data, storeID})
+  setProductData (vuexContext, payload) {
+    vuexContext.commit('setProductData', payload)
   },
   setUserEnteredData (vuexContext, data) {
     vuexContext.commit('setUserEnteredData', data)
