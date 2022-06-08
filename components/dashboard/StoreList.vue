@@ -15,10 +15,26 @@
                     v-on="on"
                     @click="$emit('edit', item.storeID)"
                     >
-                    <v-icon dark>mdi-heart</v-icon>
+                    <v-icon dark>mdi-archive-edit</v-icon>
                     </v-btn>
                 </template>
                 <span>Edit Store</span>
+                </v-tooltip>                
+            </td>
+            <td>
+                <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                    color="secondary"
+                    dark
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="$emit('goLive', item.storeID)"
+                    >
+                    <v-icon dark>mdi-truck-delivery</v-icon>
+                    </v-btn>
+                </template>
+                <span>Go Live</span>
                 </v-tooltip>                
             </td>
           </tr>
