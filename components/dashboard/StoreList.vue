@@ -6,9 +6,20 @@
             <td>{{row.item.hppName}}</td>
             <td>{{row.item.numProducts}}</td>
             <td>
-                <v-btn class="mx-2" fab dark small color="pink" @click="$emit('edit', item.storeID)">
+                <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                    color="primary"
+                    dark
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="$emit('edit', item.storeID)"
+                    >
                     <v-icon dark>mdi-heart</v-icon>
-                </v-btn>
+                    </v-btn>
+                </template>
+                <span>Edit Store</span>
+                </v-tooltip>                
             </td>
           </tr>
       </template>

@@ -249,8 +249,10 @@ export default {
     },
     completedForm() {
       console.log('did u run?')
-      this.$store.dispatch('saveStore', this.user.uuid)
-    }
+      this.$store.dispatch('saveStore', this.user.uuid).then((t) => {
+        this.$router.push('/dashboard')
+      })
+      }
   }
 };
 </script>
