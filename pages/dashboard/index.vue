@@ -133,9 +133,8 @@ export default {
     }
   },
   async mounted() {
-      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all').then((t) => {
-        this.$store.dispatch('setStoreID', this.userStoreData.storeid)
-      })
+      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
+      await this.$store.dispatch('setStoreID', this.userStoreData.storeid)
    },
   methods: {
     ...mapActions({
