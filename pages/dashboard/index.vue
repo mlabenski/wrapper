@@ -141,6 +141,7 @@ export default {
       setUser: 'handleUpdateUser'
     }),
     async editStore(storeID) {
+      await this.$store.dispatch('loadProductData', storeID)
       await this.$store.dispatch('setShowInput', true)
       this.$router.push({path: '/product-entry', query : { storeID }});
       // we should navigate to the edit store feature
