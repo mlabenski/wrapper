@@ -62,12 +62,9 @@ export const mutations = {
       console.log(data)
     })
   },
-  async loadProductData(state, payload) {
-    const products = await this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/load?storeID=${payload}`)
-    for (const key in products) {
-      state.userEnteredData.push({id: key, 'storeID': products[key].storeID, 'name': products[key].name, 'price': products[key].price, 'description':products[key].description, 'image':products[key].image,'size': 'red', 'color': 'red', 'category':products[key].categories, 'gender':'M' })
-      }
-    },
+  loadProductData(state, payload) {
+    state.loadProductData = payload
+  },
   saveStore(state, userID) {
     // first we need to figure out the appropriate store id
     // this is the part we determine if they have less than 5 stores too
@@ -130,8 +127,13 @@ export const actions = {
   setShowInput(vuexContext, showInput) {
     vuexContext.commit('setShowInput', showInput)
   },
-  loadProductData(vuexContext, storeID) {
-    vuexContext.commit('loadProductData', storeID)
+  async loadProductData(vuexContext, storeID) {
+    const products = await this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/load?storeID=${storeID}`)
+    const productData = []
+    for (const key in products) {
+      productData.push({id: key, 'storeID': products[key].storeID, 'name': products[key].name, 'price': products[key].price, 'description':products[key].description, 'image':products[key].image,'size': 'red', 'color': 'red', 'category':products[key].categories, 'gender':'M' })
+      }
+      vuexContext.commit('loadProductData', productData)
   },
   async exportData(vuexContext) {
     const data = (JSON.stringify(vuexContext.state.userEnteredData))
