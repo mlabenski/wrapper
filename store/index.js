@@ -57,7 +57,10 @@ export const mutations = {
   },
   setProductData(state, payload) {
     state.userEnteredData.push({'name': payload.product.name, 'price': payload.product.price, 'description': payload.product.description, 'picture': payload.product.picture, 'size': payload.product.size, 'color': payload.product.color, 'category': payload.product.category, 'gender': payload.product.gender})
-    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeid=${payload.storeID}&name=${payload.product.name}&price=${payload.product.price}&description=${payload.product.description}&picture=${payload.product.picture}&size=${payload.product.size}&color=${payload.product.color}&category=${payload.product.category}&gender=${payload.product.gender}`)
+    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeID=${payload.storeID}&name=${payload.product.name}&price=${payload.product.price}&descShort=${payload.product.description}&descLong=${payload.product.description}&image=${payload.product.picture}&stock=1&visible=1&categories=${payload.product.category}&featuredProduct=1`)
+    .then((data) => {
+      console.log(data)
+    })
   },
   saveStore(state, userID) {
     // first we need to figure out the appropriate store id
