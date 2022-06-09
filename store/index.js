@@ -130,6 +130,9 @@ export const actions = {
   setShowInput(vuexContext, showInput) {
     vuexContext.commit('setShowInput', showInput)
   },
+  loadProductData(vuexContext, storeID) {
+    vuexContext.commit('loadProductData', storeID)
+  },
   async exportData(vuexContext) {
     const data = (JSON.stringify(vuexContext.state.userEnteredData))
     await this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/save`, data)
