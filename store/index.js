@@ -64,7 +64,7 @@ export const mutations = {
   },
   loadProductData(state, payload) {
     for(const key in payload) {
-      state.userEnteredData.push(...payload[key])
+      state.userEnteredData.push(payload[key])
     }
   },
   saveStore(state, userID) {
@@ -131,9 +131,10 @@ export const actions = {
   },
   async loadProductData(vuexContext, storeID) {
     const productData = []
-    const products = await this.$axios.get(`https://usewrapper.herokuapp.com/wrapper/store/load/${storeID}`)
-    for (const key in products) {
-      productData.push({id: key, 'storeID': products[key].storeID, 'name': products[key].name, 'price': products[key].price, 'description':products[key].description, 'image':products[key].image,'size': 'red', 'color': 'red', 'category':products[key].categories, 'gender':'M' })
+    const data = await this.$axios.get(`https://usewrapper.herokuapp.com/wrapper/store/load/${storeID}`)
+    for (const key in data) {
+      console.log(data)
+      productData.push({id: key, 'storeID': data[key].storeID, 'name': data[key].name, 'price': data[key].price, 'description':data[key].description, 'image':data[key].image,'size': 'red', 'color': 'red', 'category':data[key].categories, 'gender':'M' })
       }
       vuexContext.commit('loadProductData', productData)
   },
