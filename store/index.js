@@ -63,7 +63,9 @@ export const mutations = {
     })
   },
   loadProductData(state, payload) {
-    state.userEnteredData = payload
+    for(const key in payload) {
+      state.userEnteredData.push(...payload[key])
+    }
   },
   saveStore(state, userID) {
     // first we need to figure out the appropriate store id
