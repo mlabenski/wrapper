@@ -63,7 +63,7 @@ export const mutations = {
     })
   },
   loadProductData(state, payload) {
-    const products = this.$axios.get(`https://usewrapper.herokuapp.com/wrapper/store/load?storeID=${payload}`)
+    const products = this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/load?storeID=${payload}`)
     for (const key in products) {
       state.userEnteredData.push({id: key, 'storeID': products[key].storeID, 'name': products[key].name, 'price': products[key].price, 'description':products[key].description, 'image':products[key].image,'size': 'red', 'color': 'red', 'category':products[key].categories, 'gender':'M' })
       }
