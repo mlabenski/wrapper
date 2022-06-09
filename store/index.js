@@ -128,8 +128,8 @@ export const actions = {
     vuexContext.commit('setShowInput', showInput)
   },
   async loadProductData(vuexContext, storeID) {
-    const products = await this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/load?storeID=${storeID}`)
     const productData = []
+    const products = await this.$axios.get(`https://usewrapper.herokuapp.com/wrapper/store/load?storeID=${storeID}`)
     for (const key in products) {
       productData.push({id: key, 'storeID': products[key].storeID, 'name': products[key].name, 'price': products[key].price, 'description':products[key].description, 'image':products[key].image,'size': 'red', 'color': 'red', 'category':products[key].categories, 'gender':'M' })
       }
