@@ -74,7 +74,7 @@ export default {
         },
         {
           label: 'Desc',
-          field: 'longDesc'
+          field: 'descLong'
         },
         {
           label: 'image',
@@ -106,6 +106,9 @@ export default {
         this.$toast.show(`You'll need to e logged in`)
       }
     }
+  },
+  async mounted() {
+    await this.$store.dispatch('loadProductData', this.$route.query.storeID)
   },
   methods: {
     rowStyleClassFn(row) {
