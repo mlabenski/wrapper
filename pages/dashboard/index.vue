@@ -147,6 +147,9 @@ export default {
       // this is when the product-entry page would appear with those values already loaded
       // So we'll need to run a store call 
     },
+    goLive(storeID) {
+      this.$store.dispatch('goLive', storeID)
+    },
     
     nav() {
       this.$router.push('/step-one')
