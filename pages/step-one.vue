@@ -175,6 +175,7 @@ export default {
       }
     }
   },
+
   methods: {
     ...mapActions({
       setUser: 'setUser'

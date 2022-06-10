@@ -62,7 +62,7 @@ export const mutations = {
       console.log(data)
     })
   },
-  loadProducts(state, data) {
+  loadProductData(state, data) {
     state.userEnteredData = data
   },
   saveStore(state, userID) {
