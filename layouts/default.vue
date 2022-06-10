@@ -71,19 +71,19 @@
             <input v-model="newInput.description" placeholder="Description: " type='text' class="form-control" id="description">
           </v-col>
           <v-col>
-            <input v-model="newInput.picture" placeholder="Picture URl: " type='text' class="form-control" id="picture">
+            <input v-model="newInput.image" placeholder="Picture URl: " type='text' class="form-control" id="image">
           </v-col>
           <v-col>
-            <input v-model="newInput.size" placeholder="Size: " type='text' class="form-control" id="size">
+            <input v-model="newInput.visible" placeholder="Visible: " type='text' class="form-control" id="visible">
           </v-col>
           <v-col>
-            <input v-model="newInput.color" placeholder="Color: " type='text' class="form-control" id="color">
+            <input v-model="newInput.featuredProduct" placeholder="Featured: " type='text' class="form-control" id="featuredProduct">
           </v-col>
           <v-col>
             <input v-model="newInput.category" placeholder="Category: " type='text' class="form-control" id="category">
           </v-col>
           <v-col>
-            <input v-model="newInput.gender" placeholder="Gender: " type='text' class="form-control" id="gender">
+            <input v-model="newInput.stock" placeholder="Stock #: " type='text' class="form-control" id="stock">
           </v-col>
         </v-row>
         <v-row  align="center" justify="center">
@@ -126,11 +126,11 @@ export default {
         name: '',
         price: null,
         description: '',
-        picture: '',
-        size: '',
-        color: '',
+        image: '',
         category: '',
-        gender: ''
+        visible: null,
+        featuredProduct: null,
+        stock: null
       }
     }
   },
@@ -166,25 +166,26 @@ export default {
     addField() {
       const newEntry = {
         name: this.newInput.name,
-        itemID: 0,
+        productID: 0,
         price: this.newInput.price,
-        description: this.newInput.description,
-        picture: this.newInput.picture,
-        size: this.newInput.size,
-        color: this.newInput.color,
-        category: this.newInput.category,
-        gender: this.newInput.gender
+        shortDesc: this.newInput.description,
+        longDesc: this.newInput.description,
+        image: this.newInput.image,
+        categories: this.newInput.category,
+        visible: this.newInput.visible,
+        featuredProduct: this.newInput.featuredProduct,
+        stock: this.newInput.stock
       }
       this.$store.dispatch('setProductData', {'product': newEntry, 'storeID': this.storeID})
       // this.$store.dispatch('setUserEnteredData', newEntry)
       this.newInput.name = '';
       this.newInput.price = null;
       this.newInput.description = '';
-      this.newInput.picture = '';
-      this.newInput.size = '';
-      this.newInput.color = '';
+      this.newInput.image = '';
       this.newInput.category = '';
-      this.newInput.gender = '';
+      this.newInput.featuredProduct= null;
+      this.newInput.stock = null;
+      this.newInput.visible = '';
     },
     exportStore() {
       this.disableBtn = true

@@ -69,29 +69,33 @@ export default {
           type: 'number',
         },
         {
-          label: 'description',
-          field: 'description'
+          label: 'Short Desc',
+          field: 'descShort'
         },
         {
-          label: 'picture',
-          field: 'picture',
+          label: 'Desc',
+          field: 'longDesc'
         },
         {
-          label: 'size',
-          field: 'size',
+          label: 'image',
+          field: 'image',
         },
         {
-          label: 'color',
-          field: 'color',
+          label: 'Visible',
+          field: 'visible',
+        },
+        {
+          label: 'Featured',
+          field: 'featuredProduct',
+        },
+        {
+          label: 'Stock',
+          field: 'stock',
         },
         {
           label: 'category',
-          field: 'category',
-        },
-        {
-          label: 'gender',
-          field: 'gender',
-        },
+          field: 'categories',
+        }
       ],
     };
   },

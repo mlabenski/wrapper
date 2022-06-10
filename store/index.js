@@ -9,7 +9,7 @@ export const state = () => ({
   formData: {userID: null, storeID: null, hppName: '', title:'', theme:null, dataFields: {}},
   dataFields: {required: ['title', 'price', 'description', 'picture'], optional: ['']},
   userEnteredData: [
-    { id:1, name:"Pizza", price: 20, description: 'the finest crust around',picture: 'https://jpg.com/jpg.jpg', size: '[XS,M,L,XL]', color: '[BBQ, Tomato]', category: 'pizza', gender: '[M,F]'},
+    { productID: 10, storeID:1, name:"Pizza", descShort: 'the finest crust around', descLong: 'the finest', visible: 1, stock: 1, price: 20, categories: 'pizza', image: 'image'},
   ]
 })
 export const mutations = {
@@ -56,16 +56,14 @@ export const mutations = {
     state.userEnteredData = importedData
   },
   setProductData(state, payload) {
-    state.userEnteredData.push({'name': payload.product.name, 'price': payload.product.price, 'description': payload.product.description, 'picture': payload.product.picture, 'size': payload.product.size, 'color': payload.product.color, 'category': payload.product.category, 'gender': payload.product.gender})
-    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeID=${payload.storeID}&name=${payload.product.name}&price=${payload.product.price}&descShort=${payload.product.description}&descLong=${payload.product.description}&image=${payload.product.picture}&stock=1&visible=1&categories=${payload.product.category}&featuredProduct=1`)
+    state.userEnteredData.push({'name': payload.product.name, 'price': payload.product.price, 'shortDesc': payload.product.description, 'longDesc': payload.product.description, 'image': payload.product.image, 'visible': payload.product.visible, 'stock': payload.product.stock, 'categories': payload.product.category, 'storeid': payload.storeID})
+    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeID=${payload.storeID}&name=${payload.product.name}&price=${payload.product.price}&descShort=${payload.product.description}&descLong=${payload.product.description}&image=${payload.product.image}&stock=${payload.product.stock}&visible=${payload.product.visible}&categories=${payload.product.category}&featuredProduct=${payload.product.featuredProduct}`)
     .then((data) => {
       console.log(data)
     })
   },
   loadProductData(state, payload) {
-    for(const key in payload) {
-      state.userEnteredData.push(payload[key])
-    }
+    state.userEnteredData = payload
   },
   saveStore(state, userID) {
     // first we need to figure out the appropriate store id
@@ -130,13 +128,8 @@ export const actions = {
     vuexContext.commit('setShowInput', showInput)
   },
   async loadProductData(vuexContext, storeID) {
-    const productData = []
     const data = await this.$axios.get(`https://usewrapper.herokuapp.com/wrapper/store/load/${storeID}`)
-    for (const key in data) {
-      console.log(data)
-      productData.push({id: key, 'storeID': data[key].storeID, 'name': data[key].name, 'price': data[key].price, 'description':data[key].description, 'image':data[key].image,'size': 'red', 'color': 'red', 'category':data[key].categories, 'gender':'M' })
-      }
-      vuexContext.commit('loadProductData', productData)
+      vuexContext.commit('loadProductData', data)
   },
   async exportData(vuexContext) {
     const data = (JSON.stringify(vuexContext.state.userEnteredData))
