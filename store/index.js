@@ -132,7 +132,7 @@ export const actions = {
   },
   async loadProductData(vuexContext, storeID) {
     const productData = []
-    const data = await vuexContext.app.$axios.$get(`https://usewrapper.herokuapp.com/wrapper/store/load/${storeID}`)
+    const data = await this.$axios.$get(`https://usewrapper.herokuapp.com/wrapper/store/load/${storeID}`)
     for (const key in data) {
       productData.push({...data[key]})
     }
