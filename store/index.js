@@ -84,7 +84,7 @@ export const mutations = {
   },
   setShowInput(state, showInput) {
     state.showInput = showInput
-  },
+  }
 }
 
 export const actions = {
@@ -95,9 +95,16 @@ export const actions = {
   setTitle (vuexContext, title) {
     vuexContext.commit('setTitle',  title)
   },
-  async goLive (vuexContext, storeID) {
-    // this should first check if the store is set to status : 0 whih means its in test. 
-    await this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/moveData?storeID=${storeID}`)
+  goLive(vuexContext, storeID) {
+    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/moveData?storeID=${storeID}`)
+    .then((response) => {
+      const newStoreID = response.data
+      vuexContext.commit('goLiveStatus', {'oldStoreID': storeID, newStoreID})
+    })
+    .catch(err => console.log(err))
+  },
+  goLiveStatus(vuexContext, payload) {
+    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/moveData?storeID=${payload.oldStoreID}&newStoreID=${payload.newStoreID}`)
   },
   setTheme (vuexContext, template) {
     if(template === 'standard') {

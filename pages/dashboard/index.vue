@@ -148,7 +148,10 @@ export default {
       // So we'll need to run a store call 
     },
     goLive(storeID) {
-      this.$store.dispatch('goLive', storeID)
+      if(this.userStoreData.status===0) {
+        this.$store.dispatch('goLive', storeID)
+      }
+    alert('store is already live!')
     },
     
     nav() {
