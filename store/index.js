@@ -97,7 +97,7 @@ export const actions = {
   },
   async goLive (vuexContext, storeID) {
     // this should first check if the store is set to status : 0 whih means its in test. 
-    await this.$axios.post(`https://usewrapper.heroku.com/wrapper/store/moveData?storeID=${storeID}`)
+    await this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/moveData?storeID=${storeID}`)
   },
   setTheme (vuexContext, template) {
     if(template === 'standard') {
