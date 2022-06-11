@@ -148,7 +148,8 @@ export default {
       // So we'll need to run a store call 
     },
     goLive(storeID) {
-      if(this.userStoreData[storeID].status===0) {
+      const obj = this.userStoreData.find(o => o.storeID === storeID);
+      if(obj.status===0) {
         this.$store.dispatch('goLive', storeID)
       }
       else {
