@@ -147,9 +147,8 @@ export default {
       // this is when the product-entry page would appear with those values already loaded
       // So we'll need to run a store call 
     },
-    goLive(storeID) {
-      const obj = this.userStoreData.find(o => o.storeID === storeID);
-      if(obj.status===0) {
+    goLive(storeID, status) {
+      if(status===0) {
         this.$store.dispatch('goLive', storeID)
       }
       else {

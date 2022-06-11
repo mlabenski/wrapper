@@ -29,7 +29,7 @@
                     dark
                     v-bind="attrs"
                     v-on="on"
-                    @click="$emit('go-live', row.item.storeid)"
+                    @click="$emit('go-live', row.item.storeid, row.item.status)"
                     >
                     <v-icon dark>mdi-truck-delivery</v-icon>
                     </v-btn>
