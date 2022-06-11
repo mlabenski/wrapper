@@ -151,7 +151,9 @@ export default {
       if(this.userStoreData.status===0) {
         this.$store.dispatch('goLive', storeID)
       }
-    alert('store is already live!')
+      else {
+        alert('store is already live!')
+      }
     },
     
     nav() {
