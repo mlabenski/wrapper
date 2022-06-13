@@ -104,7 +104,7 @@ export const actions = {
     .catch(err => console.log(err))
   },
   goLiveStatus(vuexContext, payload) {
-    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/moveData?storeID=${payload.oldStoreID}&newStoreID=${payload.newStoreID}`)
+    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/setStatus?oldStoreID=${payload.oldStoreID}&newStoreID=${payload.newStoreID}`)
   },
   setTheme (vuexContext, template) {
     if(template === 'standard') {
