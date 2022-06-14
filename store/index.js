@@ -56,8 +56,8 @@ export const mutations = {
     state.userEnteredData = importedData
   },
   setProductData(state, payload) {
-    state.userEnteredData.push({'productID': 0, 'storeID' : payload.storeID, 'name': payload.product.name, 'descShort': payload.product.descShort, 'descLong': payload.product.descLong, 'visible': payload.product.visible, 'stock': payload.product.stock, 'price': payload.product.price, 'featuredProduct': payload.product.featuredProduct, 'categories': payload.product.categories, 'image': payload.product.image})
-    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeID=${payload.storeID}&name=${payload.product.name}&price=${payload.product.price}&descShort=${payload.product.descShort}&descLong=${payload.product.descLong}&image=${payload.product.image}&stock=${payload.product.stock}&visible=${payload.product.visible}&categories=${payload.product.categories}&featuredProduct=${payload.product.featuredProduct}`)
+    state.userEnteredData.push({'productID': 0, 'storeID' : payload.storeID, 'name': payload.product.name, 'descShort': payload.product.description, 'descLong': payload.product.description, 'visible': payload.product.visible, 'stock': payload.product.stock, 'price': payload.product.price, 'featuredProduct': payload.product.featuredProduct, 'categories': payload.product.categories, 'image': payload.product.image})
+    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/save?storeID=${payload.storeID}&name=${payload.product.name}&price=${payload.product.price}&descShort=${payload.product.description}&descLong=${payload.product.description}&image=${payload.product.image}&stock=${payload.product.stock}&visible=${payload.product.visible}&categories=${payload.product.categories}&featuredProduct=${payload.product.featuredProduct}`)
     .then((data) => {
       console.log(data)
     })
