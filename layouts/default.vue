@@ -46,10 +46,10 @@
     <v-main>
       <v-container>
               <nuxt-link to="/" class="link mr-2">
-                
+
               </nuxt-link>
               <nuxt-link to="/dashboard" class="link">
-                
+
               </nuxt-link>
         <Nuxt />
       </v-container>
@@ -60,7 +60,7 @@
     </v-footer>
     <v-footer :absolute="!fixed" app v-if="showInput" style="height: 125px;">
       <v-container>
-        <v-row no-gutters class="mb-8">
+        <v-row no-gutters class="mb-8" v-bind:class="{'error-warning': (errors.length > 0)}">
           <v-col>
             <input v-model="newInput.name" placeholder="Product name:" type='text' class="form-control" id="name">
           </v-col>
@@ -131,7 +131,8 @@ export default {
         visible: null,
         featuredProduct: null,
         stock: null
-      }
+      },
+      errors: []
     }
   },
   computed: {
@@ -163,28 +164,64 @@ export default {
     onDashboard() {
       this.$router.push('/dashboard')
     },
-    addField() {
-      const newEntry = {
-        name: this.newInput.name,
-        productID: 0,
-        price: this.newInput.price,
-        description: this.newInput.description,
-        image: this.newInput.image,
-        categories: this.newInput.category,
-        visible: this.newInput.visible,
-        featuredProduct: this.newInput.featuredProduct,
-        stock: this.newInput.stock
+    validateInput() {
+      const regex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png);/
+      if (this.name ||this.price || this.description || this.image || this.categories || this.visible || this.featuredProduct || this.stock ) {
+        // all the fields are filled out. so lets make sure its the correct value
+        if (typeof(this.name) !== 'string' || typeof(this.description) !== 'string' || typeof(this.image) !== 'string' || typeof(this.categories) !== 'string') {
+          // not a string
+          this.errors.push('Name, description, image, and category must consist of a string')
+          return false;
+        }
+        if (this.name.length < 3) {
+          // name isn't longer than 3 characters
+          this.errors.push('Name must be more than 3 letters')
+          return false;
+        }
+        if(!regex.test(this.image)) {
+          this.errors.push('Image location must contain jpg, gif, or png for a valid picture')
+          return false;
+        }
+        if (!Number.isFinite(this.price) || !Number.isFinite(this.visible) || !Number.isFinite(this.featuredProduct) || !Number.isFinite(this.stock)) {
+          this.errors.push('The price, visible, featured product, and stock amount should all be numbers!')
+          return false;
+        }
+        else {
+          if(this.errors.length > 0) {
+            this.errors.splice(0, this.errors.length)
+          }
+          return true;
+        }
       }
-      this.$store.dispatch('setProductData', {'product': newEntry, 'storeID': this.storeID})
-      // this.$store.dispatch('setUserEnteredData', newEntry)
-      this.newInput.name = '';
-      this.newInput.price = null;
-      this.newInput.description = '';
-      this.newInput.image = '';
-      this.newInput.category = '';
-      this.newInput.featuredProduct= null;
-      this.newInput.stock = null;
-      this.newInput.visible = '';
+      else {
+        this.errors.push('There is a field that is not filled out!')
+        return false;
+      }
+    },
+    addField() {
+      if(this.validateInput()) {
+        const newEntry = {
+          name: this.newInput.name,
+          productID: 0,
+          price: this.newInput.price,
+          description: this.newInput.description,
+          image: this.newInput.image,
+          categories: this.newInput.category,
+          visible: this.newInput.visible,
+          featuredProduct: this.newInput.featuredProduct,
+          stock: this.newInput.stock
+        }
+        this.$store.dispatch('setProductData', {'product': newEntry, 'storeID': this.storeID})
+        // this.$store.dispatch('setUserEnteredData', newEntry)
+        this.newInput.name = '';
+        this.newInput.price = null;
+        this.newInput.description = '';
+        this.newInput.image = '';
+        this.newInput.category = '';
+        this.newInput.featuredProduct= null;
+        this.newInput.stock = null;
+        this.newInput.visible = '';
+      }
     },
     exportStore() {
       this.disableBtn = true
@@ -207,5 +244,10 @@ export default {
 }
 form-control.input{
   color: white;
+}
+.errors-warning {
+  border-style: solid;
+  border-width: 5px;
+  border-color: darkred;
 }
 </style>
