@@ -84,6 +84,12 @@ export const mutations = {
   },
   setShowInput(state, showInput) {
     state.showInput = showInput
+  },
+  changeStoreStatus(state, payload) {
+    const storeList = state.userEnteredData
+    const obj = storeList.find(o => o.storeID === payload.oldStoreID);
+    let index = storeList.indexOf(obj);
+    state.userEnteredData.fill(obj.status=payload.newStoreID, index, index++)
   }
 }
 
@@ -95,16 +101,18 @@ export const actions = {
   setTitle (vuexContext, title) {
     vuexContext.commit('setTitle',  title)
   },
-  goLive(vuexContext, storeID) {
-    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/moveData?storeID=${storeID}`)
+  async goLive(vuexContext, storeID) {
+    await this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/moveData?storeID=${storeID}`)
     .then((response) => {
       const newStoreID = response.data
-      vuexContext.commit('goLiveStatus', {'oldStoreID': storeID, newStoreID})
+      vuexContext.dispatch('goLiveStatus', {'oldStoreID': storeID, newStoreID})
     })
     .catch(err => console.log(err))
   },
   goLiveStatus(vuexContext, payload) {
-    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/setStatus?oldStoreID=${payload.oldStoreID}&newStoreID=${payload.newStoreID}`)
+    this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/setStatus?oldStoreID=${payload.oldStoreID}&newStoreID=${payload.newStoreID}`).then((response) => {
+      vuexContext.commit('changeStoreStatus', payload)
+    })
   },
   setTheme (vuexContext, template) {
     if(template === 'standard') {

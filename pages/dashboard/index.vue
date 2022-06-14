@@ -33,6 +33,7 @@
             <store-list
             :store-data="userStoreData"
             @edit-store="editStore"
+            @already-live="alreadyLive"
             @go-live="goLive"></store-list>
               
             </v-col>
@@ -147,13 +148,16 @@ export default {
       // this is when the product-entry page would appear with those values already loaded
       // So we'll need to run a store call 
     },
-    goLive(storeID, status) {
+     goLive(storeID, status) {
       if(status===0) {
-        this.$store.dispatch('goLive', storeID)
+       this.$store.dispatch('goLive', storeID)
       }
       else {
         alert('store is already live!')
       }
+    },
+    alreadyLive(storeID, status) {
+      alert('Your page is already live, so what do you wanna do?')
     },
     
     nav() {

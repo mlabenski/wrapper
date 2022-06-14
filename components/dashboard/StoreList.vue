@@ -21,7 +21,7 @@
                 <span>Edit Store</span>
                 </v-tooltip>                
             </td>
-            <td>
+            <td v-if="row.item.status === 0">
                 <v-tooltip bottom>
                 <template v-slot:activator="{ on, attrs }">
                     <v-btn
@@ -30,6 +30,22 @@
                     v-bind="attrs"
                     v-on="on"
                     @click="$emit('go-live', row.item.storeid, row.item.status)"
+                    >
+                    <v-icon dark>mdi-truck-delivery</v-icon>
+                    </v-btn>
+                </template>
+                <span>Go Live</span>
+                </v-tooltip>                
+            </td>
+            <td v-if="row.item.status > 0">
+                <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                    color="primary"
+                    dark
+                    v-bind="attrs"
+                    v-on="on"
+                    @click="$emit('already-live', row.item.storeid, row.item.status)"
                     >
                     <v-icon dark>mdi-truck-delivery</v-icon>
                     </v-btn>
