@@ -58,9 +58,9 @@
     <v-footer :absolute="!fixed" app v-if="step!==4">
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
-    <v-footer :absolute="!fixed" v-if="showInput" app style="height: 125px;">
+    <v-footer :absolute="!fixed" v-if="showInput" app style="height: 125px;" v-bind:class="{'errors-warning': (errors.length > 0)}">
       <v-container>
-        <v-row no-gutters class="mb-8" v-bind:class="{'errors-warning': (errors.length > 0)}">
+        <v-row no-gutters class="mb-8">
           <v-col>
             <input v-model="newInput.name" placeholder="Product name:" type='text' class="form-control" id="name">
           </v-col>

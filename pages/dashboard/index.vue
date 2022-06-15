@@ -25,6 +25,17 @@
                 Generate One
                 <v-icon class="ml-2">mdi-arrow-down</v-icon>
               </v-btn>
+              <v-btn
+                rounded
+                outlined
+                large
+                dark
+                @click="manageSubscription()"
+                class="mt-5"
+              >
+                Manage Subscription
+                <v-icon class="ml-2">mdi-arrow-down</v-icon>
+              </v-btn>
               <div class="video d-flex align-center py-4">
                 <p class="subheading ml-2 mb-0">Welcome back loyal merchant</p>
               </div>
@@ -141,6 +152,19 @@ export default {
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),
+    manageSubscription(user) {
+      fetch('/.netlify/functions/create-manage-link', {
+        method: 'POST',
+        headers: {
+          // eslint-disable-next-line no-undef
+          Authorization: `Bearer ${user.token.access_token}`,
+        },
+      }).then((res) => res.json())
+        .then((link) => {
+          window.location.href = link;
+        })
+        .catch((err) => console.log(err));
+    },
     async editStore(storeID) {
       await this.$store.dispatch('setShowInput', true)
       this.$router.push({path: '/product-entry', query : { storeID }});
