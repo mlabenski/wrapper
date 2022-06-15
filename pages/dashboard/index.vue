@@ -29,13 +29,13 @@
                 <p class="subheading ml-2 mb-0">Welcome back loyal merchant</p>
               </div>
             </v-col>
-            <v-col v-if="userStoreData" cols="12" md="6" xl="4" class="hidden-sm-and-down" style="background-color: red;"> 
+            <v-col v-if="userStoreData" cols="12" md="6" xl="4" class="hidden-sm-and-down" style="background-color: red;">
             <store-list
             :store-data="userStoreData"
             @edit-store="editStore"
             @already-live="alreadyLive"
             @go-live="goLive"></store-list>
-              
+
             </v-col>
           </v-row>
         </v-col>
@@ -126,12 +126,6 @@ export default {
     })
   },
   created() {
-    if (process.browser) {
-      if(!this.user) {
-        this.$router.push('/')
-        this.$toast.show(`Sorry! You'll need to be logged in.`)
-      }
-    }
   },
   async mounted() {
       this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
@@ -146,7 +140,7 @@ export default {
       this.$router.push({path: '/product-entry', query : { storeID }});
       // we should navigate to the edit store feature
       // this is when the product-entry page would appear with those values already loaded
-      // So we'll need to run a store call 
+      // So we'll need to run a store call
     },
      goLive(storeID, status) {
       if(status===0) {
@@ -159,7 +153,7 @@ export default {
     alreadyLive(storeID, status) {
       alert('Your page is already live, so what do you wanna do?')
     },
-    
+
     nav() {
       this.$router.push('/step-one')
     },
