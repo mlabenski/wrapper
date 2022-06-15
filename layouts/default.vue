@@ -60,6 +60,7 @@
     </v-footer>
     <v-footer :absolute="!fixed" app v-if="showInput" style="height: 125px;">
       <v-container>
+        <h2>{{errors}}</h2>
         <v-row no-gutters class="mb-8" v-bind:class="{'error-warning': (errors.length > 0)}">
           <v-col>
             <input v-model="newInput.name" placeholder="Product name:" type='text' class="form-control" id="name">
@@ -165,32 +166,44 @@ export default {
       this.$router.push('/dashboard')
     },
     validateInput() {
+      const newEntry = {
+        name: this.newInput.name,
+        productID: 0,
+        price: this.newInput.price,
+        description: this.newInput.description,
+        image: this.newInput.image,
+        categories: this.newInput.category,
+        visible: this.newInput.visible,
+        featuredProduct: this.newInput.featuredProduct,
+        stock: this.newInput.stock
+      }
       const regex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png);/
-      if (this.name ||this.price || this.description || this.image || this.categories || this.visible || this.featuredProduct || this.stock ) {
+      if (newEntry.name && newEntry.price && newEntry.description && newEntry.image && newEntry.categories && newEntry.visible && newEntry.featuredProduct && newEntry.stock ) {
         // all the fields are filled out. so lets make sure its the correct value
-        if (typeof(this.name) !== 'string' || typeof(this.description) !== 'string' || typeof(this.image) !== 'string' || typeof(this.categories) !== 'string') {
+        if (typeof(newEntry.name) !== 'string' || typeof(newEntry.description) !== 'string' || typeof(newEntry.image) !== 'string' || typeof(newEntry.categories) !== 'string') {
           // not a string
           this.errors.push('Name, description, image, and category must consist of a string')
           return false;
         }
-        if (this.name.length < 3) {
+        if (newEntry.name.length < 3) {
           // name isn't longer than 3 characters
           this.errors.push('Name must be more than 3 letters')
           return false;
         }
-        if(!regex.test(this.image)) {
+        if(!regex.test(newEntry.image)) {
           this.errors.push('Image location must contain jpg, gif, or png for a valid picture')
           return false;
         }
-        if (!Number.isFinite(this.price) || !Number.isFinite(this.visible) || !Number.isFinite(this.featuredProduct) || !Number.isFinite(this.stock)) {
+        if (!Number.isFinite(newEntry.price) || !Number.isFinite(newEntry.visible) || !Number.isFinite(newEntry.featuredProduct) || !Number.isFinite(newEntry.stock)) {
           this.errors.push('The price, visible, featured product, and stock amount should all be numbers!')
           return false;
         }
         else {
           if(this.errors.length > 0) {
+            alert('there are too many errors!')
             this.errors.splice(0, this.errors.length)
           }
-          return true;
+          this.addField(newEntry)
         }
       }
       else {
@@ -198,19 +211,7 @@ export default {
         return false;
       }
     },
-    addField() {
-      if(this.validateInput()) {
-        const newEntry = {
-          name: this.newInput.name,
-          productID: 0,
-          price: this.newInput.price,
-          description: this.newInput.description,
-          image: this.newInput.image,
-          categories: this.newInput.category,
-          visible: this.newInput.visible,
-          featuredProduct: this.newInput.featuredProduct,
-          stock: this.newInput.stock
-        }
+    addField(newEntry) {
         this.$store.dispatch('setProductData', {'product': newEntry, 'storeID': this.storeID})
         // this.$store.dispatch('setUserEnteredData', newEntry)
         this.newInput.name = '';
@@ -221,7 +222,6 @@ export default {
         this.newInput.featuredProduct= null;
         this.newInput.stock = null;
         this.newInput.visible = '';
-      }
     },
     exportStore() {
       this.disableBtn = true
