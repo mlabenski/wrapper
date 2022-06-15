@@ -10,7 +10,7 @@
                 shopping cart without web hosting <br />
                 expenses, maintenance, or vulnerabilties!
               </h1>
-              <client-only> 
+              <client-only>
                 <v-btn
                 v-if="user"
                 rounded

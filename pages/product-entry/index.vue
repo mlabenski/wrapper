@@ -103,7 +103,7 @@ export default {
     if (process.browser) {
       if(!this.user) {
         this.$router.push('/')
-        this.$toast.show(`You'll need to e logged in`)
+        this.$toast.show(`Sorry! You'll need to be logged in.`)
       }
     }
   },

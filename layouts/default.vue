@@ -58,15 +58,14 @@
     <v-footer :absolute="!fixed" app v-if="step!==4">
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
-    <v-footer :absolute="!fixed" app v-if="showInput" style="height: 125px;">
+    <v-footer :absolute="!fixed" v-if="showInput" app style="height: 125px;">
       <v-container>
-        <h2>{{errors}}</h2>
-        <v-row no-gutters class="mb-8" v-bind:class="{'error-warning': (errors.length > 0)}">
+        <v-row no-gutters class="mb-8" v-bind:class="{'errors-warning': (errors.length > 0)}">
           <v-col>
             <input v-model="newInput.name" placeholder="Product name:" type='text' class="form-control" id="name">
           </v-col>
           <v-col>
-            <input v-model="newInput.price" placeholder="Price: " type='text' class="form-control" id="price">
+            <input v-model="newInput.price" placeholder="Price: " type='number' class="form-control" id="price">
           </v-col>
           <v-col>
             <input v-model="newInput.description" placeholder="Description: " type='text' class="form-control" id="description">
@@ -75,16 +74,16 @@
             <input v-model="newInput.image" placeholder="Picture URl: " type='text' class="form-control" id="image">
           </v-col>
           <v-col>
-            <input v-model="newInput.visible" placeholder="Visible: " type='text' class="form-control" id="visible">
+            <input v-model="newInput.visible" placeholder="Visible: " type='number' class="form-control" id="visible">
           </v-col>
           <v-col>
-            <input v-model="newInput.featuredProduct" placeholder="Featured: " type='text' class="form-control" id="featuredProduct">
+            <input v-model="newInput.featuredProduct" placeholder="Featured: " type='number' class="form-control" id="featuredProduct">
           </v-col>
           <v-col>
             <input v-model="newInput.category" placeholder="Category: " type='text' class="form-control" id="category">
           </v-col>
           <v-col>
-            <input v-model="newInput.stock" placeholder="Stock #: " type='text' class="form-control" id="stock">
+            <input v-model="newInput.stock" placeholder="Stock #: " type='number' class="form-control" id="stock">
           </v-col>
         </v-row>
         <v-row  align="center" justify="center">
@@ -177,7 +176,6 @@ export default {
         featuredProduct: this.newInput.featuredProduct,
         stock: this.newInput.stock
       }
-      const regex = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png);/
       if (newEntry.name && newEntry.price && newEntry.description && newEntry.image && newEntry.categories && newEntry.visible && newEntry.featuredProduct && newEntry.stock ) {
         // all the fields are filled out. so lets make sure its the correct value
         if (typeof(newEntry.name) !== 'string' || typeof(newEntry.description) !== 'string' || typeof(newEntry.image) !== 'string' || typeof(newEntry.categories) !== 'string') {
@@ -190,12 +188,8 @@ export default {
           this.errors.push('Name must be more than 3 letters')
           return false;
         }
-        if(!regex.test(newEntry.image)) {
+        if (!(/(jpg|gif|png|JPG|GIF|PNG|JPEG|jpeg)$/.test(newEntry.image))){
           this.errors.push('Image location must contain jpg, gif, or png for a valid picture')
-          return false;
-        }
-        if (!Number.isFinite(newEntry.price) || !Number.isFinite(newEntry.visible) || !Number.isFinite(newEntry.featuredProduct) || !Number.isFinite(newEntry.stock)) {
-          this.errors.push('The price, visible, featured product, and stock amount should all be numbers!')
           return false;
         }
         else {
