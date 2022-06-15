@@ -126,6 +126,12 @@ export default {
     })
   },
   created() {
+    if (process.browser) {
+      if(!this.user) {
+        this.$router.push('/')
+        this.$toast.show(`Sorry! You'll need to be logged in.`)
+      }
+    }
   },
   async mounted() {
       this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
