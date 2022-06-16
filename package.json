@@ -20,7 +20,7 @@
     "core-js": "^3.19.3",
     "gotrue-js": "^0.9.29",
     "netlify-identity-widget": "^1.9.2",
-    "node-fetch": "^3.2.6",
+    "node-fetch": "^2.6.1",
     "nuxt": "^2.15.8",
     "stripe": "^9.8.0",
     "vue": "^2.6.14",
