@@ -30,7 +30,7 @@
                 outlined
                 large
                 dark
-                @click="manageSubscription()"
+                @click="manageSubscription(user)"
                 class="mt-5"
               >
                 Manage Subscription
@@ -152,8 +152,8 @@ export default {
     ...mapActions({
       setUser: 'handleUpdateUser'
     }),
-    manageSubscription(user) {
-      fetch('/.netlify/functions/create-manage-link', {
+    async manageSubscription(user) {
+      await fetch('/.netlify/functions/create-manage-link', {
         method: 'POST',
         headers: {
           // eslint-disable-next-line no-undef
