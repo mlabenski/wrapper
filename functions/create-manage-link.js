@@ -3,7 +3,8 @@ const { faunaFetch } = require('./fauna');
 
 exports.handler = async (_event, context) => {
   const { user } = context.clientContext;
-  console.log(user)
+  console.log(context)
+  console.log(_event)
 
   const result = await faunaFetch({
     query: `

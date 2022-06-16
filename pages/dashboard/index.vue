@@ -157,7 +157,7 @@ export default {
         method: 'POST',
         headers: {
           // eslint-disable-next-line no-undef
-          Authorization: `Bearer ${user.id}`,
+          Authorization: `Bearer ${this.user.id}`,
         },
       }).then((res) => res.json())
         .then((link) => {
