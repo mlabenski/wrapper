@@ -23,7 +23,8 @@ export const actions = {
           username: user.user_metadata.full_name,
           email: user.email,
           role: user.app_metadata.roles,
-          id: user.id
+          id: user.id,
+          token: user.token
         })
       }
     })
