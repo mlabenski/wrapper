@@ -1,5 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const { faunaFetch } = require('./utils/fauna');
+const { faunaFetch } = require('./fauna');
 
 exports.handler = async (event) => {
   const { user } = JSON.parse(event.body);
