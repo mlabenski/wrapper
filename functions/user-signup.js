@@ -34,6 +34,7 @@ exports.handler = async (event) => {
     body: JSON.stringify({
       app_metadata: {
         roles: ['free'],
+        id: user.id
       },
     }),
   };
