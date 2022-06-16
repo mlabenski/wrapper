@@ -12,7 +12,8 @@ exports.handler = async (event) => {
     customer: customer.id,
     items: [{ price: process.env.STRIPE_DEFAULT_PRICE_PLAN }],
   });
-
+  console.log('does this work?')
+  console.log(user)
   // store the Netlify and Stripe IDs in Fauna
   await faunaFetch({
     query: `
@@ -33,8 +34,7 @@ exports.handler = async (event) => {
     statusCode: 200,
     body: JSON.stringify({
       app_metadata: {
-        roles: ['free'],
-        id: 5019
+        roles: ['free']
       },
     }),
   };

@@ -23,7 +23,7 @@ export const actions = {
           username: user.user_metadata.full_name,
           email: user.email,
           role: user.app_metadata.roles,
-          uuid: user.user_metadata.uuid
+          id: user.id
         })
       }
     })
@@ -34,7 +34,7 @@ export const actions = {
           username: user.user_metadata.full_name,
           email: user.email,
           role: user.app_metadata.roles,
-          uuid: user.user_metadata.uuid
+          id: user.id
         })
       }
     })
@@ -59,7 +59,7 @@ export const actions = {
         username: user.user_metadata.full_name,
         email: user.email,
         role: user.app_metadata.roles,
-        uuid: user.user_metadata.uuid
+        id: user.id
       })
       this.$netlifyIdentity.close()
     })
