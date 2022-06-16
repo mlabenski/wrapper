@@ -19,6 +19,7 @@
     "@vue-stripe/vue-stripe": "^4.4.2",
     "core-js": "^3.19.3",
     "gotrue-js": "^0.9.29",
+    "isomorphic-fetch": "^3.0.0",
     "netlify-identity-widget": "^1.9.2",
     "node-fetch": "^2.6.1",
     "nuxt": "^2.15.8",

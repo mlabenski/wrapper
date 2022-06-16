@@ -1,6 +1,7 @@
 const fetch = require('isomorphic-fetch');
 
 exports.faunaFetch = async ({ query, variables }) => {
+  console.log('within the fauna function')
   return await fetch('https://graphql.fauna.com/graphql', {
     method: 'POST',
     headers: {
