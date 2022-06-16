@@ -14,6 +14,7 @@ exports.handler = async (event) => {
   });
   console.log('does this work?')
   console.log(user)
+  console.log(process.env.FAUNA_SERVER_KEY)
   // store the Netlify and Stripe IDs in Fauna
   await faunaFetch({
     query: `
