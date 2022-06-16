@@ -3,11 +3,6 @@ const { faunaFetch } = require('./fauna');
 
 exports.handler = async (_event, context) => {
   const user = context.clientContext.custom.netlify;
-  console.log('context is')
-  console.log(context)
-  console.log('event is')
-  console.log(_event)
-  console.log('user is')
   console.log(user)
 
   const result = await faunaFetch({
