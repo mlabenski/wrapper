@@ -2,6 +2,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { faunaFetch } = require('./fauna');
 
 exports.handler = async (_event, context) => {
+  console.log(_event)
+  console.log(context)
   const user = context.clientContext.custom.netlify;
   console.log(user)
 
