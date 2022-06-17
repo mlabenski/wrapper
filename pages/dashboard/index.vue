@@ -145,7 +145,8 @@ export default {
     }
   },
   async mounted() {
-      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
+      // this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
+      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/1/stores/all')
       await this.$store.dispatch('setStoreID', this.userStoreData.storeid)
    },
   methods: {
@@ -157,7 +158,7 @@ export default {
         method: 'POST',
         headers: {
           // eslint-disable-next-line no-undef
-          Authorization: `Bearer ${user.token.access_token}`,
+          Authorization: `Bearer ${this.user.token.access_token}`,
         },
       }).then((res) => res.json())
         .then((link) => {
