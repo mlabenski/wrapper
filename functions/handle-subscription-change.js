@@ -3,6 +3,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { faunaFetch } = require('./fauna');
 
 exports.handler = async ({ body, headers }, context) => {
+  console.log('web hook was attempted')
   try {
     // make sure this event was sent legitimately.
     const stripeEvent = stripe.webhooks.constructEvent(
@@ -10,6 +11,7 @@ exports.handler = async ({ body, headers }, context) => {
       headers['stripe-signature'],
       process.env.STRIPE_WEBHOOK_SECRET,
     );
+    console.log(stripeEvent)
 
     // bail if this is not a subscription update event
     if (stripeEvent.type !== 'customer.subscription.updated') return;
