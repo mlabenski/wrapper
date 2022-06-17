@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+const fetch = require('isomorphic-fetch');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { faunaFetch } = require('./fauna');
 
