@@ -3,7 +3,9 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const { faunaFetch } = require('./fauna');
 
 exports.handler = async ({ body, headers }, context) => {
-  console.log('web hook was attempted')
+  console.log(body)
+  console.log(headers)
+  console.log(context)
   try {
     // make sure this event was sent legitimately.
     const stripeEvent = stripe.webhooks.constructEvent(
