@@ -146,7 +146,7 @@ export default {
   },
   async mounted() {
       // this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+this.user.uuid+'/stores/all')
-      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/1/stores/all')
+      this.userStoreData = await this.$axios.$get('https://usewrapper.herokuapp.com/wrapper/user/'+ this.user.uuid +'+/stores/all')
       await this.$store.dispatch('setStoreID', this.userStoreData.storeid)
    },
   methods: {
