@@ -3,6 +3,7 @@ const { faunaFetch } = require('./fauna');
 
 exports.handler = async (event) => {
   const { user } = JSON.parse(event.body);
+  const uuid = Math.floor(Math.random() * 9999999)
 
   // create a new customer in Stripe
   const customer = await stripe.customers.create({ email: user.email });
@@ -37,6 +38,10 @@ exports.handler = async (event) => {
       app_metadata: {
         roles: ['free']
       },
+      user_metadata: {
+        ...user.user_metadata,
+        uuid
+      }
     }),
   };
 };
