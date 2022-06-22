@@ -1,10 +1,11 @@
 # shopping-cart-generator
 
 ## Current Road map
-Transition the website to feel more like Hulu. One full screen page to describe the product, and then offer a way to sign up, or log in.
-Edit a live store, (this is possible due to non-validation issues) the correct way is by removing the live store, and then re-adding the new store products
-Delete a live store (this will be better utilized once there users are restricted to the amount of store they can have)
-Once you press "go live" there should be a response with the store link. 
+- Transition the website to feel more like Hulu. One full screen page to describe the product, and then offer a way to sign up, or log in.
+- Edit a live store, (this is possible due to non-validation issues) the correct way is by removing the live store, and then re-adding the new store products
+- Delete a live store (this will be better utilized once there users are restricted to the amount of store they can have)
+- Once you press "go live" there should be a response with the store link. 
+- IMPORT STORE DATA THROUGH JSON. THIS IS A BIG ONE AND SHOULD BE COMPLETED FIRST
 
 
 ## Build Setup
