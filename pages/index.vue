@@ -27,7 +27,17 @@
                 class="mt-5"
                 @click.prevent="openSignup"
               >
-                Wrap WooCommerce
+                Use Wrapper
+                <v-icon class="ml-2">mdi-chart-box</v-icon>
+              </v-btn>
+              <v-btn
+                rounded
+                white
+                large
+                class="mt-5 v-btn-two"
+                @click.prevent="openSignup"
+              >
+                WooCommerce
                 <v-icon class="ml-2">mdi-sitemap</v-icon>
               </v-btn>
               </client-only>
@@ -207,6 +217,14 @@ export default {
   opacity: 0.3;
 }
 v-btn {
+  color: black !important;
+  background-color: white !important;
+  &:hover {
+    background-color: grey !important;
+    color: white !important;
+  }
+}
+.v-btn-two {
   color: black !important;
   background-color: white !important;
   &:hover {
