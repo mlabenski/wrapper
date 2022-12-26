@@ -4,9 +4,8 @@
         <v-col cols="10">
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
-              <h1 class="display-2 font-weight-bold mb-4">wr \ APP / er</h1>
               <h1 class="font-weight-light">
-                Quick solution for maintaining a<br />
+                A Quick solution for maintaining a<br />
                 shopping cart without web hosting <br />
                 expenses, maintenance, or vulnerabilties!
               </h1>
@@ -14,25 +13,22 @@
                 <v-btn
                 v-if="user"
                 rounded
-                outlined
                 large
-                dark
                 class="mt-5"
                 @click="nav"
               >
-                Generate One
-                <v-icon class="ml-2">mdi-arrow-down</v-icon>
+                Build a Shop
+                <v-icon class="ml-2">mdi-chart-box</v-icon>
               </v-btn>
               <v-btn
                 rounded
-                outlined
+                white
                 large
-                dark
                 class="mt-5"
                 @click.prevent="openSignup"
               >
-                Log In/Create Acc
-                <v-icon class="ml-2">mdi-arrow-down</v-icon>
+                Wrap WooCommerce
+                <v-icon class="ml-2">mdi-sitemap</v-icon>
               </v-btn>
               </client-only>
               <div class="video d-flex align-center py-4">
@@ -76,7 +72,7 @@
                     />
                   </svg>
                 </a>
-                <p class="subheading ml-2 mb-0">Learn more</p>
+                <p class="subheading ml-2 mb-0">View a Live Demo</p>
               </div>
             </v-col>
             <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down"> </v-col>
@@ -210,6 +206,15 @@ export default {
   -webkit-transition: all 0.5s ease-in-out;
   opacity: 0.3;
 }
+v-btn {
+  color: black !important;
+  background-color: white !important;
+  &:hover {
+    background-color: grey !important;
+    color: white !important;
+  }
+}
+
 .playBut {
   /*  border: 1px solid red;*/
   display: inline-block;
