@@ -5,8 +5,8 @@
           <v-row align="center" justify="center">
             <v-col cols="12" md="6" xl="8">
               <h1 class="font-weight-light">
-                A Quick solution for maintaining a<br />
-                shopping cart without web hosting <br />
+                A Quick solution to generate a<br />
+                shopping cart. Without web hosting <br />
                 expenses, maintenance, or vulnerabilties!
               </h1>
               <client-only>
@@ -72,7 +72,7 @@
                     />
                   </svg>
                 </a>
-                <p class="subheading ml-2 mb-0">View a Live Demo</p>
+                <p class="subheading ml-2 mb-0">Sign up</p>
               </div>
             </v-col>
             <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down"> </v-col>

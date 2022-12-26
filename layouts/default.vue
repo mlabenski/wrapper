@@ -14,15 +14,13 @@
               <div class="flex justify-center mt-10">
                 <template v-if="user">
                   <a
-                    href="#"
-                    class="button button--primary lg:w-1/2"
+                    class="button button--primary lg:w-1/2 d-none d-sm-block d-md-block d-lg-block"
                     @click.prevent="onDashboard"
                   >
                     View Dashboard
                   </a>
                   <a
-                    href="#"
-                    class="button button--primary lg:w-1/2"
+                    class="button button--primary lg:w-1/2 d-none d-sm-block d-md-block d-lg-block"
                     @click.prevent="onLogout"
                   >
                     Logout
@@ -30,15 +28,13 @@
                 </template>
                 <template v-else>
                   <a
-                    href="#"
-                    class="button button--primary mr-2 lg:w-1/2 lg:ml-10"
+                    class="button button--primary mr-2 lg:w-1/2 lg:ml-10 d-none d-sm-block d-md-block d-lg-block"
                     @click.prevent="openLogin"
                   >
                     Login
                   </a>
                   <a
-                    href="#"
-                    class="button button--primary lg:w-1/2 lg:mr-10"
+                    class="button button--primary lg:w-1/2 lg:mr-10 d-none d-sm-block d-md-block d-lg-block"
                     @click.prevent="openSignup"
                   >
                     Sign up
