@@ -1,6 +1,13 @@
 <template>
   <v-app dark>
     <v-app-bar :clipped-left="clipped" fixed app>
+      <v-img
+    class="mx-2"
+    :src="require('~/assets/wrapper-logo-small.png')"
+    max-width="160"
+    max-height="24"
+    contain
+  ></v-img>
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <client-only>
