@@ -6,7 +6,7 @@
             <v-col cols="12" md="6" xl="8">
               <h1 class="font-weight-light">
                 A Quick solution to generate a<br />
-                shopping cart. Without web hosting <br />
+                shopping cart. Without hosting<br />
                 expenses, maintenance, or vulnerabilties!
               </h1>
               <client-only>
@@ -32,7 +32,6 @@
               </v-btn>
               <v-btn
                 rounded
-                white
                 large
                 class="mt-5 v-btn-two"
                 @click.prevent="openSignup"
@@ -226,7 +225,7 @@ v-btn {
 }
 .v-btn-two {
   color: black !important;
-  background-color: white !important;
+  background-color: rgba(255, 255, 255, 0.603) !important;
   &:hover {
     background-color: grey !important;
     color: white !important;

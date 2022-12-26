@@ -14,13 +14,13 @@
               <div class="flex justify-center mt-10">
                 <template v-if="user">
                   <a
-                    class="button button--primary lg:w-1/2 d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
+                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     @click.prevent="onDashboard"
                   >
                     View Dashboard
                   </a>
                   <a
-                    class="button button--primary lg:w-1/2 d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
+                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     @click.prevent="onLogout"
                   >
                     Logout
@@ -28,13 +28,13 @@
                 </template>
                 <template v-else>
                   <a
-                    class="button button--primary mr-2 lg:w-1/2 lg:ml-10 d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
+                    class="lg:ml-10 d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     @click.prevent="openLogin"
                   >
                     Login
                   </a>
                   <a
-                    class="button button--primary lg:w-1/2 lg:mr-10 d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
+                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     @click.prevent="openSignup"
                   >
                     Sign up
