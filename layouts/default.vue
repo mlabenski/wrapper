@@ -4,8 +4,8 @@
       <v-img
     class="mx-2"
     :src="require('~/assets/wrapper-logo-small.png')"
-    max-height="160"
-    max-width="24"
+    max-width="160"
+    max-height="24"
     contain
   ></v-img>
       <v-toolbar-title v-text="title" />
