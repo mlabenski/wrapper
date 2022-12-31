@@ -2,16 +2,17 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    titleTemplate: '%s - shopping-cart-generator',
-    title: 'shopping-cart-generator',
+head: {
+
+    titleTemplate: '%s - e-commerce',
+    title: 'Use Wrapper',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       {charset: 'utf-8'},
-      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: ''},
+      {name: 'viewport', content:"width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1"},
+      {hid: 'description', name: 'description', content: 'Use Wrapper for multiple shopping cart integrations. We connect to payment processors with a use-friendly e-commerce interface.'},
       {name: 'format-detection', content: 'telephone=no'}
     ],
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
@@ -49,7 +50,8 @@ export default {
   modules: [
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    '@nuxtjs/vuetify'
   ],
   middleware: [''],
   toast: {

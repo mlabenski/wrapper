@@ -1,5 +1,8 @@
 <template>
-  <v-app dark>
+  <v-app dark id="container">
+    <div id="main">
+
+    </div>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-img
     class="mx-2"
@@ -11,34 +14,52 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <client-only>
-              <div class="flex justify-center mt-10">
+              <div class="flex justify-center mt-10" style="left:145px;">
                 <template v-if="user">
-                  <a
+                  <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    @click.prevent="onDashboard"
-                  >
-                    View Dashboard
-                  </a>
-                  <a
+                    elevation="5" fab text tile
+                    id="nav-text"
+                    @click.prevent="onDashboard">
+                    Dashboard
+                  </v-btn>
+                  <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    @click.prevent="onLogout"
-                  >
-                    Logout
-                  </a>
+                    elevation="5" fab text tile
+                    id="nav-text"
+                    @click.prevent="onDashboard">
+                    Products
+                  </v-btn>
+                  <v-btn 
+                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
+                    elevation="5" fab text tile
+                    id="nav-text"
+                    @click.prevent="onDashboard">
+                    Settings
+                  </v-btn>
                 </template>
                 <template v-else>
-                  <a
-                    class="lg:ml-10 d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    @click.prevent="openLogin"
-                  >
-                    Login
-                  </a>
-                  <a
+                  <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    @click.prevent="openSignup"
-                  >
-                    Sign up
-                  </a>
+                    elevation="5" fab text tile
+                    id="nav-text"
+                    @click.prevent="openLogin">
+                    Login
+                  </v-btn>
+                  <v-btn 
+                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
+                    elevation="5" fab text tile
+                    id="nav-text"
+                    @click.prevent="openLogin">
+                    Sign Up
+                  </v-btn>
+                  <v-btn 
+                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
+                    elevation="5" fab text tile
+                    id="nav-text"
+                    @click.prevent="openSignup">
+                    Learn More
+                  </v-btn>
                 </template>
               </div>
       </client-only>
@@ -49,10 +70,10 @@
     <v-main>
       <v-container>
               <nuxt-link to="/" class="link mr-2">
-
+                Test
               </nuxt-link>
               <nuxt-link to="/dashboard" class="link">
-
+                Test
               </nuxt-link>
         <Nuxt />
       </v-container>
@@ -242,9 +263,22 @@ export default {
 form-control.input{
   color: white;
 }
+#nav-text {
+  color: white;
+  font-size: 20px;
+}
 .errors-warning {
   border-style: solid;
   border-width: 5px;
   border-color: darkred;
+}
+#container {
+    overflow-x:hidden;
+    width:100%;
+    position:relative;
+    top:7vh;
+    height:53vh;}
+#main {
+    top:0;
 }
 </style>
