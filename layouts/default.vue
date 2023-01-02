@@ -17,7 +17,7 @@
                 <template v-if="user">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    elevation="5" fab text tile large
+                    fab text tile large
                     id="nav-text"
                     @click.prevent="onDashboard">
                     Dashboard
@@ -28,7 +28,7 @@
                 <template v-if="user">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    elevation="5" fab text tile large
+                    fab text tile large
                     id="nav-text"
                     @click.prevent="onDashboard">
                     Products
@@ -39,7 +39,7 @@
                 <template v-if="user">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    elevation="5" fab text tile
+                   fab text tile
                     id="nav-text"
                     @click.prevent="onDashboard">
                     Settings
@@ -49,8 +49,7 @@
                 <template v-if="!user">
                   <div class="flex justify-center mt-10" style="left:145px;">
                   <v-btn 
-                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    elevation="5" fab text tile
+                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab text tile
                     id="nav-text"
                     @click.prevent="openLogin">
                     Login
@@ -60,8 +59,7 @@
                 <template v-if="!user">
                   <div class="flex justify-center mt-10" style="left:145px;">
                   <v-btn 
-                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    elevation="5" fab text tile
+                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab text tile
                     id="nav-text"
                     @click.prevent="openLogin">
                     Sign Up
@@ -71,8 +69,7 @@
                 <template v-if="!user">
                   <div class="flex justify-center mt-10" style="left:145px;">
                   <v-btn 
-                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    elevation="5" fab text tile
+                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab text tile
                     id="nav-text"
                     @click.prevent="openLogin">
                     Learn More
@@ -107,12 +104,6 @@
     </v-app-bar>
     <v-main>
       <v-container>
-              <nuxt-link to="/" class="link mr-2">
-                Test
-              </nuxt-link>
-              <nuxt-link to="/dashboard" class="link">
-                Test
-              </nuxt-link>
         <Nuxt />
       </v-container>
     </v-main>
