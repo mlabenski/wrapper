@@ -296,6 +296,8 @@ form-control.input{
   color: white;
   font-size: 20px;
   display: inline-block;
+  vertical-align:middle;
+  padding: 14px 10px;
 }
 .nav-bar {
   display: inline;
