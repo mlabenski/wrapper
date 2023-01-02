@@ -15,7 +15,7 @@
                 <template v-if="user">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    elevation="5" fab text tile
+                    elevation="5" fab text tile large
                     id="nav-text"
                     @click.prevent="onDashboard">
                     Dashboard
@@ -26,7 +26,7 @@
                 <template v-if="user">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
-                    elevation="5" fab text tile
+                    elevation="5" fab text tile large
                     id="nav-text"
                     @click.prevent="onDashboard">
                     Products
