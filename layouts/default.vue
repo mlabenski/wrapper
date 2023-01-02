@@ -13,66 +13,66 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <client-only>
-              <div class="flex justify-center mt-10" style="left:145px;">
+              <div class="flex justify-center mt-10 nav-bar" style="left:145px;">
                 <template v-if="user">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     fab text tile large
                     id="nav-text"
                     @click.prevent="onDashboard">
-                    Dashboard
+                    dashboard
                   </v-btn>
                 </template>
               </div>
-              <div class="flex justify-center mt-10" style="left:145px;">
+              <div class="flex justify-center mt-10 nav-bar" style="left:145px;">
                 <template v-if="user">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     fab text tile large
                     id="nav-text"
                     @click.prevent="onDashboard">
-                    Products
+                    settings
                   </v-btn>
                 </template>
               </div>
-              <div class="flex justify-center mt-10" style="left:145px;">
+              <div class="flex justify-center mt-10 nav-bar" style="left:145px;">
                 <template v-if="user">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                    fab text tile
                     id="nav-text"
                     @click.prevent="onDashboard">
-                    Settings
+                    services
                   </v-btn>
                 </template>
               </div>
                 <template v-if="!user">
-                  <div class="flex justify-center mt-10" style="left:145px;">
+                  <div class="flex justify-center mt-10 nav-bar" style="left:145px;">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab text tile
                     id="nav-text"
                     @click.prevent="openLogin">
-                    Login
+                    login
                   </v-btn>
                 </div>
                 </template>
                 <template v-if="!user">
-                  <div class="flex justify-center mt-10" style="left:145px;">
+                  <div class="flex justify-center mt-10 nav-bar" style="left:145px;">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab text tile
                     id="nav-text"
-                    @click.prevent="openLogin">
-                    Sign Up
+                    @click.prevent="openSignup">
+                    sign Up
                   </v-btn>
                 </div>
                 </template>
                 <template v-if="!user">
-                  <div class="flex justify-center mt-10" style="left:145px;">
+                  <div class="flex justify-center mt-10 nav-bar" style="left:145px;">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab text tile
                     id="nav-text"
                     @click.prevent="openLogin">
-                    Learn More
+                    Company
                   </v-btn>
                 </div>
                 </template>
@@ -295,18 +295,17 @@ form-control.input{
 #nav-text {
   color: white;
   font-size: 20px;
+  display: inline-block;
 }
+.nav-bar {
+  display: inline;
+}
+
 .errors-warning {
   border-style: solid;
   border-width: 5px;
   border-color: darkred;
 }
-#container {
-    overflow-x:hidden;
-    width:100%;
-    position:relative;
-    top:7vh;
-    height:53vh;}
 #main {
     top:0;
 }
