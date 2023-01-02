@@ -51,7 +51,6 @@ head: {
     '@nuxtjs/proxy',
     '@nuxtjs/axios',
     '@nuxtjs/toast',
-    '@nuxtjs/vuetify'
   ],
   middleware: [''],
   toast: {

@@ -23,6 +23,10 @@
                     @click.prevent="onDashboard">
                     Dashboard
                   </v-btn>
+                </template>
+              </div>
+              <div class="flex justify-center mt-10" style="left:145px;">
+                <template v-if="user">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     elevation="5" fab text tile
@@ -30,6 +34,10 @@
                     @click.prevent="onDashboard">
                     Products
                   </v-btn>
+                </template>
+              </div>
+              <div class="flex justify-center mt-10" style="left:145px;">
+                <template v-if="user">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     elevation="5" fab text tile
@@ -38,7 +46,9 @@
                     Settings
                   </v-btn>
                 </template>
-                <template v-else>
+              </div>
+                <template v-if="!user">
+                  <div class="flex justify-center mt-10" style="left:145px;">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     elevation="5" fab text tile
@@ -46,6 +56,10 @@
                     @click.prevent="openLogin">
                     Login
                   </v-btn>
+                </div>
+                </template>
+                <template v-if="!user">
+                  <div class="flex justify-center mt-10" style="left:145px;">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     elevation="5" fab text tile
@@ -53,15 +67,19 @@
                     @click.prevent="openLogin">
                     Sign Up
                   </v-btn>
+                </div>
+                </template>
+                <template v-if="!user">
+                  <div class="flex justify-center mt-10" style="left:145px;">
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                     elevation="5" fab text tile
                     id="nav-text"
-                    @click.prevent="openSignup">
+                    @click.prevent="openLogin">
                     Learn More
                   </v-btn>
+                </div>
                 </template>
-              </div>
       </client-only>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
