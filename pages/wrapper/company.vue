@@ -1,6 +1,6 @@
 <template>
     <div>
-      <v-parallax class="my-5" src="~/assets/material-parallex.jpg">
+      <v-parallax class="my-5" src="~@/assets/material-parallex.jpg">
         <v-row class="text-center white--text fill-height">
           <v-col cols="12">
             <h1 class="display-1 font-weight-bold">Wrapper</h1>
