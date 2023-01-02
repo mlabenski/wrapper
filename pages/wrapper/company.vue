@@ -1,14 +1,12 @@
 <template>
 <div>
-    <v-parallax class="my-5" src="@/assets/material-parallex.jpg">
     <v-row class="text-center white--text fill-height">
         <v-col cols="12">
         <h1 class="display-1 font-weight-bold">Wrapper</h1>
         <p class="font-weight-light font-italic">A company that offers two different services</p>
         </v-col>
     </v-row>
-    </v-parallax>
-    <v-row>
+    <v-row style="padding-top: 55px;">
     <v-col cols="12" md="6">
         <v-card class="mx-auto" max-width="700" style="width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);">
         <v-card-title>Use Wrapper</v-card-title>
