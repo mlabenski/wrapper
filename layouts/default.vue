@@ -301,7 +301,7 @@ form-control.input{
 }
 .nav-bar {
   display: inline;
-  margin-bottom: 15px !important;
+  margin-bottom: 34px !important;
 }
 
 .errors-warning {
