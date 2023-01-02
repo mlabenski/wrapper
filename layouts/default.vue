@@ -1,8 +1,5 @@
 <template>
-  <v-app dark id="container">
-    <div id="main">
-
-    </div>
+  <v-app dark>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-img
     class="mx-2"
