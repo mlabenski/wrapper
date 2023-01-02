@@ -80,9 +80,30 @@
                 </div>
                 </template>
       </client-only>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      <v-menu>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on">
+            <v-icon>mdi-menu</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item v-if="user" @click.prevent="onDashboard">
+            <v-list-item-title>Dashboard</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-if="!user" @click.prevent="openLogin">
+            <v-list-item-title>Login</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-if="user">
+            <v-list-item-title>Products</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-if="user">
+            <v-list-item-title>Settings</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-if="!user">
+            <v-list-item-title>Learn More</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
     <v-main>
       <v-container>
