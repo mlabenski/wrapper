@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-parallax class="my-5" src="path/to/image.jpg">
-      <v-row class="text-center white--text fill-height">
+      <v-row class="text-center white--text fill-height" style="max-height: 520px;">
         <v-col cols="12">
           <h1 class="display-1 font-weight-bold">Wrapper</h1>
           <p class="font-weight-light font-italic">A company that offers two different services</p>
@@ -10,7 +10,7 @@
     </v-parallax>
     <v-row>
       <v-col cols="12" md="6">
-        <v-card class="mx-auto" max-width="700" style="width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);" @click="goToUseWrapperPage" :to="{ name: 'use-wrapper' }" :elevation="hovering1 ? 12 : 2" @mouseover="hovering1 = true" @mouseleave="hovering1 = false">
+        <v-card class="mx-auto" max-width="700" style="width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);" @click="goToUseWrapperPage" :to="{ name: 'use-wrapper' }" :elevation="hovering1 ? 12 : 2" @mouseover="hovering1 = true" @mouseleave="hovering1 = false" v-transition:scale="{ origin: 'center center' }">
           <v-card-title class="text-center">Use Wrapper</v-card-title>
           <v-card-subtitle class="text-center">E-commerce</v-card-subtitle>
           <v-card-text>
@@ -19,7 +19,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="6">
-        <v-card class="mx-auto" max-width="700" style="width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);" @click="goToWrapperForWooPage" :to="{ name: 'wrapper-for-woo' }" :elevation="hovering2 ? 12 : 2" @mouseover="hovering2 = true" @mouseleave="hovering2 = false">
+        <v-card class="mx-auto" max-width="700" style="width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);" @click="goToWrapperForWooPage" :to="{ name: 'wrapper-for-woo' }" :elevation="hovering2 ? 12 : 2" @mouseover="hovering2 = true" @mouseleave="hovering2 = false" v-transition:scale="{ origin: 'center center' }">
           <v-card-title class="text-center">Wrapper for Woo</v-card-title>
           <v-card-subtitle class="text-center">Financial Tech</v-card-subtitle>
           <v-card-text>
