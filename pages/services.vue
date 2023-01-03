@@ -33,7 +33,7 @@
 </template>
 <script>
   export default {
-    name: 'Company',
+    name: 'Services',
   
   data() {
     return {

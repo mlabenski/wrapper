@@ -41,7 +41,7 @@
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block"
                    fab text tile
                     id="nav-text"
-                    @click.prevent="onDashboard">
+                    @click.prevent="onServices">
                     services
                   </v-btn>
                 </template>
@@ -71,8 +71,8 @@
                   <v-btn 
                     class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab text tile
                     id="nav-text"
-                    @click.prevent="openLogin">
-                    Company
+                    @click.prevent="onServices">
+                    Services
                   </v-btn>
                 </div>
                 </template>
@@ -91,12 +91,12 @@
             <v-list-item-title>Login</v-list-item-title>
           </v-list-item>
           <v-list-item v-if="user">
-            <v-list-item-title>Products</v-list-item-title>
-          </v-list-item>
-          <v-list-item v-if="user">
             <v-list-item-title>Settings</v-list-item-title>
           </v-list-item>
-          <v-list-item v-if="!user">
+          <v-list-item v-if="user" @click.prevent="onServices">
+            <v-list-item-title>Company</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-if="!user" @click.prevent="onServices">
             <v-list-item-title>Learn More</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -216,6 +216,9 @@ export default {
     }),
     onDashboard() {
       this.$router.push('/dashboard')
+    },
+    onServices() {
+      this.$router.push('/services')
     },
     validateInput() {
       const newEntry = {
