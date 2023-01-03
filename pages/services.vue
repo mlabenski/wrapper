@@ -8,8 +8,8 @@
     </v-row>
     <v-row class="text-center">
       <v-col cols="12">
-        <video width="500" height="auto" loop autoplay muted>
-          <source src="https://youtu.be/zBFtKZ3kU5k" type="video/mp4">
+        <video style="min-width: 720px; max-width: 40%;" loop autoplay muted>
+          <source src="https://joy1.videvo.net/videvo_files/video/free/video0485/large_watermarked/_import_61c038fe02da37.31897389_preview.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </v-col>
@@ -18,7 +18,7 @@
       <v-col cols="12" md="6">
         <v-card class="mx-auto" max-width="700" style="width: 100%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.12);" @click="goToUseWrapperPage" :to="{ name: 'use-wrapper' }" :elevation="hovering1 ? 12 : 2" @mouseover="hovering1 = true" @mouseleave="hovering1 = false" v-transition:scale="{ origin: 'center center' }">
           <v-card-title class="text-center">Use Wrapper</v-card-title>
-          <v-card-subtitle class="text-center">We replace woocommerce</v-card-subtitle>
+          <v-card-subtitle class="text-center">Build a shopping cart</v-card-subtitle>
           <v-card-text>
             <p>Use Wrapper is a full-service shopping cart solution that makes it easy for businesses to sell their products online. With our user dashboard, you can easily manage your store data and customize the look and feel of your online store. We also provide a dedicated website URL for your customers to purchase products from. With Use Wrapper, you'll have everything you need to succeed in the e-commerce world.</p>
           </v-card-text>
