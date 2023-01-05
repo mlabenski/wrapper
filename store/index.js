@@ -71,7 +71,7 @@ export const mutations = {
     if( !state.formData.hppName || !state.formData.title || !state.formData.theme ) {
       return 'there is missing information'
     } else {
-      this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/user/addStore?userID=${userID}&hppName=${state.formData.title}&template=${state.formData.theme}&logo=${state.formData.title}`)
+      this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/user/addStore?userID=${userID}&hppName=${state.formData.hppName}&template=${state.formData.theme}&logo=${state.formData.title}`)
       .then((data) => {
         console.log(data)
         console.log(data.storeid)

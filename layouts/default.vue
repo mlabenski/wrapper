@@ -298,13 +298,7 @@ export default {
 form-control.input{
   color: white;
 }
-#nav-text {
-  color: rgb(168, 168, 168);
-  font-size: 1.4em;
-  display: inline-block;
-  vertical-align:middle;
-  padding: 14px 10px;
-}
+
 #nav-text:hover{
   color: white;
   background-color:rgb(31, 31, 31)
@@ -313,6 +307,7 @@ form-control.input{
   display: inline;
   margin-bottom: 34px !important;
 }
+
 
 .errors-warning {
   border-style: solid;
