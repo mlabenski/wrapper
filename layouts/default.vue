@@ -83,18 +83,21 @@
             <v-icon>mdi-menu</v-icon>
           </v-btn>
         </template>
-        <v-list>
-          <v-list-item v-if="user" @click.prevent="onDashboard">
+        <v-list style="margin-top:1.5%;">
+          <v-list-item v-if="user" @click.prevent="onDashboard" style="border-width: thin; border-radius: 0 0 2px 0; border-bottom-color: grey;">
             <v-list-item-title>Dashboard</v-list-item-title>
           </v-list-item>
-          <v-list-item v-if="!user" @click.prevent="openLogin">
-            <v-list-item-title>Login</v-list-item-title>
-          </v-list-item>
-          <v-list-item v-if="user">
+          <v-list-item v-if="user" @click.prevent="onDashboard">
             <v-list-item-title>Settings</v-list-item-title>
           </v-list-item>
-          <v-list-item v-if="user" @click.prevent="onServices">
-            <v-list-item-title>Company</v-list-item-title>
+          <v-list-item v-if="user" @click.prevent="onLogout">
+            <v-list-item-title>Sign out</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-if="!user" @click.prevent="openLogin" style="border-width: thin; border-radius: 0 0 2px 0; border-bottom-color: grey;">
+            <v-list-item-title>Login</v-list-item-title>
+          </v-list-item>
+          <v-list-item v-if="!user" @click.prevent="onServices">
+            <v-list-item-title>Support</v-list-item-title>
           </v-list-item>
           <v-list-item v-if="!user" @click.prevent="onServices">
             <v-list-item-title>Learn More</v-list-item-title>
@@ -301,6 +304,10 @@ form-control.input{
   display: inline-block;
   vertical-align:middle;
   padding: 14px 10px;
+}
+#nav-text:hover{
+  color: white;
+  background-color:rgb(31, 31, 31)
 }
 .nav-bar {
   display: inline;
