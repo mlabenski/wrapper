@@ -53,7 +53,7 @@
               <p class="font-weight-light" v-if="step===0">https://{{hpp_link}}.securepayments.cardpointe.com/</p>
               <v-btn
                 rounded
-                v-if="step!==5"
+                v-if="step!==4"
                 outlined
                 large
                 dark
@@ -64,7 +64,7 @@
                 <v-icon class="ml-2">mdi-arrow-right</v-icon>
               </v-btn>
               <v-btn
-                v-if="step===5"
+                v-if="step===4"
                 rounded
                 outlined
                 large
