@@ -36,7 +36,7 @@
                   </v-radio>
                 </v-radio-group>
               </span>
-              <span class="input input--haruki" v-if="step===3">
+              <span class="input input--haruki" v-if="step===4">
                 <v-radio-group v-model="input_method"  @change="selectedInput(input_method)">
                   <v-radio value="manual"  style="padding-top:7px">
                     <template v-slot:label>
