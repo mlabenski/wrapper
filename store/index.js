@@ -192,7 +192,7 @@ export const getters = {
       return 5
     } */
     if (state.formData.theme) {
-      return 5
+      return 4
     }
     else if (state.formData.headerLogo != '') {
       return 3

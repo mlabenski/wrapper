@@ -256,9 +256,10 @@ export default {
       }
       if(this.step === 5) {
         console.log('or did u run?')
-        this.$store.dispatch('setFormCompleted', this.user.uuid).then((t) => {
-          this.$router.push('/product-entry')
-        })
+        this.$store.dispatch('setFormCompleted', this.user.uuid)
+        this.$store.dispatch('saveStore', this.user.uuid).then((t) => {
+        this.$router.push('/dashboard')
+      })
       }
     },
     setTitle() {
