@@ -6,7 +6,7 @@ export const state = () => ({
   formCompleted: false,
   storeID: null,
   showInput: false,
-  formData: {userID: null, storeID: null, hppName: '', title:'', theme:null, dataFields: {}},
+  formData: {userID: null, storeID: null, hppName: '', title:'', headerLogo:'',theme:null, dataFields: {}},
   dataFields: {required: ['title', 'price', 'description', 'picture'], optional: ['']},
   userEnteredData: [
     { productID: 10, storeID:1, name:"Pizza", descShort: 'the finest crust around', descLong: 'the finest', visible: 1, stock: 1, price: 20, featuredProduct: 0,categories: 'pizza', image: 'image'},
@@ -14,6 +14,8 @@ export const state = () => ({
 })
 export const mutations = {
   async setHPPValue (state, vuexContext, hpp) {
+    // It's weird to set hppLink to a value as were sending it to the database afterward. 
+    // Might want to store {hpp} instead
     state.hppLink = `https://${hpp}.securepayments.cardpointe.com/pay?`
     await this.$axios.$get('/api/').then((data) => {
       const checkHTML =  RegExp('\\b'+ 'line-items'+'\\b').test(data)
@@ -30,6 +32,9 @@ export const mutations = {
   },
   setTitle (state, title) {
     state.formData.title = title
+  },
+  setHeaderLogo (state, headerLogo) {
+    state.formData.headerLogo = headerLogo
   },
   setTheme (state, template) {
     state.formData.theme = template
@@ -68,10 +73,11 @@ export const mutations = {
   saveStore(state, userID) {
     // first we need to figure out the appropriate store id
     // this is the part we determine if they have less than 5 stores too
-    if( !state.formData.hppName || !state.formData.title || !state.formData.theme ) {
+    if( !state.formData.hppName || !state.formData.title || !state.formData.theme || !state.formDate.headerLogo ) {
       return 'there is missing information'
     } else {
-      this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/user/addStore?userID=${userID}&hppName=${state.formData.hppName}&template=${state.formData.theme}&logo=${state.formData.title}`)
+      // Can we make a call to a proxy here?
+      this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/user/addStore?userID=${userID}&hppName=${state.formData.hppName}&template=${state.formData.theme}&logo=${state.formDate.headerLogo}`)
       .then((data) => {
         console.log(data)
         console.log(data.storeid)
@@ -101,7 +107,11 @@ export const actions = {
   setTitle (vuexContext, title) {
     vuexContext.commit('setTitle',  title)
   },
+  setHeaderLogo (vuexContext, headerLogo) {
+    vuexContext.commit('setHeaderLogo', headerLogo)
+  },
   async goLive(vuexContext, storeID) {
+    //absolutely needs authentication on this 
     await this.$axios.post(`https://usewrapper.herokuapp.com/wrapper/store/moveData?storeID=${storeID}`)
     .then((response) => {
       const newStoreID = response.data
@@ -177,9 +187,12 @@ export const actions = {
 export const getters = {
   getCurrentStep : (state) => {
     if (state.formCompleted === true) {
-      return 4
+      return 5
     }
     if (state.formData.theme) {
+      return 4
+    }
+    else if (state.formData.headerLogo) {
       return 3
     }
     else if (state.formData.title) {

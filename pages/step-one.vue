@@ -15,6 +15,9 @@
                 <input v-model="store_title" placeholder="Enter store title" class="input__field input__field--haruki"/>
               </span>
               <span class="input input--haruki" v-if="step===2">
+                <input v-model="store_logo_url" placeholder="Enter store logo/header URL 1000x290 pref" class="input__field input__field--haruki"/>
+              </span>
+              <span class="input input--haruki" v-if="step===3">
                 <v-radio-group v-model="store_theme">
                   <v-radio value="standard"  style="padding-top:7px">
                     <template v-slot:label>
@@ -50,7 +53,7 @@
               <p class="font-weight-light" v-if="step===0">https://{{hpp_link}}.securepayments.cardpointe.com/</p>
               <v-btn
                 rounded
-                v-if="step!==3"
+                v-if="step!==4"
                 outlined
                 large
                 dark
@@ -61,7 +64,7 @@
                 <v-icon class="ml-2">mdi-arrow-right</v-icon>
               </v-btn>
               <v-btn
-                v-if="step===3"
+                v-if="step===4"
                 rounded
                 outlined
                 large
@@ -110,22 +113,28 @@ export default {
           img: require("@/assets/img/icon1.png"),
           title: "Step 2",
           text: "What is the name of your store?",
-        },
+        },    
+        {
+          img: require("@/assets/img/icon1.png"),
+          title: "Step 3",
+          text: "Attach a link to a header image for your business",
+        },    
         {
           img: require("@/assets/img/icon3.png"),
-          title: "Step 3",
+          title: "Step 4",
           text: "Choose a theme to match the pathos of your store!.",
         },
         {
-          title: "Step 4",
+          title: "Step 5",
           text: "How would you like to enter your product information?"
-        }
+        }       
       ],
       hpp_link : '',
       linkValid : false,
       title: 'Step 1',
       text: 'Provide us your unique HPP name',
       store_title : '',
+      store_logo_url : '',
       store_theme :'',
       input_method :'',
       show_fields : false,
@@ -164,6 +173,10 @@ export default {
       else if(value === 2){
         this.title = this.features[1].title
         this.text = this.features[1].text
+      }
+      else if(value === 3){
+        this.title = this.features[2].title
+        this.text =  this.features[2].text
       }
     }
   },
@@ -230,6 +243,9 @@ export default {
       }
       if(this.step === 1){
         this.$store.dispatch('setTitle', this.store_title)
+      }
+      if(this.step === 3){
+        this.$store.dispatch('setHeaderLogo', this.store_logo_url)
       }
       if(this.step === 2){
         this.$store.dispatch('setTheme', this.store_theme)
