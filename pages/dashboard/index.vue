@@ -182,7 +182,7 @@ export default {
       }
     },
     alreadyLive(storeID, status) {
-      window.open(`https://shop.usewrapper.com/store/${storeID}`, "_blank");
+      window.open(`https://shop.usewrapper.com/store/${status}`, "_blank");
     },
 
     nav() {
