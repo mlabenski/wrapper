@@ -182,7 +182,7 @@ export default {
       }
     },
     alreadyLive(storeID, status) {
-      alert('Your page is already live, so what do you wanna do?')
+      window.open(`https://shop.usewrapper.com/store/${storeID}`, "_blank");
     },
 
     nav() {

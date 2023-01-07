@@ -50,7 +50,7 @@
                     <v-icon dark>mdi-truck-delivery</v-icon>
                     </v-btn>
                 </template>
-                <span>Go Live</span>
+                <span>Go to Live Store</span>
                 </v-tooltip>                
             </td>
           </tr>
