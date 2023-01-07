@@ -199,9 +199,11 @@ export const getters = {
     else if (state.formData.title) {
       return 2
     }
+    //link is valid once the user has entered a link
     else if(state.linkValid ) {
       return 1
     }
+    // once the link is valid, the user can move on to the next step
     else {
       return 0
     }

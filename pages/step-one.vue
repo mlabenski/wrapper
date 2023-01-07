@@ -53,7 +53,7 @@
               <p class="font-weight-light" v-if="step===0">https://{{hpp_link}}.securepayments.cardpointe.com/</p>
               <v-btn
                 rounded
-                v-if="step!==4"
+                v-if="step!==5"
                 outlined
                 large
                 dark
@@ -64,7 +64,7 @@
                 <v-icon class="ml-2">mdi-arrow-right</v-icon>
               </v-btn>
               <v-btn
-                v-if="step===4"
+                v-if="step===5"
                 rounded
                 outlined
                 large
@@ -122,7 +122,7 @@ export default {
         {
           img: require("@/assets/img/icon3.png"),
           title: "Step 4",
-          text: "Choose a theme to match the pathos of your store!.",
+          text: "Choose a theme for your store!",
         },
         {
           title: "Step 5",
@@ -254,7 +254,7 @@ export default {
         // why not filter all the fields and find out which ones are set to false?
         this.$store.dispatch('setDataFields', this.optional_fields)
       }
-      if(this.step === 4) {
+      if(this.step === 5) {
         console.log('or did u run?')
         this.$store.dispatch('setFormCompleted', this.user.uuid).then((t) => {
           this.$router.push('/product-entry')
