@@ -77,8 +77,8 @@
               </v-btn>
 
             </v-col>
-            <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down" v-if="step!==3"></v-col>
-            <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down" v-if="step===3 && show_fields === true">
+            <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down" v-if="step!==4"></v-col>
+            <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down" v-if="step===4 && show_fields === true">
               <h1 class="font-weight-light">
                 Required Fields <br>
                 <v-chip v-for="(field, index) in required_fields" :key="field.field" class="ma-2" :color="getColor(index)">{{field.field}}</v-chip>
@@ -244,13 +244,13 @@ export default {
       if(this.step === 1){
         this.$store.dispatch('setTitle', this.store_title)
       }
-      if(this.step === 3){
+      if(this.step === 2){
         this.$store.dispatch('setHeaderLogo', this.store_logo_url)
       }
-      if(this.step === 2){
+      if(this.step === 3){
         this.$store.dispatch('setTheme', this.store_theme)
       }
-      if(this.step === 3){
+      if(this.step === 4){
         // why not filter all the fields and find out which ones are set to false?
         this.$store.dispatch('setDataFields', this.optional_fields)
       }

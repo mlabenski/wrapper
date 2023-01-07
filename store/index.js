@@ -16,6 +16,7 @@ export const mutations = {
   async setHPPValue (state, vuexContext, hpp) {
     // It's weird to set hppLink to a value as were sending it to the database afterward. 
     // Might want to store {hpp} instead
+    // This was a test function to see if the link was valid
     state.hppLink = `https://${hpp}.securepayments.cardpointe.com/pay?`
     await this.$axios.$get('/api/').then((data) => {
       const checkHTML =  RegExp('\\b'+ 'line-items'+'\\b').test(data)
@@ -192,7 +193,7 @@ export const getters = {
     if (state.formData.theme) {
       return 4
     }
-    else if (state.formData.headerLogo) {
+    else if (state.formData.headerLogo != '') {
       return 3
     }
     else if (state.formData.title) {
