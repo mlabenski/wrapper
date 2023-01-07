@@ -53,7 +53,7 @@
               <p class="font-weight-light" v-if="step===0">https://{{hpp_link}}.securepayments.cardpointe.com/</p>
               <v-btn
                 rounded
-                v-if="step!==4"
+                v-if="step!==5"
                 outlined
                 large
                 dark
@@ -64,7 +64,7 @@
                 <v-icon class="ml-2">mdi-arrow-right</v-icon>
               </v-btn>
               <v-btn
-                v-if="step===4"
+                v-if="step===5"
                 rounded
                 outlined
                 large
@@ -72,7 +72,7 @@
                 @click="completedForm()"
                 class="mt-5"
               >
-                Go Next
+                Confirm and Continue
                 <v-icon class="ml-2">mdi-arrow-right</v-icon>
               </v-btn>
 

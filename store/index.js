@@ -187,11 +187,12 @@ export const actions = {
 
 export const getters = {
   getCurrentStep : (state) => {
+    /* i'm gonna try to skip step 4 and go straight from 3 to 5?
     if (state.formCompleted === true) {
       return 5
-    }
+    } */
     if (state.formData.theme) {
-      return 4
+      return 5
     }
     else if (state.formData.headerLogo != '') {
       return 3
