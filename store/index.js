@@ -78,7 +78,7 @@ export const mutations = {
       return 'there is missing information'
     } else {
       // Can we make a call to a proxy here?
-      this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/user/addStore?userID=${userID}&hppName=${state.formData.hppName}&template=${state.formData.theme}&logo=${state.formData.headerLogo}`)
+      this.$axios.$post(`https://usewrapper.herokuapp.com/wrapper/user/addStore?userID=${userID}&hppName=${state.formData.hppName}&template=${state.formData.theme}&logo=${state.formData.headerLogo}&header=${state.formData.title}`)
       .then((data) => {
         console.log(data)
         console.log(data.storeid)
