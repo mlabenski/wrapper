@@ -74,7 +74,7 @@ export const mutations = {
   saveStore(state, userID) {
     // first we need to figure out the appropriate store id
     // this is the part we determine if they have less than 5 stores too
-    if( !state.formData.hppName || !state.formData.title || !state.formData.theme || !state.formDate.headerLogo ) {
+    if( !state.formData.hppName || !state.formData.title || !state.formData.theme || !state.formData.headerLogo ) {
       return 'there is missing information'
     } else {
       // Can we make a call to a proxy here?
