@@ -2,8 +2,7 @@
   <section id="hero">
     <products-save-message :save-i-d="saveID"></products-save-message>
       <v-row align="center" justify="center"  style="height: 600px">
-        <v-col cols="12" v-if="rows">
-          <client-only>
+        <v-col cols="12">
             <div>
               <h1>{{storeID}} </h1>
               <vue-good-table
@@ -12,7 +11,6 @@
                 :remote-mode="true"
                 @on-load="fetchData"/>
             </div>
-          </client-only>
         </v-col>
       </v-row>
     <v-card
