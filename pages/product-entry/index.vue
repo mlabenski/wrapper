@@ -5,14 +5,13 @@
         <v-col cols="12" v-if="rows">
           <client-only>
             <div>
-              <h1>{{storeID}} </h1>
               <vue-good-table
                 :columns="columns"
                 :rows="rows"
                 :perPage="10"
                 :paginate="true"
                 :row-style-class="rowStyleClassFn"
-                class="limited-height-table"
+                ref="myTable"
                 styleClass="vgt-table striped bordered"/>
             </div>
           </client-only>
@@ -108,9 +107,17 @@ export default {
       }
     }
   },
-  async mounted() {
-    await this.$store.dispatch('loadProductData', this.$route.query.storeID)
-  },
+async mounted() {
+  await this.$store.dispatch('loadProductData', this.$route.query.storeID);
+
+  this.$nextTick(() => {
+    const tableBody = this.$refs.myTable.$el.querySelector(".vgt-wrap");
+    if (tableBody) {
+      tableBody.style.maxHeight = '648px'; // Adjust the value based on your preferred height
+      tableBody.style.overflowY = 'auto';
+    }
+  });
+},
   methods: {
     rowStyleClassFn(row) {
       return 'white'
