@@ -4,38 +4,41 @@
       <v-row align="center" justify="center"  style="height: 600px">
         <v-col cols="12" v-if="rows">
           <client-only>
-            <div>
-              <vue-good-table
-                :columns="columns"
-                :rows="rows"
-                :perPage="10"
-                :paginate="true"
-                :row-style-class="rowStyleClassFn"
-                ref="myTable"
-                styleClass="vgt-table striped bordered"/>
-            </div>
+            <vue-good-table
+              :columns="columns"
+              :rows="rows"
+              ref="myTable"
+            >
+              <template #table="{ rows }">
+                <div class="table-wrap" style="max-height: 400px; overflow-y: auto;">
+                  <table>
+                    <thead>
+                      <tr>
+                      <th v-for="column in columns" :key="column.field">
+                        {{ column.label }}
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="row in rows" :key="row.id">
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.price }}</td>
+                        <td>{{ row.descShort }}</td>
+                        <td>{{ row.descLong }}</td>
+                        <td>{{ row.image }}</td>
+                        <td>{{ row.visible }}</td>
+                        <td>{{ row.featuredProduct }}</td>
+                        <td>{{ row.stock }}</td>
+                        <td>{{ row.categories }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </template>
+            </vue-good-table>
           </client-only>
         </v-col>
       </v-row>
-    <v-card
-      color="grey lighten-4"
-      flat
-      height="35px"
-      width="245px"
-      tile
-      class="filter-icons"
-    >
-      <v-toolbar>
-        <v-form v-model="valid">
-          <v-row>
-            <v-text-field :rules="rules" v-model="importCodeInput" style="max-width: 50%;"></v-text-field>
-            <v-btn :disabled="!valid"  medium @click="validate()" color="orange" style="margin-left:20px;">
-              Import
-            </v-btn>
-          </v-row>
-        </v-form>
-      </v-toolbar>
-    </v-card>
   </section>
 </template>
 
@@ -108,15 +111,14 @@ export default {
     }
   },
 async mounted() {
-  await this.$store.dispatch('loadProductData', this.$route.query.storeID);
-
-  this.$nextTick(() => {
-    const tableBody = this.$refs.myTable.$el.querySelector(".vgt-wrap");
-    if (tableBody) {
-      tableBody.style.maxHeight = '648px'; // Adjust the value based on your preferred height
-      tableBody.style.overflowY = 'auto';
-    }
-  });
+    await this.$store.dispatch('loadProductData', this.$route.query.storeID);
+},
+updated() {
+  const tableBody = this.$refs.myTable.$el.querySelector(".vgt-wrap");
+  if (tableBody) {
+    tableBody.style.maxHeight = '400px'; // Adjust the value based on your preferred height
+    tableBody.style.overflowY = 'auto';
+  }
 },
   methods: {
     rowStyleClassFn(row) {
