@@ -1,8 +1,7 @@
 <template>
   <section id="hero">
     <products-save-message :save-i-d="saveID"></products-save-message>
-      <v-row align="center" justify="center"  style="height: 600px">
-        <v-col cols="12" v-if="rows">
+      <v-row align="center" justify="center"  style="height: 600px" v-if="rows">
           <client-only>
             <vue-good-table
               :columns="columns"
@@ -37,8 +36,7 @@
               </template>
             </vue-good-table>
           </client-only>
-        </v-col>
-      </v-row>
+</v-row>
   </section>
 </template>
 
@@ -213,9 +211,7 @@ updated() {
     }
   }
 }
-</style>
 
-<style>
 .svg-border-waves .v-image {
   position: absolute;
   bottom: 0;
@@ -315,9 +311,7 @@ updated() {
   max-height: 769px; /* Adjust the value based on your preferred height */
   overflow-y: auto;
 }
-</style>
 
-<style>
 section {
   position: relative;
 }
