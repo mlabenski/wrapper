@@ -9,10 +9,8 @@
               <vue-good-table
                 :columns="columns"
                 :rows="rows"
-                :perPage="10"
-                :paginate="true"
-                :row-style-class="rowStyleClassFn"
-                styleClass="vgt-table striped bordered"/>
+                :remote-mode="true"
+                @on-load="fetchData"/>
             </div>
           </client-only>
         </v-col>
@@ -58,6 +56,8 @@ export default {
         }
       ],
       isDisabled: false,
+      currentPage: 1,
+      pageSize: 4,
       columns: [
         {
           label: 'Name',
@@ -108,9 +108,22 @@ export default {
     }
   },
   async mounted() {
-    await this.$store.dispatch('loadProductData', this.$route.query.storeID)
+    await this.$store.dispatch('loadProductData', this.$route.query.storeID),
+      this.$nextTick(() => {
+      const tableBody = this.$el.querySelector(".vgt-wrap");
+      if (tableBody) {
+        tableBody.addEventListener("scroll", this.handleScroll);
+      }
+    });
   },
   methods: {
+    handleScroll(event) {
+      const { target } = event;
+      if (target.scrollHeight - target.scrollTop === target.clientHeight) {
+        this.currentPage++;
+        this.fetchData();
+      }
+    },
     rowStyleClassFn(row) {
       return 'white'
     },
@@ -122,10 +135,20 @@ export default {
       this.$store.dispatch('importData', this.importCodeInput)
     }
   },
+  beforeDestroy() {
+    const tableBody = this.$el.querySelector(".vgt-wrap");
+    if (tableBody) {
+      tableBody.removeEventListener("scroll", this.handleScroll);
+    }
+  },
+  fetchData() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    const data = this.$store.getters.getUserEnteredProducts.slice(startIndex, endIndex);
+
+    this.rows.push(...data);
+  },
   computed: {
-    rows() {
-      return this.$store.getters.getUserEnteredProducts
-    },
     saveID() {
       return this.$store.getters.getSaveID
     },
