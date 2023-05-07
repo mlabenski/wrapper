@@ -113,6 +113,7 @@ export default {
         tableBody.addEventListener("scroll", this.handleScroll);
       }
     });
+    this.fetchData();
   },
   methods: {
     handleScroll(event) {
@@ -143,7 +144,7 @@ export default {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     const data = this.$store.getters.getUserEnteredProducts.slice(startIndex, endIndex);
-
+    console.log(`fetching data`+data);
     this.rows.push(...data);
   },
   computed: {
