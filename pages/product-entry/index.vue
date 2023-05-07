@@ -2,15 +2,20 @@
   <section id="hero">
     <products-save-message :save-i-d="saveID"></products-save-message>
       <v-row align="center" justify="center"  style="height: 600px">
-        <v-col cols="12">
+        <v-col cols="12" v-if="rows">
+          <client-only>
             <div>
               <h1>{{storeID}} </h1>
               <vue-good-table
                 :columns="columns"
                 :rows="rows"
-                :remote-mode="true"
-                @on-load="fetchData"/>
+                :perPage="10"
+                :paginate="true"
+                :row-style-class="rowStyleClassFn"
+                class="limited-height-table"
+                styleClass="vgt-table striped bordered"/>
             </div>
+          </client-only>
         </v-col>
       </v-row>
     <v-card
@@ -54,8 +59,6 @@ export default {
         }
       ],
       isDisabled: false,
-      currentPage: 1,
-      pageSize: 4,
       columns: [
         {
           label: 'Name',
@@ -106,23 +109,9 @@ export default {
     }
   },
   async mounted() {
-    await this.$store.dispatch('loadProductData', this.$route.query.storeID),
-      this.$nextTick(() => {
-      const tableBody = this.$el.querySelector(".vgt-wrap");
-      if (tableBody) {
-        tableBody.addEventListener("scroll", this.handleScroll);
-      }
-    });
-    this.fetchData();
+    await this.$store.dispatch('loadProductData', this.$route.query.storeID)
   },
   methods: {
-    handleScroll(event) {
-      const { target } = event;
-      if (target.scrollHeight - target.scrollTop === target.clientHeight) {
-        this.currentPage++;
-        this.fetchData();
-      }
-    },
     rowStyleClassFn(row) {
       return 'white'
     },
@@ -134,20 +123,10 @@ export default {
       this.$store.dispatch('importData', this.importCodeInput)
     }
   },
-  beforeDestroy() {
-    const tableBody = this.$el.querySelector(".vgt-wrap");
-    if (tableBody) {
-      tableBody.removeEventListener("scroll", this.handleScroll);
-    }
-  },
-  fetchData() {
-    const startIndex = (this.currentPage - 1) * this.pageSize;
-    const endIndex = startIndex + this.pageSize;
-    const data = this.$store.getters.getUserEnteredProducts.slice(startIndex, endIndex);
-    console.log(`fetching data`+data);
-    this.rows.push(...data);
-  },
   computed: {
+    rows() {
+      return this.$store.getters.getUserEnteredProducts
+    },
     saveID() {
       return this.$store.getters.getSaveID
     },
@@ -322,6 +301,10 @@ export default {
 .input__field--haruki:focus + .input__label--haruki::after,
 .input--filled .input__label--haruki::after {
   transform: translate3d(0, 0.5em, 0);
+}
+.limited-height-table .vgt-wrap {
+  max-height: 769px; /* Adjust the value based on your preferred height */
+  overflow-y: auto;
 }
 </style>
 
