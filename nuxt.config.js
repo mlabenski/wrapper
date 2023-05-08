@@ -26,7 +26,7 @@ head: {
   plugins: [
     {src: '~/plugins/vue-good-table', mode: 'client'},
     { src: '~/plugins/netlify-identity-widget.js', mode: 'client' },
-
+    '~plugins/event-bus'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

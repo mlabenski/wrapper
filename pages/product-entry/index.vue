@@ -19,7 +19,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="row in rows" :key="row.id">
+                      <tr v-for="row in rows" :key="row.id" @click="editProduct(row)">
                         <td>{{ row.name }}</td>
                         <td>{{ row.price }}</td>
                         <td>{{ row.descShort }}</td>
@@ -42,8 +42,9 @@
 <script>
 import { mapGetters } from "vuex";
 import ProductsSaveMessage from '~/components/ProductsSaveMessage.vue'
+import EventBus from '~/plugins/event-bus';
 
-export default {
+export default  {
   name: 'ProductEntry',
   components: { ProductsSaveMessage },
   data(){
@@ -128,10 +129,9 @@ updated() {
     validate () {
       this.$store.dispatch('importData', this.importCodeInput)
     },
-    editProduct(params) {
-    const product = params.row;
-    this.$store.dispatch('updateNewInput', product);
-  },
+    editProduct(product) {
+    EventBus.$emit('edit-product', product);
+    }
   },
   computed: {
     rows() {

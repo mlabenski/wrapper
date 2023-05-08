@@ -189,6 +189,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import EventBus from '~/plugins/event-bus';
 export default {
   name: 'DefaultLayout',
   data() {
@@ -254,6 +255,21 @@ export default {
     storeID() {
       return this.$route.query.storeID
     }
+  },
+  created() {
+    EventBus.$on('edit-product', (product) => {
+      this.newInput.name = product.name; // Replace 'name' with the appropriate property in your data
+      this.newInput.price = product.price;
+      this.newInput.description = product.description;
+      this.newInput.image = product.image;
+      this.newInput.categories = product.category;
+      this.newInput.visible = product.visible;
+      this.newInput.featuredProduct = product.featuredProduct;
+      this.newInput.stock = product.stock;
+    });
+  },
+  beforeDestroy() {
+    EventBus.$off('edit-product')
   },
   methods: {
     updateInput(product) {
