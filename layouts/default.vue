@@ -149,6 +149,41 @@
         </v-row>
       </v-container>
     </v-footer>
+    <v-footer :absolute="!fixed" v-if="showInput && editItemInput" app style="height: 125px;" v-bind:class="{'errors-warning': (errors.length > 0)}">
+      <v-container>
+        <v-row no-gutters class="mb-8">
+          <v-col>
+            <input v-model="editItemInput.name" placeholder="Product name:" type='text' class="form-control" id="name">
+          </v-col>
+          <v-col>
+            <input v-model="editItemInput.price" placeholder="Price: " type='number' class="form-control" id="price">
+          </v-col>
+          <v-col>
+            <input v-model="editItemInput.description" placeholder="Description: " type='text' class="form-control" id="description">
+          </v-col>
+          <v-col>
+            <input v-model="editItemInput.image" placeholder="Picture URl: " type='text' class="form-control" id="image">
+          </v-col>
+          <v-col>
+            <input v-model="editItemInput.visible" placeholder="Visible: " type='number' class="form-control" id="visible">
+          </v-col>
+          <v-col>
+            <input v-model="editItemInput.featuredProduct" placeholder="Featured: " type='number' class="form-control" id="featuredProduct">
+          </v-col>
+          <v-col>
+            <input v-model="editItemInput.category" placeholder="Category: " type='text' class="form-control" id="category">
+          </v-col>
+          <v-col>
+            <input v-model="editItemInput.stock" placeholder="Stock #: " type='number' class="form-control" id="stock">
+          </v-col>
+        </v-row>
+        <v-row  align="center" justify="center">
+            <v-btn medium style="padding-bottom: 15px; padding-top: 15px" color="green" @click="validateInput()">Add Product</v-btn>
+          <v-btn  :disabled="disableBtn" medium style="padding-bottom: 15px; padding-top: 15px ; margin-left: 20px" color="purple" @click="exportStore()">Export Store</v-btn>
+
+        </v-row>
+      </v-container>
+    </v-footer>
   </v-app>
 </template>
 
@@ -201,13 +236,20 @@ export default {
     showInput() {
       return this.$store.getters.getShowInput
     },
-    newInput: {
-      get() {
-        return this.$store.state.newInput;
-      },
-      set(value) {
-        this.$store.dispatch('updateNewInput', value);
+    editItemInput: {
+    get() {
+      if (this.$store.state.selectedProductIndex !== null) {
+        return this.$store.getters.getProductByIndex(
+          this.$store.state.selectedProductIndex
+        );
+      } else {
+        return this.newInput
+        // return { name: '', price }; // Return an empty object if no product is selected
       }
+    },
+    set(value) {
+      // Update the selected product in the store if needed
+    },
     },
     storeID() {
       return this.$route.query.storeID

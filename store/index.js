@@ -4,6 +4,7 @@ export const state = () => ({
   linkValid: false,
   saveID: null,
   formCompleted: false,
+  selectedProductIndex: null,
   storeID: null,
   showInput: false,
   newInput: {name: '', price: '', description: '', image: '', categories: '',visible: 1, featuredProduct:0, stock:0},
@@ -101,6 +102,9 @@ export const mutations = {
     const obj = storeList.find(o => o.storeID === payload.oldStoreID);
     let index = storeList.indexOf(obj);
     state.userEnteredData.fill(obj.status=payload.newStoreID, index, index++)
+  },
+  setSelectedProductIndex(state, payload) {
+    state.selectedProductIndex = payload;
   }
 }
 
@@ -114,6 +118,9 @@ export const actions = {
   },
   updateNewInput (vuexContext, payload) {
     vuexContext.commit('UPDATE_NEW_INPUT', payload);
+  },
+  updateSelectedProductIndex (vuexContext, payload) {
+    vuexContext.commit('setSelectedProductIndex', payload);
   },
   setHeaderLogo (vuexContext, headerLogo) {
     vuexContext.commit('setHeaderLogo', headerLogo)
@@ -233,5 +240,8 @@ export const getters = {
   },
   getShowInput: (state) => {
     return state.showInput
-  }
+  },
+  getProductByIndex: (state) => (index) => {
+    return state.userEnteredData[index];
+  },
 }
