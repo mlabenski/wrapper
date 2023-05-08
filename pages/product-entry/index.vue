@@ -2,7 +2,6 @@
   <section id="hero">
     <products-save-message :save-i-d="saveID"></products-save-message>
       <v-row align="center" justify="center"  style="height: 600px" v-if="rows">
-          <client-only>
             <vue-good-table
               :columns="columns"
               :rows="rows"
@@ -37,7 +36,6 @@
                 </div>
               </template>
             </vue-good-table>
-          </client-only>
 </v-row>
   </section>
 </template>
