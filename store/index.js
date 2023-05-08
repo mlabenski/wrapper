@@ -6,6 +6,7 @@ export const state = () => ({
   formCompleted: false,
   storeID: null,
   showInput: false,
+  newInput: {name: '', price: '', description: '', image: '', categories: '',visible: 1, featuredProduct:0, stock:0},
   formData: {userID: null, storeID: null, hppName: '', title:'', headerLogo:'',theme:null, dataFields: {}},
   dataFields: {required: ['title', 'price', 'description', 'picture'], optional: ['']},
   userEnteredData: [
@@ -33,6 +34,9 @@ export const mutations = {
   },
   setTitle (state, title) {
     state.formData.title = title
+  },
+  UPDATE_NEW_INPUT(state, payload) {
+    state.newInput = payload;
   },
   setHeaderLogo (state, headerLogo) {
     state.formData.headerLogo = headerLogo
@@ -107,6 +111,9 @@ export const actions = {
   },
   setTitle (vuexContext, title) {
     vuexContext.commit('setTitle',  title)
+  },
+  updateNewInput(vuexContext, payload) {
+    commit('UPDATE_NEW_INPUT', PAYLOAD);
   },
   setHeaderLogo (vuexContext, headerLogo) {
     vuexContext.commit('setHeaderLogo', headerLogo)

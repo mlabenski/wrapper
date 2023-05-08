@@ -201,11 +201,29 @@ export default {
     showInput() {
       return this.$store.getters.getShowInput
     },
+    newInput: {
+      get() {
+        return this.$store.state.newInput;
+      },
+      set(value) {
+        this.$store.dispatch('updateNewInput', value);
+      }
+    },
     storeID() {
       return this.$route.query.storeID
     }
   },
   methods: {
+    updateInput(product) {
+    this.newInput.name = product.name; // Replace 'name' with the appropriate property in your data
+    this.newInput.price = product.price;
+    this.newInput.description = product.description;
+    this.newInput.image = product.image;
+    this.newInput.categories = product.category;
+    this.newInput.visible = product.visible;
+    this.newInput.featuredProduct = product.featuredProduct;
+    this.newInput.stock = product.stock;
+  },
     onLogout() {
       this.logout()
       if (this.$route.path !== '/') {

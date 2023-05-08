@@ -7,6 +7,8 @@
               :columns="columns"
               :rows="rows"
               ref="myTable"
+              @click="editProduct(row)"
+              @edit-product="updateInput"
             >
               <template #table="{ rows }">
                 <div class="table-wrap" style="max-height: 400px; overflow-y: auto;">
@@ -128,6 +130,9 @@ updated() {
     },
     validate () {
       this.$store.dispatch('importData', this.importCodeInput)
+    },
+    editProduct(product) {
+      this.$store.dispatch('updateNewInput', product)
     }
   },
   computed: {
