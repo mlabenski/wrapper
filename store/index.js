@@ -112,8 +112,8 @@ export const actions = {
   setTitle (vuexContext, title) {
     vuexContext.commit('setTitle',  title)
   },
-  updateNewInput(vuexContext, payload) {
-    commit('UPDATE_NEW_INPUT', PAYLOAD);
+  updateNewInput (vuexContext, payload) {
+    vuexContext.commit('UPDATE_NEW_INPUT', payload);
   },
   setHeaderLogo (vuexContext, headerLogo) {
     vuexContext.commit('setHeaderLogo', headerLogo)
