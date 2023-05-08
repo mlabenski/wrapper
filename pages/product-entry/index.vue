@@ -6,7 +6,6 @@
               :columns="columns"
               :rows="rows"
               ref="myTable"
-              @on-row-click="editProduct"
             >
               <template #table="{ rows }">
                 <div class="table-wrap" style="max-height: 400px; overflow-y: auto;">
@@ -311,6 +310,7 @@ updated() {
   transform: translate3d(0, 0.5em, 0);
 }
 .limited-height-table .vgt-wrap {
+  z-index: 1;
   max-height: 769px; /* Adjust the value based on your preferred height */
   overflow-y: auto;
 }
