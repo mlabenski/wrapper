@@ -113,9 +113,10 @@ async mounted() {
     await this.$store.dispatch('loadProductData', this.$route.query.storeID);
 },
 updated() {
-  const tableBody = this.$refs.myTable.$el.querySelector(".vgt-wrap");
+  //.table-wrap
+  const tableBody = this.$el.querySelector(".table-wrap");
   if (tableBody) {
-    tableBody.style.maxHeight = '400px'; // Adjust the value based on your preferred height
+    tableBody.style.maxHeight = '1200px'; // Adjust the value based on your preferred height
     tableBody.style.overflowY = 'auto';
   }
 },
@@ -152,6 +153,12 @@ updated() {
 </script>
 
 <style lang="scss">
+
+.table-wrap {
+  z-index: 1;
+  max-height: 769px; /* Adjust the value based on your preferred height */
+  overflow-y: auto;
+}
 
 .filter-icons {
   position: fixed;
@@ -311,12 +318,6 @@ updated() {
 .input--filled .input__label--haruki::after {
   transform: translate3d(0, 0.5em, 0);
 }
-.limited-height-table .vgt-wrap {
-  z-index: 1;
-  max-height: 769px; /* Adjust the value based on your preferred height */
-  overflow-y: auto;
-}
-
 section {
   position: relative;
 }
