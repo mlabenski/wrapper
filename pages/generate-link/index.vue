@@ -2,9 +2,17 @@
   <v-row>
     <v-col cols="12" sm="6">
       <div class="suggestions mb-2">
-        <v-btn v-for="(suggestion, index) in suggestions" :key="index" class="mr-2 mb-2" small color="primary" @click="addSuggestion(suggestion)">
+        <v-chip 
+          v-for="(suggestion, index) in suggestions" 
+          :key="index" 
+          class="mr-2 mb-2" 
+          color="primary" 
+          text-color="white"
+          :disabled="!typedText && suggestion !== 'the website title is'" 
+          @click="addSuggestion(suggestion)"
+        >
           {{ suggestion }}
-        </v-btn>
+        </v-chip>
       </div>
       <form @submit.prevent="handleSubmit">
         <v-textarea
