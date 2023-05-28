@@ -76,6 +76,16 @@
                   </v-btn>
                 </div>
                 </template>
+                <template v-if="!user">
+                  <div class="flex justify-center mt-10 nav-bar" style="left:145px;">
+                  <v-btn 
+                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab text tile
+                    id="nav-text"
+                    @click.prevent="onGenerate">
+                    Generate URL
+                  </v-btn>
+                </div>
+                </template>
       </client-only>
       <v-menu>
         <template v-slot:activator="{ on }">
@@ -298,6 +308,9 @@ export default {
     },
     onServices() {
       this.$router.push('/services')
+    },
+    onGenerate() {
+      this.$router.push('/generate-link')
     },
     validateInput() {
       const newEntry = {
