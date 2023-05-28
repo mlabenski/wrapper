@@ -7,7 +7,7 @@
           id="inputText"
           v-model="inputText"
           rows="6"
-          class="w-full p-2 border border-gray-300 rounded-lg mb-2 resize-none"
+          class="w-full p-2 border border-gray-300 rounded-lg mb-2 resize-none text-white"
         ></textarea>
         <button type="submit" :disabled="!isInputValid" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50">Generate Payment Link</button>
       </form>
@@ -19,7 +19,7 @@
         v-model="outputText"
         rows="6"
         readonly
-        class="w-full p-2 border border-gray-300 rounded-lg resize-none"
+        class="w-full p-2 border border-gray-300 rounded-lg resize-none text-white"
       ></textarea>
     </div>
   </div>
