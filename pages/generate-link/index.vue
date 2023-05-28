@@ -30,22 +30,31 @@
             <v-btn icon @click="dialog = true">
               <v-icon>mdi-information-outline</v-icon>
             </v-btn>
-            <v-dialog v-model="dialog" persistent max-width="600px">
-              <v-card>
-                <v-card-title class="headline">Information</v-card-title>
-                <v-card-text>
-                  <p>This chat expects a sentence describing a payment link you wish to send your customer. Our system will translate the input to a payment URL, the only step left is to message the link to them.</p>
-                  <p>While the system is programmed to recognize valid input, an example is: "The website name is DaveNBusters the customer name is John Doe and his customer id is 39991. He is buying the item two hundred tickets package, which costs in total $200, the quantity of this order is 1. He is also buying two skittles family sized for $4.99 each."</p>
-                  <p>Expected answer: <a href="https://DaveNBusters.securepayments.cardpointe.com/pay?total=209.98&customerId=39991&billFName=John&billLName=Doe&details=200%20Tickets%20Package%7C1%7C200%3C%3ESkittles%20Family%20Sized%7C2%7C4.99">Example Payment Link</a></p>
-                </v-card-text>
-                <v-card-actions>
+          <v-dialog v-model="dialog" persistent max-width="600px">
+            <v-card>
+              <v-card-title class="headline">
+                <div class="d-flex align-center">
+                  <span>What's this?</span>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" text @click="tryPrompt">
-                    Try this prompt
+                  <v-btn icon @click="dialog = false">
+                    <v-icon>mdi-close</v-icon>
                   </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+                </div>
+              </v-card-title>
+              <v-card-text class="text-body-1">
+                <p class="mb-4">This chat expects a sentence describing a payment link you wish to send your customer. Our system will translate the input to a payment URL, the only step left is to message the link to them.</p>
+                <v-divider></v-divider>
+                <p class="mt-4">While the system is programmed to recognize valid input, an example is: "The website name is DaveNBusters the customer name is John Doe and his customer id is 39991. He is buying the item two hundred tickets package, which costs in total $200, the quantity of this order is 1. He is also buying two skittles family sized for $4.99 each."</p>
+                <p>Expected answer: <a href="https://cpswoo.securepayments.cardpointe.com/pay?total=209.98&customerId=39991&billFName=John&billLName=Doe&details=200%20Tickets%20Package%7C1%7C200%3C%3ESkittles%20Family%20Sized%7C2%7C4.99">Example Payment Link</a></p>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" text @click="tryPrompt">
+                  Try this prompt
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
           </v-col>
         </v-row>
       </form>
