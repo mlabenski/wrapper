@@ -1,11 +1,16 @@
 <template>
   <v-row>
     <v-col cols="12" sm="6">
+      <div class="suggestions mb-2">
+        <v-btn v-for="(suggestion, index) in suggestions" :key="index" class="mr-2 mb-2" small color="primary" @click="addSuggestion(suggestion)">
+          {{ suggestion }}
+        </v-btn>
+      </div>
       <form @submit.prevent="handleSubmit">
         <v-textarea
           label="Input"
           auto-grow
-          v-model="inputText"
+          v-model="typedText"
           outlined
           class="white--text"
         ></v-textarea>
@@ -35,8 +40,15 @@ export default {
   name: 'HomePage',
   data() {
     return {
-      inputText: '',
+      typedText: '',
       outputText: '',
+      suggestions: [
+        'the website title is',
+        'the customers name is',
+        'the item name is',
+        'the price of this item is',
+        'the quantity of this item is'
+      ],
       features: [
         {
           img: require("@/assets/img/icon2.png"),
@@ -61,7 +73,7 @@ export default {
       user: 'auth/user'
     }),
     isInputValid() {
-      return this.inputText.trim().length > 0;
+      return this.typedText.trim().length > 0;
     }
   },
   created() {
@@ -101,7 +113,7 @@ export default {
     },
     async generatePaymentLink() {
       try {
-        const response = await axios.post('https://genhppurl.mlabenski.repl.co/generate', { input_text: this.inputText });
+        const response = await axios.post('https://genhppurl.mlabenski.repl.co/generate', { input_text: this.typedText });
         this.outputText = response.data.generated_text;
       } catch (error) {
         console.error('Error generating payment link:', error);
@@ -113,6 +125,9 @@ export default {
         this.generatePaymentLink();
       }
     },
+    addSuggestion(suggestion) {
+      this.typedText += ` ${suggestion} `;
+    }
   }
 };
 </script>
