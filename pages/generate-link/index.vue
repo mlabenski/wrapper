@@ -1,28 +1,30 @@
 <template>
-  <div class="flex flex-wrap justify-around items-start">
-    <div class="w-full sm:w-1/2 p-4">
+  <v-row>
+    <v-col cols="12" sm="6">
       <form @submit.prevent="handleSubmit">
-        <label for="inputText" class="block text-lg mb-2">Input:</label>
-        <textarea
-          id="inputText"
+        <v-textarea
+          label="Input"
+          auto-grow
           v-model="inputText"
-          rows="6"
-          class="w-full p-2 border border-gray-300 rounded-lg mb-2 resize-none text-white"
-        ></textarea>
-        <button type="submit" :disabled="!isInputValid" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50">Generate Payment Link</button>
+          outlined
+          class="white--text"
+        ></v-textarea>
+        <v-btn :disabled="!isInputValid" color="primary" class="mt-2" @click="handleSubmit">
+          Generate Payment Link
+        </v-btn>
       </form>
-    </div>
-    <div class="w-full sm:w-1/2 p-4">
-      <label for="outputText" class="block text-lg mb-2">Output:</label>
-      <textarea
-        id="outputText"
+    </v-col>
+    <v-col cols="12" sm="6">
+      <v-textarea
+        label="Output"
+        auto-grow
         v-model="outputText"
-        rows="6"
+        outlined
         readonly
-        class="w-full p-2 border border-gray-300 rounded-lg resize-none text-white"
-      ></textarea>
-    </div>
-  </div>
+        class="white--text"
+      ></v-textarea>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
