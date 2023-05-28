@@ -8,7 +8,7 @@
           class="mr-2 mb-2" 
           color="primary" 
           text-color="white"
-          :disabled="!typedText && suggestion !== 'the website title is'" 
+          :disabled="!typedText && suggestion !== 'the hpp url is'" 
           @click="addSuggestion(suggestion)"
         >
           {{ suggestion }}
@@ -99,7 +99,7 @@ export default {
       outputText: '',
       dialog: false,
       suggestions: [
-        'the hpp url is is',
+        'the hpp url is',
         'the customers name is',
         'the item name is',
         'the price of this item is',
