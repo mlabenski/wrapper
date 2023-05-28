@@ -60,20 +60,23 @@
       </form>
     </v-col>
     <v-col cols="12" sm="6">
-      <v-textarea
-        label="Output"
-        auto-grow
-        v-model="outputText"
-        outlined
-        readonly
-        class="white--text"
-      ></v-textarea>
-    </v-col>
+    <v-textarea
+      label="Output"
+      :value="outputText"
+      class="copyField"
+      readonly
+      outlined
+      :color="isOutputHovered ? 'blue' : ''"
+      @mouseover="isOutputHovered = true"
+      @mouseleave="isOutputHovered = false"
+    ></v-textarea>
+  </v-col>
   </v-row>
 </template>
 
 <script>
 import axios from 'axios'
+import Clipboard from 'clipboard';
 
 export default {
   data() {
@@ -87,8 +90,14 @@ export default {
         'the item name is',
         'the price of this item is',
         'the quantity of this item is'
-      ]
+      ],
+      isOutputHovered: false
     }
+  },
+  mounted() {
+    new Clipboard('.copyField', {
+      text: () => this.outputText,
+    });
   },
   methods: {
     async generatePaymentLink() {
