@@ -1,23 +1,25 @@
 <template>
-  <div class="grid">
-    <div class="grid-item">
+  <div class="flex flex-wrap justify-around items-start">
+    <div class="w-full sm:w-1/2 p-4">
       <form @submit.prevent="handleSubmit">
+        <label for="inputText" class="block text-lg mb-2">Input:</label>
         <textarea
+          id="inputText"
           v-model="inputText"
           rows="6"
-          placeholder="Input"
-          class="input-area"
+          class="w-full p-2 border border-gray-300 rounded-lg mb-2 resize-none"
         ></textarea>
-        <button type="submit" :disabled="!isInputValid">Generate Payment Link</button>
+        <button type="submit" :disabled="!isInputValid" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-50">Generate Payment Link</button>
       </form>
     </div>
-    <div class="grid-item">
+    <div class="w-full sm:w-1/2 p-4">
+      <label for="outputText" class="block text-lg mb-2">Output:</label>
       <textarea
+        id="outputText"
         v-model="outputText"
         rows="6"
-        placeholder="Output"
         readonly
-        class="input-area"
+        class="w-full p-2 border border-gray-300 rounded-lg resize-none"
       ></textarea>
     </div>
   </div>
