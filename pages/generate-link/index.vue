@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12" sm="6" class="pb-3">
-      <v-card class="pa-4">
+      <v-card class="pa-4 pt-8">
         <div class="suggestions mb-2">
           <v-chip 
             v-for="(suggestion, index) in suggestions" 
