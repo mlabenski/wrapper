@@ -133,6 +133,7 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters } from "vuex";
 import Clipboard from 'clipboard';
 import Features from "~/components/Features.vue";
 
@@ -187,6 +188,14 @@ export default {
       recentMessages: []
     }
   },
+  created() {
+    if (process.browser) {
+      if(!this.user) {
+        this.$router.push('/')
+        this.$toast.show(`Sorry! You'll need to be logged in.`)
+      }
+    }
+  },
   mounted() {
     // Implements saving the output messages
     const savedMessages = localStorage.getItem('recentMessages');
@@ -234,7 +243,10 @@ export default {
   computed: {
     isInputValid() {
     return this.typedText.trim().length > 0 && !this.rateLimiting;
-  }
+  },
+  ...mapGetters({
+      user: 'auth/user'
+    }),
   }
 }
 </script>
