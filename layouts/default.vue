@@ -81,7 +81,6 @@
                     <v-btn 
                       class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab tile
                       id="nav-text"
-                      color="primary"
                       dark
                       large
                       elevation="2"

@@ -102,6 +102,20 @@ import Clipboard from 'clipboard';
 import Features from "~/components/Features.vue";
 
 export default {
+  name: 'GenerateLink',
+  head: {
+    title: 'Generate with AI',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Generate payment links with AI, just type your sentence and the customers order.'
+      }
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '../assets/wrapper-logo-small.png' }]
+  },
   data() {
     return {
       typedText: '',

@@ -121,6 +121,20 @@ import Features from "~/components/Features.vue";
 
 export default {
   name: 'IndexPage',
+  name: 'HomePage',
+  head: {
+    title: 'Wrapper Landing page',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Landing page to generate payment links to the top processors, including CardPointe HPP.'
+      }
+    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '../assets/wrapper-logo-small.png' }]
+  },
   components: {
     Features,
   },
