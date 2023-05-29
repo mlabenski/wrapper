@@ -86,11 +86,21 @@
   </v-snackbar>
   </v-col>
   </v-row>
+  <v-row align="center" justify="space-around">
+            <!-- <v-col cols="12" class="text-center">
+              <h1 class="font-weight-light display-2">Title</h1>
+              <h1 class="font-weight-light">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </h1>
+            </v-col> -->
+            <Features :features="features" />
+          </v-row>
 </template>
 
 <script>
 import axios from 'axios'
 import Clipboard from 'clipboard';
+import Features from "~/components/Features.vue";
 
 export default {
   data() {
@@ -107,6 +117,23 @@ export default {
       ],
       isOutputHovered: false,
       copiedToClipboard: false,
+      features: [
+        {
+          img: require("@/assets/img/icon2.png"),
+          title: "Saved Responses",
+          text: "Recall past notes and future invoice saving.",
+        },
+        {
+          img: require("@/assets/img/icon1.png"),
+          title: "Add Preset Items",
+          text: "Quick insert the following text. The item is x the price per unit is y the quantity is n",
+        },
+        {
+          img: require("@/assets/img/icon3.png"),
+          title: "Settings",
+          text: "Settings feature, provide your shop URL to your customers and url customization",
+        },
+      ],
     }
   },
   mounted() {
