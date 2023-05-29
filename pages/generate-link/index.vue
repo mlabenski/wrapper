@@ -85,16 +85,8 @@
     </v-btn>
   </v-snackbar>
   </v-col>
+  <Features :features="features" />
   </v-row>
-  <v-row align="center" justify="space-around">
-            <!-- <v-col cols="12" class="text-center">
-              <h1 class="font-weight-light display-2">Title</h1>
-              <h1 class="font-weight-light">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </h1>
-            </v-col> -->
-            <Features :features="features" />
-          </v-row>
 </template>
 
 <script>
