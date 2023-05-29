@@ -72,7 +72,7 @@
           :color="isOutputHovered ? 'blue' : ''"
           @mouseover="isOutputHovered = true"
           @mouseleave="isOutputHovered = false"
-          @click="copiedToClipboard = true"
+          @click="copyAndSaveOutput"
         ></v-textarea>
         <v-divider class="my-3"></v-divider>
     <h2 class="text-h6">Recent Messages</h2>
@@ -84,8 +84,7 @@
       </v-list-item>
     </v-list>
   </v-card>
-  </v-col>
-        <v-snackbar
+  <v-snackbar
         v-model="copiedToClipboard"
         timeout="3000"
         >
@@ -98,6 +97,7 @@
             Close
           </v-btn>
         </v-snackbar>
+  </v-col>
     <v-col cols="12">
       <Features :features="features" />
   </v-col>
@@ -177,6 +177,8 @@ export default {
         this.rateLimiting = true; // disable the button
         const response = await axios.post('https://genhppurl.mlabenski.repl.co/generate', { input_text: this.typedText });
         this.outputText = response.data.generated_text;
+        this.recentMessages.push(this.outputText);
+        localStorage.setItem('recentMessages', JSON.stringify(this.recentMessages));
         setTimeout(() => {
         this.rateLimiting = false;
       }, 5000);
@@ -200,9 +202,6 @@ export default {
     },
     copyAndSaveOutput() {
       this.copiedToClipboard = true;
-
-      this.recentMessages.push(this.outputText);
-      localStorage.setItem('recentMessages', JSON.stringify(this.recentMessages));
     }
   },
   computed: {
