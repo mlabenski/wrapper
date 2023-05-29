@@ -76,15 +76,20 @@
                   </v-btn>
                 </div>
                 </template>
-                <template v-if="!user">
+                <template>
                   <div class="flex justify-center mt-10 nav-bar" style="left:145px;">
-                  <v-btn 
-                    class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab text tile
-                    id="nav-text"
-                    @click.prevent="onGenerate">
-                    Generate URL
-                  </v-btn>
-                </div>
+                    <v-btn 
+                      class="d-none d-sm-block d-md-block d-lg-block d-xl-block d-xxl-block" fab tile
+                      id="nav-text"
+                      color="primary"
+                      dark
+                      large
+                      elevation="2"
+                      @click.prevent="onGenerate">
+                      <v-icon left>mdi-currency-usd</v-icon>
+                      AI Generate URL
+                    </v-btn>
+                  </div>
                 </template>
       </client-only>
       <v-menu>
@@ -109,8 +114,13 @@
           <v-list-item v-if="!user" @click.prevent="onServices">
             <v-list-item-title>Support</v-list-item-title>
           </v-list-item>
-          <v-list-item v-if="!user" @click.prevent="onServices">
-            <v-list-item-title>Learn More</v-list-item-title>
+          <v-list-item @click.prevent="onGenerate">
+            <v-list-item-icon>
+            <v-icon color="primary">mdi-information-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title class="primary--text">AI Generate</v-list-item-title>
+            </v-list-item-content>
           </v-list-item>
         </v-list>
       </v-menu>
