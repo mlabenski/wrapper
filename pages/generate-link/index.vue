@@ -74,6 +74,17 @@
           @mouseleave="isOutputHovered = false"
           @click="copiedToClipboard = true"
         ></v-textarea>
+        <v-divider class="my-3"></v-divider>
+    <h2 class="text-h6">Recent Messages</h2>
+    <v-list dense>
+      <v-list-item v-for="(item, index) in recentMessages" :key="index">
+        <v-list-item-content>
+          <v-list-item-title>{{ item }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </v-card>
+  </v-col>
         <v-snackbar
         v-model="copiedToClipboard"
         timeout="3000"
@@ -87,11 +98,9 @@
             Close
           </v-btn>
         </v-snackbar>
-      </v-card>
-    </v-col>
     <v-col cols="12">
       <Features :features="features" />
-    </v-col>
+  </v-col>
   </v-row>
 </template>
 
@@ -148,9 +157,16 @@ export default {
           text: "Settings feature, provide your shop URL to your customers and url customization",
         },
       ],
+      recentMessages: []
     }
   },
   mounted() {
+    // Implements saving the output messages
+    const savedMessages = localStorage.getItem('recentMessages');
+    if (savedMessages) {
+      this.recentMessages = JSON.parse(savedMessages);
+    }
+    // Initalize Clipboard
     new Clipboard('.copyField', {
       text: () => this.outputText,
     });
@@ -181,6 +197,12 @@ export default {
     tryPrompt() {
       this.typedText = 'The hpp URL is DaveNBusters the customer name is John Doe and his customer id is 39991. He is buying the item two hundred tickets package, which costs in total $200, the quantity of this order is 1. He is also buying two skittles family sized for $4.99 each.';
       this.dialog = false;
+    },
+    copyAndSaveOutput() {
+      this.copiedToClipboard = true;
+
+      this.recentMessages.push(this.outputText);
+      localStorage.setItem('recentMessages', JSON.stringify(this.recentMessages));
     }
   },
   computed: {
