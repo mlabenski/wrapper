@@ -1,5 +1,5 @@
 <template>
-  <v-row class="d-flex justify-space-between flex-column" style="height: 100vh;">
+  <v-row>
     <v-col cols="12" sm="6" class="pb-3 pt-6">
       <v-card class="pa-4">
         <div class="suggestions mb-2">
@@ -124,7 +124,7 @@
           </v-btn>
         </v-snackbar>
   </v-col>
-    <v-col cols="12">
+    <v-col cols="12" style="padding-top: 25%">
       <Features :features="features" />
   </v-col>
   </v-row>
