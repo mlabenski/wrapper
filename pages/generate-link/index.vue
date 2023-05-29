@@ -24,24 +24,31 @@
             class="white--text"
           ></v-textarea>
           <v-card class="mt-4 pa-4" color="light-grey darken-1">
-        <div class="white--text subtitle-1">Premium Features</div>
-        <div class="body-2 white--text mt-2">Sign up to unlock these features:</div>
-        <v-checkbox
-          :disabled="!isAuthenticated"
-          class="mt-2 white--text"
-          label="Save Invoice"
-        ></v-checkbox>
-        <v-checkbox
-          :disabled="!isAuthenticated"
-          class="mt-2 white--text"
-          label="Email Invoice"
-        ></v-checkbox>
-        <v-checkbox
-          :disabled="!isAuthenticated"
-          class="mt-2 white--text"
-          label="Text Invoice"
-        ></v-checkbox>
-      </v-card>
+            <div class="body-2 white--text mt-2">Sign In to unlock these features:</div>
+            <v-row>
+              <v-col cols="12" sm="4">
+                <v-checkbox
+                  :disabled="!isAuthenticated"
+                  class="white--text"
+                  label="Save Invoice"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="4">
+                <v-checkbox
+                  :disabled="!isAuthenticated"
+                  class="white--text"
+                  label="Email Invoice"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="4">
+                <v-checkbox
+                  :disabled="!isAuthenticated"
+                  class="white--text"
+                  label="Text Invoice"
+                ></v-checkbox>
+              </v-col>
+            </v-row>
+          </v-card>
           <v-row align="center" class="mt-2">
             <v-col cols="8">
               <v-btn :disabled="!isInputValid" color="primary" class="mr-2" @click="handleSubmit">
