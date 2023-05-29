@@ -23,6 +23,25 @@
             outlined
             class="white--text"
           ></v-textarea>
+          <v-card class="mt-4 pa-4" color="light-grey darken-1">
+        <div class="white--text subtitle-1">Premium Features</div>
+        <div class="body-2 white--text mt-2">Sign up to unlock these features:</div>
+        <v-checkbox
+          :disabled="!isAuthenticated"
+          class="mt-2 white--text"
+          label="Save Invoice"
+        ></v-checkbox>
+        <v-checkbox
+          :disabled="!isAuthenticated"
+          class="mt-2 white--text"
+          label="Email Invoice"
+        ></v-checkbox>
+        <v-checkbox
+          :disabled="!isAuthenticated"
+          class="mt-2 white--text"
+          label="Text Invoice"
+        ></v-checkbox>
+      </v-card>
           <v-row align="center" class="mt-2">
             <v-col cols="8">
               <v-btn :disabled="!isInputValid" color="primary" class="mr-2" @click="handleSubmit">
@@ -123,13 +142,14 @@ export default {
         content: 'Generate payment links with AI, just type your sentence and the customers order.'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '../assets/wrapper-logo-small.png' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '~/assets/wrapper-logo-small.png' }]
   },
   data() {
     return {
       typedText: '',
       outputText: '',
       dialog: false,
+      isAuthenticated: true,
       rateLimiting: false,
       suggestions: [
         'the hpp url is',
