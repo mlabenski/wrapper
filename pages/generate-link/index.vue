@@ -188,14 +188,6 @@ export default {
       recentMessages: []
     }
   },
-  created() {
-    if (process.browser) {
-      if(!this.user) {
-        this.$router.push('/')
-        this.$toast.show(`Sorry! You'll need to be logged in.`)
-      }
-    }
-  },
   mounted() {
     // Implements saving the output messages
     const savedMessages = localStorage.getItem('recentMessages');
