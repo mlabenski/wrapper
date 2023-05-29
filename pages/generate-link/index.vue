@@ -108,6 +108,7 @@ export default {
       typedText: '',
       outputText: '',
       dialog: false,
+      rateLimiting: false,
       suggestions: [
         'the hpp url is',
         'the customers name is',
@@ -119,17 +120,17 @@ export default {
       copiedToClipboard: false,
       features: [
         {
-          img: require("@/assets/img/icon2.png"),
+          img: require("@/assets/img/icon1-gold.png"),
           title: "Saved Responses",
           text: "Recall past notes and future invoice saving.",
         },
         {
-          img: require("@/assets/img/icon1.png"),
+          img: require("@/assets/img/icon2-gold.png"),
           title: "Add Preset Items",
           text: "Quick insert the following text. The item is x the price per unit is y the quantity is n",
         },
         {
-          img: require("@/assets/img/icon3.png"),
+          img: require("@/assets/img/icon3-gold.png"),
           title: "Settings",
           text: "Settings feature, provide your shop URL to your customers and url customization",
         },
@@ -144,10 +145,15 @@ export default {
   methods: {
     async generatePaymentLink() {
       try {
+        this.rateLimiting = true; // disable the button
         const response = await axios.post('https://genhppurl.mlabenski.repl.co/generate', { input_text: this.typedText });
         this.outputText = response.data.generated_text;
+        setTimeout(() => {
+        this.rateLimiting = false;
+      }, 5000);
       } catch (error) {
         console.error('Error generating payment link:', error);
+        this.rateLimiting = false;
       }
     },
     handleSubmit() {
@@ -166,8 +172,8 @@ export default {
   },
   computed: {
     isInputValid() {
-      return this.typedText.trim().length > 0;
-    }
+    return this.typedText.trim().length > 0 && !this.rateLimiting;
+  }
   }
 }
 </script>
