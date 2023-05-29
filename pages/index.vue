@@ -117,7 +117,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Features from "./Features";
+import Features from "~/components/Features.vue";
 
 export default {
   name: 'IndexPage',
