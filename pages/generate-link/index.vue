@@ -7,8 +7,8 @@
             v-for="(suggestion, index) in suggestions" 
             :key="index" 
             class="mr-2 mb-2" 
-            color="primary" 
-            text-color="white"
+            color="gold" 
+            text-color="black"
             :disabled="!typedText && suggestion !== 'the hpp url is'" 
             @click="addSuggestion(suggestion)"
           >

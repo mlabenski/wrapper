@@ -74,7 +74,8 @@ head: {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
-          white: "#FFFFFF"
+          white: "#FFFFFF",
+          gold: '#FFD700',
         }
       }
     }
