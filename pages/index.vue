@@ -101,33 +101,7 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </h1>
             </v-col> -->
-            <v-col
-              v-for="(feature, i) in features"
-              :key="i"
-              cols="12"
-              sm="4"
-              class="text-center"
-            >
-              <v-hover v-slot="{ hover }">
-                <v-card
-                  class="card"
-                  shaped
-                  :elevation="hover ? 10 : 4"
-                  :class="{ up: hover }"
-                >
-                  <v-img
-                    :src="feature.img"
-                    max-width="100px"
-                    class="d-block ml-auto mr-auto"
-                    :class="{ 'zoom-efect': hover }"
-                  ></v-img>
-                  <h1 class="font-weight-regular">{{ feature.title }}</h1>
-                  <h4 class="font-weight-regular subtitle-1">
-                    {{ feature.text }}
-                  </h4>
-                </v-card>
-              </v-hover>
-            </v-col>
+            <Features :features="features" />
           </v-row>
         </v-col>
       </v-row>
@@ -143,9 +117,13 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Features from "./Features";
 
 export default {
   name: 'IndexPage',
+  components: {
+    Features,
+  },
   data() {
     return {
       currentUser: null,
