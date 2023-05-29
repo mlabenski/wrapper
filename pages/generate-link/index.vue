@@ -1,5 +1,5 @@
 <template>
-  <v-row>
+  <v-row class="d-flex justify-space-between flex-column" style="height: 100vh;">
     <v-col cols="12" sm="6" class="pb-3 pt-6">
       <v-card class="pa-4">
         <div class="suggestions mb-2">
@@ -28,21 +28,21 @@
             <v-row>
               <v-col cols="12" sm="4">
                 <v-checkbox
-                  :disabled="!isAuthenticated"
+                  :disabled="!user"
                   class="white--text"
                   label="Save Invoice"
                 ></v-checkbox>
               </v-col>
               <v-col cols="12" sm="4">
                 <v-checkbox
-                  :disabled="!isAuthenticated"
+                  :disabled="!user"
                   class="white--text"
                   label="Email Invoice"
                 ></v-checkbox>
               </v-col>
               <v-col cols="12" sm="4">
                 <v-checkbox
-                  :disabled="!isAuthenticated"
+                  :disabled="!user"
                   class="white--text"
                   label="Text Invoice"
                 ></v-checkbox>
