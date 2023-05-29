@@ -89,22 +89,10 @@
         </v-snackbar>
       </v-card>
     </v-col>
+    <v-col cols="12">
+      <Features :features="features" />
+    </v-col>
   </v-row>
-  <v-container id="features" fluid class="mt-2" style="padding-top: 3%;">
-      <v-row align="center" justify="center">
-        <v-col cols="12">
-          <v-row align="center" justify="space-around">
-            <!-- <v-col cols="12" class="text-center">
-              <h1 class="font-weight-light display-2">Title</h1>
-              <h1 class="font-weight-light">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </h1>
-            </v-col> -->
-            <Features :features="features" />
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-container>
 </template>
 
 
