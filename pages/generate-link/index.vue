@@ -140,6 +140,7 @@
         </v-snackbar>
   </v-col>
     <v-col cols="12" style="padding-top: 25%">
+      <InvoiceDisplay v-if="user" />
       <Features :features="features" />
   </v-col>
   </v-row>
@@ -151,6 +152,7 @@ import axios from 'axios'
 import { mapGetters } from "vuex";
 import Clipboard from 'clipboard';
 import Features from "~/components/Features.vue";
+import GenerateLinkInvoice from './GenerateLinkInvoice.vue'; 
 
 export default {
   name: 'GenerateLink',
