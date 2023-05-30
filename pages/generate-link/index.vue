@@ -139,8 +139,10 @@
           </v-btn>
         </v-snackbar>
   </v-col>
-    <v-col cols="12" style="padding-top: 25%">
-      <InvoiceDisplay v-if="user" />
+    <v-col cols="12" style="padding-top: 19%">
+      <GenerateLinkInvoice :user="user"/>
+  </v-col>
+  <v-col cols="12">
       <Features :features="features" />
   </v-col>
   </v-row>
@@ -262,18 +264,17 @@ export default {
     },
     async saveInvoice() {
       try {
-        if(this.outputText) {
+        if(this.outputText && this.user) {
           console.log('saving invoice:');
-          const maxNumber = 9;
+          const maxNumber = 999;
           const randomId = Math.floor(Math.random() * maxNumber).toString();
           const invoiceData = {
             unique_id: randomId, // replace this with actual unique id of the user
             customer_id: 123, // replace this with actual customer id
             store_id: 11, // replace this with actual store id
             url: this.outputText,
-            data: 'invoice data', // replace this with actual invoice data
+            data: this.user.id, // replace this with actual invoice data
             products: 'products', // replace this with actual products
-            paid: 'False'
           };
   
           const response = await axios.post('https://usewrapper.herokuapp.com/invoice', invoiceData);

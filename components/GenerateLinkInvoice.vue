@@ -16,6 +16,12 @@
   
   export default {
     name: "GenerateLinkInvoice",
+    props: {
+        user: {
+            type: Object,
+            required: true
+        }
+    },
     data() {
       return {
         headers: [
@@ -32,18 +38,18 @@
       }
     },
     async created() {
-      try {
-        const response = await axios.get('https://usewrapper.herokuapp.com/invoice'); // Adjust this URL to match your API
-        this.invoices = response.data;
-      } catch (error) {
-        console.error('Error retrieving invoices:', error);
-      }
+        try {
+            const response = await axios.get(`https://usewrapper.herokuapp.com/invoices?user_id=${this.user.id}`); // Adjust this URL to match your API
+            this.invoices = response.data;
+        } catch (error) {
+            console.error('Error retrieving invoices:', error);
+        }
     },
     methods: {
       async deleteItem(item) {
         try {
-          await axios.delete(`https://usewrapper.herokuapp.com/invoice/${item.data}`); // Adjust this URL to match your API
-          this.invoices = this.invoices.filter(i => i.data !== item.data);
+          await axios.delete(`https://usewrapper.herokuapp.com/invoice/${item.unique_id}`); // Adjust this URL to match your API
+          this.invoices = this.invoices.filter(i => i.unique_id !== item.unique_id);
         } catch (error) {
           console.error('Error deleting invoice:', error);
         }
