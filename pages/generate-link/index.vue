@@ -76,7 +76,6 @@
           @click="copyAndSaveOutput"
         ></v-textarea>
         <v-divider class="my-3"></v-divider>
-    <v-card class="mt-4 pa-4" color="light-grey darken-1">
       <v-expansion-panels accordion>
       <v-expansion-panel>
         <v-expansion-panel-header class="font-weight-bold text-h5">Recent Messages</v-expansion-panel-header>
@@ -93,7 +92,6 @@
       <v-expansion-panel>
     <v-expansion-panel-header class="font-weight-bold text-h5">Premium Features</v-expansion-panel-header>
       <v-expansion-panel-content>
-        <v-card class="pa-4" color="light-grey darken-1">
           <v-row>
             <v-col cols="12" sm="4">
               <v-checkbox
@@ -123,11 +121,9 @@
               ></v-checkbox>
             </v-col>
           </v-row>
-        </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
-  </v-card>
   </v-card>
   <v-snackbar
         v-model="copiedToClipboard"
