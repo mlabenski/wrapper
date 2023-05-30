@@ -225,7 +225,7 @@ export default {
             url: this.outputText,
             data: 'invoice data', // replace this with actual invoice data
             products: 'products', // replace thi  s with actual products
-            paid: False
+            paid: false
           };
 
           const invoiceResponse = await axios.post('https://usewrapper.herokuapp.com/invoice', invoiceData);
