@@ -140,7 +140,7 @@
         </v-snackbar>
   </v-col>
     <v-col cols="12" style="padding-top: 19%">
-      <GenerateLinkInvoice :user="user"/>
+      <GenerateLinkInvoice :user="user" v-if="outputText"/>
   </v-col>
   <v-col cols="12">
       <Features :features="features" />
@@ -229,13 +229,15 @@ export default {
         this.outputText = response.data.generated_text;
         this.recentMessages.push(this.outputText);
         localStorage.setItem('recentMessages', JSON.stringify(this.recentMessages));
+        const maxNumber = 999;
+        const randomId = Math.floor(Math.random() * maxNumber).toString();
         if (this.saveInvoiceChecked && this.user) {
           const invoiceData = {
-            unique_id: this.user.id, // replace this with actual unique id of the user
+            unique_id: randomId, // replace this with actual unique id of the user
             customer_id: '123', // replace this with actual customer id
             store_id: '11', // replace this with actual store id
             url: this.outputText,
-            data: 'invoice data', // replace this with actual invoice data
+            data: this.user.id, // replace this with actual invoice data
             products: 'products', // replace thi  s with actual products
           };
 
