@@ -23,32 +23,7 @@
             outlined
             class="white--text"
           ></v-textarea>
-          <v-card class="mt-4 pa-4" color="light-grey darken-1">
-            <div class="body-2 white--text mt-2">Sign In to unlock these features:</div>
-            <v-row>
-              <v-col cols="12" sm="4">
-                <v-checkbox
-                  :disabled="!user"
-                  class="white--text"
-                  label="Save Invoice"
-                ></v-checkbox>
-              </v-col>
-              <v-col cols="12" sm="4">
-                <v-checkbox
-                  :disabled="!user"
-                  class="white--text"
-                  label="Email Invoice"
-                ></v-checkbox>
-              </v-col>
-              <v-col cols="12" sm="4">
-                <v-checkbox
-                  :disabled="!user"
-                  class="white--text"
-                  label="Text Invoice"
-                ></v-checkbox>
-              </v-col>
-            </v-row>
-          </v-card>
+        </form>
           <v-row align="center" class="mt-2">
             <v-col cols="8">
               <v-btn :disabled="!isInputValid" color="primary" class="mr-2" @click="handleSubmit">
@@ -84,7 +59,7 @@
             </v-dialog>
             </v-col>
           </v-row>
-        </form>
+        
       </v-card>
     </v-col>
     <v-col cols="12" sm="6" class="pt-6">
@@ -102,6 +77,38 @@
         ></v-textarea>
         <v-divider class="my-3"></v-divider>
     <h2 class="text-h6">Recent Messages</h2>
+    <v-card class="mt-4 pa-4" color="light-grey darken-1">
+            <div class="body-4 white--text mt-2">Sign In to unlock these features:</div>
+            <v-row>
+              <v-col cols="12" sm="4">
+                <v-checkbox
+                  v-model="saveInvoiceChecked"
+                  :disabled="!user"
+                  class="white--text"
+                  label="Save Invoice"
+                  @change="user && $event && saveInvoice()"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="4">
+                <v-checkbox
+                  v-model="emailInvoiceChecked"
+                  :disabled="!user"
+                  class="white--text"
+                  label="Email Invoice"
+                  @change="user && $event && emailInvoice()"
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="4">
+                <v-checkbox
+                  v-model="emailInvoiceChecked"
+                  :disabled="!user"
+                  class="white--text"
+                  label="Text Invoice"
+                  @change="user && $event && textInvoice()"
+                ></v-checkbox>
+              </v-col>
+            </v-row>
+          </v-card>
     <v-list dense>
       <v-list-item v-for="(item, index) in recentMessages" :key="index">
         <v-list-item-content>
@@ -159,6 +166,9 @@ export default {
       dialog: false,
       isAuthenticated: true,
       rateLimiting: false,
+      saveInvoiceChecked: false,
+      emailInvoiceChecked: false,
+      textInvoice: false,
       suggestions: [
         'the hpp url is',
         'the customers name is',
@@ -233,6 +243,37 @@ export default {
       if (this.isInputValid) {
         console.log('sending event');
         this.generatePaymentLink();
+      }
+    },
+    emailInvoice() {
+      this.$toast.show('Feature isnt implemented yet')
+    },
+    textInvoice() {
+      this.$toast.show('Feature isnt implemented yet')
+    },
+    async saveInvoice() {
+      try {
+        if(this.outputText) {
+          console.log('saving invoice:');
+          const maxNumber = 9;
+          const randomId = Math.floor(Math.random() * maxNumber).toString();
+          const invoiceData = {
+            unique_id: randomId, // replace this with actual unique id of the user
+            customer_id: 123, // replace this with actual customer id
+            store_id: 11, // replace this with actual store id
+            url: this.outputText,
+            data: 'invoice data', // replace this with actual invoice data
+            products: 'products', // replace this with actual products
+            paid: 'False'
+          };
+  
+          const response = await axios.post('https://usewrapper.herokuapp.com/invoice', invoiceData);
+          console.log(response.data);
+          this.$toast.show('Invoice saved successfully');
+        }
+      } catch (error) {
+        console.error('Error saving invoice:', error);
+        this.$toast.show('Error saving invoice');
       }
     },
     addSuggestion(suggestion) {
