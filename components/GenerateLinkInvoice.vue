@@ -38,8 +38,13 @@
     },
     async created() {
         try {
-            const response = await axios.get(`https://usewrapper.herokuapp.com/invoices?user_id=${this.user.id}`); // Adjust this URL to match your API
-            this.invoices = response.data;
+            if(user.id) {
+                const response = await axios.get(`https://usewrapper.herokuapp.com/invoices?user_id=${this.user.id}`); // Adjust this URL to match your API
+                this.invoices = response.data;
+            }
+            else {
+                this.$toast.show('Sign up to save and track invoices!');
+            }
         } catch (error) {
             console.error('Error retrieving invoices:', error);
         }
