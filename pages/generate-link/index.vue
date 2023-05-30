@@ -76,46 +76,58 @@
           @click="copyAndSaveOutput"
         ></v-textarea>
         <v-divider class="my-3"></v-divider>
-    <h2 class="text-h6">Recent Messages</h2>
     <v-card class="mt-4 pa-4" color="light-grey darken-1">
-            <div class="body-4 white--text mt-2">Sign In to unlock these features:</div>
-            <v-row>
-              <v-col cols="12" sm="4">
-                <v-checkbox
-                  v-model="saveInvoiceChecked"
-                  :disabled="!user"
-                  class="white--text"
-                  label="Save Invoice"
-                  @change="user && $event && saveInvoice()"
-                ></v-checkbox>
-              </v-col>
-              <v-col cols="12" sm="4">
-                <v-checkbox
-                  v-model="emailInvoiceChecked"
-                  :disabled="!user"
-                  class="white--text"
-                  label="Email Invoice"
-                  @change="user && $event && emailInvoice()"
-                ></v-checkbox>
-              </v-col>
-              <v-col cols="12" sm="4">
-                <v-checkbox
-                  v-model="emailInvoiceChecked"
-                  :disabled="!user"
-                  class="white--text"
-                  label="Text Invoice"
-                  @change="user && $event && textInvoice()"
-                ></v-checkbox>
-              </v-col>
-            </v-row>
-          </v-card>
-    <v-list dense>
-      <v-list-item v-for="(item, index) in recentMessages" :key="index">
-        <v-list-item-content>
-          <v-list-item-title>{{ item }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
+      <v-expansion-panels accordion>
+      <v-expansion-panel>
+        <v-expansion-panel-header class="font-weight-bold text-h5">Recent Messages</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <v-list dense>
+            <v-list-item v-for="(item, index) in recentMessages" :key="index">
+              <v-list-item-content>
+                <v-list-item-title>{{ item }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <v-expansion-panel>
+    <v-expansion-panel-header class="font-weight-bold text-h5">Premium Features</v-expansion-panel-header>
+      <v-expansion-panel-content>
+        <v-card class="pa-4" color="light-grey darken-1">
+          <v-row>
+            <v-col cols="12" sm="4">
+              <v-checkbox
+                v-model="saveInvoiceChecked"
+                :disabled="!user"
+                class="white--text"
+                label="Save Invoice"
+                @change="user && $event && saveInvoice()"
+              ></v-checkbox>
+            </v-col>
+            <v-col cols="12" sm="4">
+              <v-checkbox
+                v-model="emailInvoiceChecked"
+                :disabled="!user"
+                class="white--text"
+                label="Email Invoice"
+                @change="user && $event && emailInvoice()"
+              ></v-checkbox>
+            </v-col>
+            <v-col cols="12" sm="4">
+              <v-checkbox
+                v-model="emailInvoiceChecked"
+                :disabled="!user"
+                class="white--text"
+                label="Text Invoice"
+                @change="user && $event && textInvoice()"
+              ></v-checkbox>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+  </v-expansion-panels>
+  </v-card>
   </v-card>
   <v-snackbar
         v-model="copiedToClipboard"
