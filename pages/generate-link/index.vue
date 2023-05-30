@@ -140,7 +140,7 @@
         </v-snackbar>
   </v-col>
     <v-col cols="12" style="padding-top: 19%">
-      <GenerateLinkInvoice :user="user" v-if="outputText"/>
+      <GenerateLinkInvoice :user="user"/>
   </v-col>
   <v-col cols="12">
       <Features :features="features" />
