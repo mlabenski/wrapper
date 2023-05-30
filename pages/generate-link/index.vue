@@ -207,6 +207,20 @@ export default {
         this.outputText = response.data.generated_text;
         this.recentMessages.push(this.outputText);
         localStorage.setItem('recentMessages', JSON.stringify(this.recentMessages));
+        if (this.saveInvoiceChecked && this.user) {
+          const invoiceData = {
+            unique_id: this.user.id, // replace this with actual unique id of the user
+            customer_id: '123', // replace this with actual customer id
+            store_id: '11', // replace this with actual store id
+            url: this.outputText,
+            data: 'invoice data', // replace this with actual invoice data
+            products: 'products', // replace thi  s with actual products
+            paid: false
+          };
+
+          const invoiceResponse = await axios.post('https://usewrapper.herokuapp.com/invoice', invoiceData);
+          console.log(invoiceResponse.data);
+        }
         setTimeout(() => {
         this.rateLimiting = false;
       }, 5000);
