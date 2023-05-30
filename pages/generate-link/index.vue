@@ -154,7 +154,7 @@ import axios from 'axios'
 import { mapGetters } from "vuex";
 import Clipboard from 'clipboard';
 import Features from "~/components/Features.vue";
-import GenerateLinkInvoice from './GenerateLinkInvoice.vue'; 
+import GenerateLinkInvoice from '~/components/GenerateLinkInvoice.vue'; 
 
 export default {
   name: 'GenerateLink',
