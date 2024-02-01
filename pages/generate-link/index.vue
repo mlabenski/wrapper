@@ -225,7 +225,7 @@ export default {
     async generatePaymentLink() {
       try {
         this.rateLimiting = true; // disable the button
-        const response = await axios.post('https://genhppurl.mlabenski.repl.co/generate', { input_text: this.typedText });
+        const response = await axios.post('https://genhppurl-mlabenski.replit.app/generate', { input_text: this.typedText });
         this.outputText = response.data.generated_text;
         this.recentMessages.push(this.outputText);
         localStorage.setItem('recentMessages', JSON.stringify(this.recentMessages));
